@@ -10,6 +10,11 @@ const Navbar = () => {
     useEffect(() => {
         setUrl(location.pathname);
     }, [location]);
+    function handleLogout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('authenticated')
+        window.location = '/';
+    }
     return (
         <nav className="navbar">
             <div className="hemaconnect-logo">
@@ -19,7 +24,7 @@ const Navbar = () => {
             <ul>
                 <a href="/bank" className={(url === "/bank" ?" active" : "")}>Bank</a>
                 <a href="/bookings" className={(url === "/bookings" ?" active" : "")}>Bookings</a>
-                <a href="/">Logout</a>
+                <a href="/" onClick={handleLogout}>Logout</a>
             </ul>
         </nav>
     );
