@@ -23,6 +23,8 @@ class User extends Authenticatable
         'password',
     ];
 
+    public $timestamps = false;
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -42,4 +44,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function userType()
+    {
+        return $this->belongsTo(UserType::class, 'usertype_id');
+    }
+
+    public function bloodType()
+    {
+        return $this->belongsTo(BloodType::class, 'bloodtypes_id');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'user_id');
+    }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class, 'user_id');
+    }
+
+    public function aiMessages()
+    {
+        return $this->hasMany(AiMessage::class, 'user_id');
+    }
 }
