@@ -123,6 +123,11 @@
       <path value="$PROJECT_DIR$/HemaConnect-Server/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/HemaConnect-Server/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/HemaConnect-Server/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/HemaConnect-Server/vendor/lcobucci/clock" />
+      <path value="$PROJECT_DIR$/HemaConnect-Server/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/HemaConnect-Server/vendor/namshi/jose" />
+      <path value="$PROJECT_DIR$/HemaConnect-Server/vendor/stella-maris/clock" />
+      <path value="$PROJECT_DIR$/HemaConnect-Server/vendor/php-open-source-saver/jwt-auth" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1">

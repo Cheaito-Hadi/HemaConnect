@@ -11,12 +11,12 @@ class BloodType extends Model
     public $timestamps = false;
     public function users()
     {
-        return $this->hasMany(User::class, 'bloodtypes_id');
+        return $this->hasMany(User::class, 'bloodtype_id');
     }
 
     public function requests()
     {
-        return $this->hasMany(Request::class, 'bloodtypes_id');
+        return $this->hasMany(Request::class, 'bloodtype_id');
     }
 
     public function bankStock()

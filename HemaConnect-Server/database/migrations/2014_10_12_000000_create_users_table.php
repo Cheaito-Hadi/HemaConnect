@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
-            $table->string('image_url');
+            $table->string('password');
+            $table->string('image_url')->nullable();
             $table->unsignedBigInteger('usertype_id');
             $table->foreign('usertype_id')->references('id')->on('usertypes')->onDelete('cascade');
-            $table->unsignedBigInteger('bloodtypes_id');
-            $table->foreign('bloodtypes_id')->references('id')->on('bloodtypes')->onDelete('cascade');
+            $table->unsignedBigInteger('bloodtype_id');
+            $table->foreign('bloodtype_id')->references('id')->on('bloodtypes')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();

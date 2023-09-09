@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/HemaConnect-Server/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/HemaConnect-Server/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/HemaConnect-Server/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/dflydev/dot-access-data" />
@@ -31,6 +33,8 @@
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/laravel/sanctum" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/laravel/serializable-closure" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/laravel/tinker" />
+      <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/lcobucci/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/lcobucci/jwt" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/league/commonmark" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/league/config" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/league/flysystem" />
@@ -39,6 +43,7 @@
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/myclabs/deep-copy" />
+      <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/namshi/jose" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/nesbot/carbon" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/nette/schema" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/nette/utils" />
@@ -47,6 +52,7 @@
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/nunomaduro/termwind" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/phar-io/manifest" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/phar-io/version" />
+      <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/php-open-source-saver/jwt-auth" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/phpoption/phpoption" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/phpunit/php-code-coverage" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/phpunit/php-file-iterator" />
@@ -85,6 +91,7 @@
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/spatie/flare-client-php" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/spatie/ignition" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/spatie/laravel-ignition" />
+      <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/stella-maris/clock" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/symfony/css-selector" />
       <excludeFolder url="file://$MODULE_DIR$/HemaConnect-Server/vendor/symfony/deprecation-contracts" />

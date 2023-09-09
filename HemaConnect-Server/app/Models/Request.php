@@ -11,7 +11,7 @@ class Request extends Model
     public $timestamps = false;
     public function bloodType()
     {
-        return $this->belongsTo(BloodType::class, 'bloodtypes_id');
+        return $this->belongsTo(BloodType::class, 'bloodtype_id');
     }
 
     public function hospital()
