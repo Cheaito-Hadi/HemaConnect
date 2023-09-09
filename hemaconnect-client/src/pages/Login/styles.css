@@ -1,0 +1,23 @@
+.left-right-container{
+    display: flex;
+    background-color: #FF6767;
+}
+
+.left-container{
+    width: 35%;
+    background-color: #FFF;
+    height: 100vh;
+    border-top-right-radius:  450px;
+    border-bottom-right-radius:  450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.right-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
