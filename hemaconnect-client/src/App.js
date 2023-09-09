@@ -1,11 +1,8 @@
 import './App.css';
-import Login from './pages/Login'
-
+import Navbar from "./components/ui/Navbar";
 function App() {
   return (
-    <div>
-        <Login/>
-    </div>
+<Navbar/>
   );
 }
 

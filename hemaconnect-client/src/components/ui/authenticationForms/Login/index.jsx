@@ -80,7 +80,7 @@ const LoginForm = () => {
             <div className="login-container">
                 <div>
                     <img src={Hema} alt="Hema Logo" />
-                    <img src={Connect} alt="Hema Logo" />
+                    <img src={Connect} alt="Connect Logo" />
                 </div>
                 <div className="cred-btn-wrapper">
                     <div>
