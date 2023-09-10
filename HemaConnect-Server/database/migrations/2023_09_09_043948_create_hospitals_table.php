@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('logo_url');
-            $table->float('longitude');
-            $table->float('latitude');
+            $table->string('longitude');
+            $table->string('latitude');
         });
 
         Schema::enableForeignKeyConstraints();

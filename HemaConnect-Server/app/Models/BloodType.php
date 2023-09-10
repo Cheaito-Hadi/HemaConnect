@@ -9,6 +9,7 @@ class BloodType extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $table = 'bloodtypes';
     public function users()
     {
         return $this->hasMany(User::class, 'bloodtype_id');
@@ -19,7 +20,7 @@ class BloodType extends Model
         return $this->hasMany(Request::class, 'bloodtype_id');
     }
 
-    public function bankStock()
+    public function bankStocks()
     {
         return $this->hasMany(BankStock::class, 'bloodtype_id');
     }

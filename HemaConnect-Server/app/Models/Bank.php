@@ -9,6 +9,7 @@ class Bank extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $table = 'banks';
     public function hospital()
     {
         return $this->belongsTo(Hospital::class, 'hospital_id');

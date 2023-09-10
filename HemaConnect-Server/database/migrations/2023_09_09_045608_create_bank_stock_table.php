@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('bank_stock', function (Blueprint $table) {
+        Schema::create('bank_stocks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('bloodtype_id');
             $table->foreign('bloodtype_id')->references('id')->on('bloodtypes')->onDelete('cascade');

@@ -9,7 +9,7 @@ class BankStock extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    public function bloodType()
+    public function bloodtype()
     {
         return $this->belongsTo(BloodType::class, 'bloodtype_id');
     }
