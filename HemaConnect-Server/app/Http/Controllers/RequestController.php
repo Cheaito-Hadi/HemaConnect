@@ -23,4 +23,15 @@ class RequestController extends Controller
 
         return response()->json(["Blood Request" => $new_request]);
     }
+
+    public function getRequests()
+    {
+        $user = Auth::user();
+        $blood_requests = $user->employees[0]->hospital->requests;
+
+        return response()->json([
+            "message" => "success",
+            "Blood Requests" => $blood_requests
+            ]);
+    }
 }
