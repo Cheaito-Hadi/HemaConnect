@@ -5,8 +5,10 @@ import Button from "../../../base/Button";
 import Hema from '../../../../assets/SVGs/Hema.svg';
 import Connect from '../../../../assets/SVGs/Connect.svg';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
+    const navigate = useNavigate();
     const [authenticated, setauthenticated] = useState(
         localStorage.getItem("authenticated") || false
     );
@@ -66,7 +68,9 @@ const LoginForm = () => {
                     setauthenticated(true);
                     localStorage.setItem("authenticated", true);
                     localStorage.setItem("token", responseData.authorization.token);
+                    navigate('/bank');
                     window.location.reload(false);
+
                 }
             }
         } catch (error) {
