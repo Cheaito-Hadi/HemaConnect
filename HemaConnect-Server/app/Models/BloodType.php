@@ -17,7 +17,7 @@ class BloodType extends Model
 
     public function requests()
     {
-        return $this->hasMany(Request::class, 'bloodtype_id');
+        return $this->hasMany(BloodRequest::class, 'bloodtype_id');
     }
 
     public function bankStocks()

@@ -26,7 +26,7 @@ class Hospital extends Model
 
     public function requests()
     {
-        return $this->hasMany(Request::class, 'hospital_id');
+        return $this->hasMany(BloodRequest::class, 'hospital_id');
     }
 
     public function bookings()

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Request extends Model
+class BloodRequest extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    public function bloodType()
+    public function bloodtype()
     {
         return $this->belongsTo(BloodType::class, 'bloodtype_id');
     }
