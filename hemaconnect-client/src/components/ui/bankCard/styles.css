@@ -1,0 +1,37 @@
+.bank-card-container{
+    display: flex;
+    height: 90px;
+    background-color: #ff6767;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+    width: 280px;
+    border-radius: 15px;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.liner{
+    width: 2px;
+    height: 60px;
+    background-color: white;
+}
+
+.type-line{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+}
+
+.amount-edit{
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.blood-amount{
+    font-weight: 700;
+}

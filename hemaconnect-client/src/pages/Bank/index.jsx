@@ -1,10 +1,11 @@
 import React from "react";
 import './styles.css';
+import BankCard from "../../components/ui/bankCard";
 
 const Bank = () => {
     return(
-        <div>
-            Bank
+        <div className="bank-page">
+            <BankCard/>
         </div>
     )
 }
