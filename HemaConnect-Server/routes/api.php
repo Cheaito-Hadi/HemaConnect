@@ -27,4 +27,5 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 });
 
-Route::get('/get_bankstocks/{id}', [BankStockController::class, "getBankStocks"]);
+Route::get('/get_bankstocks', [BankStockController::class, "getBankStocks"]);
+Route::post('/bankstocks/{id}', [BankStockController::class, 'updateBankStocks']);
