@@ -15,7 +15,7 @@ class RequestController extends Controller
             return response()->json(["message" => 'failed']);
         }
 
-        $existingRequest = BloodRequest::where('bloodtypes_id', $request->bloodtype)
+        $existingRequest = BloodRequest::where('bloodtype_id', $request->bloodtype)
             ->where('hospital_id', $user->employees[0]->hospital->id)
             ->first();
 
@@ -27,9 +27,8 @@ class RequestController extends Controller
         }
 
         $new_request = new BloodRequest;
-        $new_request->bloodtypes_id = $request->bloodtype;
+        $new_request->bloodtype_id = $request->bloodtype;
         $new_request->needed_amount = $request->needed_amount;
-        $new_request->counter = 0;
         $new_request->hospital_id = $user->employees[0]->hospital->id;
         $new_request->save();
 

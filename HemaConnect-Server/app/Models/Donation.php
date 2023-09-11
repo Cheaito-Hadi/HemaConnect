@@ -14,4 +14,9 @@ class Donation extends Model
     {
         return $this->belongsTo(BloodRequest::class, 'request_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(BloodRequest::class, 'request_id');
+    }
 }

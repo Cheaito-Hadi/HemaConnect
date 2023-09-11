@@ -66,19 +66,24 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
-    public function userType()
+    public function usertype()
     {
         return $this->belongsTo(UserType::class, 'usertype_id');
     }
 
-    public function bloodType()
+    public function bloodtype()
     {
-        return $this->belongsTo(BloodType::class, 'bloodtypes_id');
+        return $this->belongsTo(BloodType::class, 'bloodtype_id');
     }
 
     public function bookings()
     {
         return $this->hasMany(Booking::class, 'user_id');
+    }
+
+    public function donations()
+    {
+        return $this->hasMany(Donation::class, 'user_id');
     }
 
     public function employees()
