@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BankStock;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\BloodRequest;
@@ -78,7 +79,12 @@ class RequestController extends Controller
 
         $donation->save();
         $bloodRequest->save();
-
+        $bankStock = BankStock::where('bloodtype_id', $donation->request->bloodtype_id)->first();
+        if ($bankStock) {
+            $bankStock->amount += $request->donated_amount;
+            $bankStock->save();
+        }
+        unset($donation->request);
         return response()->json([
             "message" => "Donation created successfully",
             "donation" => $donation
