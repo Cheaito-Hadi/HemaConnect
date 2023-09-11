@@ -3,14 +3,14 @@ import './styles.css';
 import {CircularProgressbar, buildStyles} from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 
-const BloodRequest = () => {
-    const overallRatio = 50;
-
+const BloodRequest = ({ bloodType, neededAmount, donatedAmount }) => {
+    const remaining = neededAmount - donatedAmount;
+    const overallRatio = (donatedAmount / neededAmount) * 100;
     return (
         <div className="blood-request-container">
             <div className="blood-request-wrapper">
                 <div className="requested-type">
-                    Requested type A+
+                    Requested type {bloodType}
                 </div>
                 <div className="progress-amount">
                     <div className="circular-bar-div">
@@ -28,8 +28,8 @@ const BloodRequest = () => {
                         />
                     </div>
                     <div className="needed-amount-wrapper">
-                        <span className="needed-amount"> needed amount: 20 / 30 Kg<br/> </span>
-                        <span className="remaining-amount"> 10 Kg more to fill the request </span>
+                        <span className="needed-amount"> needed amount: {donatedAmount} / {neededAmount} Kg<br/> </span>
+                        <span className="remaining-amount"> {remaining} Kg more to fill the request </span>
                     </div>
                 </div>
             </div>

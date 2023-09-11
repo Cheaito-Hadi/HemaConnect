@@ -44,13 +44,11 @@ const Bank = () => {
                     <img src={AddRequest} alt="Add Request" />
                 </div>
                 <div className="bank-cards">
-                    <BloodRequest/>
-                    <BloodRequest/>
-                    <BloodRequest/>
-                    <BloodRequest/>
-                    <BloodRequest/>
-                    <BloodRequest/>
-                    <BloodRequest/>
+                    <BloodRequest
+                        bloodType="A+"
+                        neededAmount={100}
+                        donatedAmount={60}
+                    />
                 </div>
             </div>
         </div>
