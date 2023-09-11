@@ -3,6 +3,7 @@ import './styles.css';
 import BankCard from "../../components/ui/bankCard";
 import BloodRequest from "../../components/ui/bloodRequest";
 import axios from "axios";
+import AddRequest from '../../assets/SVGs/AddRequest.svg'
 
 const Bank = () => {
     const [bankData, setBankData] = useState([]);
@@ -33,6 +34,22 @@ const Bank = () => {
                             amount={item.amount}
                         />
                     ))}
+                </div>
+            </div>
+            <div className="blood-requests-container">
+                <div className="blood-requests-icon">
+                <span className="bank-text">
+                    Blood Requests
+                </span>
+                    <img src={AddRequest} alt="Add Request" />
+                </div>
+                <div className="bank-cards">
+                    <BloodRequest/>
+                    <BloodRequest/>
+                    <BloodRequest/>
+                    <BloodRequest/>
+                    <BloodRequest/>
+                    <BloodRequest/>
                     <BloodRequest/>
                 </div>
             </div>

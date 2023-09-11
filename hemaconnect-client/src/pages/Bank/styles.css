@@ -14,7 +14,6 @@
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-
 .bank-text{
     font-size: 24px;
     font-style: normal;
@@ -27,4 +26,21 @@
     gap: 52px;
     justify-content:start;
     flex-wrap: wrap;
+}
+
+.blood-requests-container{
+    display: flex;
+    background-color: #FFF0F0;
+    padding: 30px 50px;
+    flex-direction: column;
+    margin: 120px 40px;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.blood-requests-icon{
+    display: flex;
+    justify-content: space-between;
 }
