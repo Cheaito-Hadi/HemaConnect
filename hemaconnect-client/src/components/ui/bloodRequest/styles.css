@@ -1,0 +1,55 @@
+.blood-request-container{
+    display: flex;
+    flex-direction: column;
+    height: 170px;
+    background-color: #FFF;
+    color: black;
+    width: 360px;
+    border-radius: 20px;
+    border: 1px solid #FF6767;
+    font-size: 20px;
+    font-style: normal;
+}
+
+.blood-request-wrapper{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.requested-type{
+    color: #1E1E1E;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.progress-amount{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.circular-bar-div{
+    height: 110px;
+    width: 110px;
+}
+
+.needed-amount{
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.remaining-amount{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #6C6C6C;
+}
+
