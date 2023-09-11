@@ -16,9 +16,8 @@ return new class extends Migration
         Schema::create('blood_requests', function (Blueprint $table) {
             $table->id();
             $table->float('needed_amount');
-            $table->float('counter');
-            $table->unsignedBigInteger('bloodtypes_id');
-            $table->foreign('bloodtypes_id')->references('id')->on('bloodtypes')->onDelete('cascade');
+            $table->unsignedBigInteger('bloodtype_id');
+            $table->foreign('bloodtype_id')->references('id')->on('bloodtypes')->onDelete('cascade');
             $table->unsignedBigInteger('hospital_id');
             $table->foreign('hospital_id')->references('id')->on('hospitals')->onDelete('cascade');
         });
