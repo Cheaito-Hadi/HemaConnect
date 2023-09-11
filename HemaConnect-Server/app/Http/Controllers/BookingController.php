@@ -32,4 +32,25 @@ class BookingController extends Controller
             "booking" => $booking
         ]);
     }
+
+    public function getBookings()
+    {
+        $user = Auth::user();
+        if (is_null($user)) {
+            return response()->json(["message" => 'Failed']);
+        }
+        $bookings = $user->employees[0]->hospital->bookings;
+        foreach ($bookings as $booking) {
+            $booking->user_email = $booking->user->email;
+            $userFirstName = ucwords($booking->user->first_name);
+            $userLastName = ucwords($booking->user->last_name);
+            $booking->user_name = $userFirstName . ' ' . $userLastName;
+            $booking->user_blood_type = $booking->user->bloodtype->name;
+            unset($booking->user);
+        }
+        return response()->json([
+            "message" => "Success",
+            "bookings" => $bookings
+        ]);
+    }
 }

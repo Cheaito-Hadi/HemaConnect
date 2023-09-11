@@ -37,4 +37,4 @@ Route::get('/get_bloodrequests', [RequestController::class, "getRequests"]);
 Route::post('/create_donation', [RequestController::class, 'createDonation']);
 
 Route::post('/create_booking', [BookingController::class, 'createBooking']);
-
+Route::get('/get_bookings', [BookingController::class, 'getBookings']);
