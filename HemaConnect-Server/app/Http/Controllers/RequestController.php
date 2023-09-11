@@ -46,8 +46,10 @@ class RequestController extends Controller
             $donations = $request->donations;
             $donatedAmount = $donations->sum('donated_amount');
             $request->total_donated_amount = $donatedAmount;
+            $request->blood_type_name = $request->bloodType->name;
             $totalDonatedAmount += $donatedAmount;
             unset($request->donations);
+            unset($request->bloodType);
         }
 
         return response()->json([

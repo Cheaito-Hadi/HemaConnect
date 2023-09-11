@@ -61,7 +61,7 @@ const Bank = () => {
                         bloodRequests.map((request, index) => (
                             <BloodRequest
                                 key={index}
-                                bloodType={request.bloodtype_id}
+                                bloodType={request.blood_type_name}
                                 neededAmount={request.needed_amount}
                                 donatedAmount={request.total_donated_amount}
                             />
