@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\BloodRequest;
+use App\Models\Donation;
 
 class RequestController extends Controller
 {
@@ -55,6 +56,32 @@ class RequestController extends Controller
         return response()->json([
             "message" => "success",
             "Blood_Requests" => $blood_requests
+        ]);
+    }
+
+    public function createDonation(Request $request)
+    {
+        $user = Auth::user();
+        if (is_null($user)) {
+            return response()->json(["message" => 'Failed']);
+        }
+
+        $bloodRequest = BloodRequest::find($request->request_id);
+        if (is_null($bloodRequest)) {
+            return response()->json(["message" => 'Blood request not found']);
+        }
+        $donation = new Donation;
+        $donation->donated_amount = $request->donated_amount;
+        $donation->time = now();
+        $donation->request_id = $bloodRequest->id;
+        $donation->user_id = $request->user_id;
+
+        $donation->save();
+        $bloodRequest->save();
+
+        return response()->json([
+            "message" => "Donation created successfully",
+            "donation" => $donation
         ]);
     }
 }
