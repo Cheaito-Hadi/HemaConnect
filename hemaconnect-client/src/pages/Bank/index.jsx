@@ -7,6 +7,7 @@ import AddRequest from '../../assets/SVGs/AddRequest.svg'
 
 const Bank = () => {
     const [bankData, setBankData] = useState([]);
+    const [bloodRequests, setBloodRequests] = useState([]);
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/api/get_bankstocks', {
             headers: {
@@ -20,8 +21,20 @@ const Bank = () => {
             .catch(error => {
                 console.error("Error fetching data:", error);
             });
-    }, []);
+        axios.get('http://127.0.0.1:8000/api/get_bloodrequests', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        })
+            .then(response => {
+                const bloodRequestData = response.data.Blood_Requests;
+                setBloodRequests(bloodRequestData);
+            })
 
+            .catch(error => {
+                console.error("Error fetching blood request data:", error);
+            });
+    }, []);
     return (
         <div className="bank-page">
             <div className="bank-cards-container">
@@ -44,11 +57,18 @@ const Bank = () => {
                     <img src={AddRequest} alt="Add Request" />
                 </div>
                 <div className="bank-cards">
-                    <BloodRequest
-                        bloodType="A+"
-                        neededAmount={100}
-                        donatedAmount={60}
-                    />
+                    {bloodRequests && bloodRequests.length > 0 ? (
+                        bloodRequests.map((request, index) => (
+                            <BloodRequest
+                                key={index}
+                                bloodType={request.bloodtype_id}
+                                neededAmount={request.needed_amount}
+                                donatedAmount={request.total_donated_amount}
+                            />
+                        ))
+                    ) : (
+                        <p>No requests Live, create one</p>
+                    )}
                 </div>
             </div>
         </div>

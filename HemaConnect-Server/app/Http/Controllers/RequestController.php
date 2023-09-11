@@ -52,7 +52,7 @@ class RequestController extends Controller
 
         return response()->json([
             "message" => "success",
-            "Blood Requests" => $blood_requests
+            "Blood_Requests" => $blood_requests
         ]);
     }
 }
