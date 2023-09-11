@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\BankStockController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RequestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +35,6 @@ Route::post('/bankstocks/{id}', [BankStockController::class, 'updateBankStocks']
 Route::post('/create_bloodrequest', [RequestController::class, 'createRequest']);
 Route::get('/get_bloodrequests', [RequestController::class, "getRequests"]);
 Route::post('/create_donation', [RequestController::class, 'createDonation']);
+
+Route::post('/create_booking', [BookingController::class, 'createBooking']);
 
