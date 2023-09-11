@@ -38,11 +38,21 @@ class RequestController extends Controller
     public function getRequests()
     {
         $user = Auth::user();
-        $blood_requests = $user->employees[0]->hospital->requests;
+        $hospital = $user->employees[0]->hospital;
+        $blood_requests = $hospital->requests;
+
+        $totalDonatedAmount = 0;
+        foreach ($blood_requests as $request) {
+            $donations = $request->donations;
+            $donatedAmount = $donations->sum('donated_amount');
+            $request->total_donated_amount = $donatedAmount;
+            $totalDonatedAmount += $donatedAmount;
+            unset($request->donations);
+        }
 
         return response()->json([
             "message" => "success",
             "Blood Requests" => $blood_requests
-            ]);
+        ]);
     }
 }
