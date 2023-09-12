@@ -75,4 +75,42 @@ class BookingController extends Controller
 
         return response()->json(["message" => 'Booking deleted successfully']);
     }
+
+    public function searchBookings(Request $request)
+    {
+        $user = Auth::user();
+        if (is_null($user)) {
+            return response()->json(["message" => 'Failed']);
+        }
+        $bloodType = $request->blood_type;
+        $name = $request->name;
+
+        $bookings = Booking::whereHas('user', function ($query) use ($bloodType, $name) {
+            if ($bloodType) {
+                $query->whereHas('bloodtype', function ($subquery) use ($bloodType) {
+                    $subquery->where('name', $bloodType);
+                });
+            }
+            if ($name) {
+                $query->where(function ($subquery) use ($name) {
+                    $subquery->where('first_name', 'like', "%$name%")
+                        ->orWhere('last_name', 'like', "%$name%");
+                });
+            }
+        })->get();
+
+        foreach ($bookings as $booking) {
+            $booking->user_email = $booking->user->email;
+            $userFirstName = ucwords($booking->user->first_name);
+            $userLastName = ucwords($booking->user->last_name);
+            $booking->user_name = $userFirstName . ' ' . $userLastName;
+            $booking->user_blood_type = $booking->user->bloodtype->name;
+            unset($booking->user);
+        }
+
+        return response()->json([
+            "message" => "Search results",
+            "bookings" => $bookings
+        ]);
+    }
 }
