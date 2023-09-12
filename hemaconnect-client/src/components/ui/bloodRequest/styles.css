@@ -6,7 +6,7 @@
     color: black;
     width: 360px;
     border-radius: 20px;
-    border: 1px solid #FF6767;
+    border: 1px solid rgba(0, 0, 0, 0.20);
     font-size: 20px;
     font-style: normal;
     flex-grow: 1;

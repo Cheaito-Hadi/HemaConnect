@@ -11,6 +11,11 @@ const BankCard = ({bloodType, amount, id}) => {
         setIsEditing(true);
     };
 
+    const handleCancelClick = () => {
+        setNewAmount(amount);
+        setIsEditing(false);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -43,6 +48,7 @@ const BankCard = ({bloodType, amount, id}) => {
                 <form onSubmit={handleSubmit}>
                     <div className="amount-edit">
                         <input
+                            className="edit-amount-input"
                             type="number"
                             value={newAmount}
                             onChange={(e) => setNewAmount(e.target.value)}
@@ -50,13 +56,16 @@ const BankCard = ({bloodType, amount, id}) => {
                             min="0"
                             required
                         />
-                        <button type="submit">Save</button>
+                        <div className="save-cancel">
+                            <button type="submit" className="edit-save-btn">Save</button>
+                            <button type="button" className="edit-cancel-btn" onClick={handleCancelClick}>Cancel</button>
+                        </div>
                     </div>
                 </form>
             ) : (
                 <div className="amount-edit">
                     <span className="blood-amount">{amount} Kg</span>
-                    <img src={bankEdit} alt="Edit" onClick={handleEditClick}/>
+                    <img className="edit-svg-icon" src={bankEdit} alt="Edit" onClick={handleEditClick}/>
                 </div>
             )}
         </div>

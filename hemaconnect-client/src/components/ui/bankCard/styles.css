@@ -31,8 +31,61 @@
     display: flex;
     justify-content: space-between;
     gap: 25px;
+    align-items: center;
 }
 
 .blood-amount{
     font-weight: 700;
+}
+
+.edit-amount-input{
+    height: 20px;
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    color: black;
+    transition: border-color 0.3s, background-color 0.3s;
+    border-radius: 10px;
+    border: 1px solid #5B5B5B;
+    background: #FFF;
+}
+
+.save-cancel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+}
+
+.edit-save-btn{
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    width: 100%;
+    border: 0 solid #5B5B5B;
+    padding: 5px 2px;
+}
+
+.edit-save-btn:hover{
+    cursor: pointer;
+    background-color: rgba(239, 239, 239, 0.98);
+}
+
+.edit-cancel-btn{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 100%;
+    border: 0 solid #5B5B5B;
+    padding: 5px 2px;
+}
+
+.edit-cancel-btn:hover{
+    cursor: pointer;
+    background-color: rgba(23, 23, 23, 0.98);
+}
+
+.edit-svg-icon:hover{
+    cursor: pointer;
 }
