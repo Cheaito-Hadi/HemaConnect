@@ -38,3 +38,4 @@ Route::post('/create_donation', [RequestController::class, 'createDonation']);
 
 Route::post('/create_booking', [BookingController::class, 'createBooking']);
 Route::get('/get_bookings', [BookingController::class, 'getBookings']);
+Route::delete('/delete_booking/{id}', [BookingController::class, 'deleteBooking']);

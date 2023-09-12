@@ -9,6 +9,7 @@ class BloodRequest extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $table = "blood_requests";
     public function bloodtype()
     {
         return $this->belongsTo(BloodType::class, 'bloodtype_id');
