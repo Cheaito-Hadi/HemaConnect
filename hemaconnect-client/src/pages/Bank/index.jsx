@@ -3,11 +3,13 @@ import './styles.css';
 import BankCard from "../../components/ui/bankCard";
 import BloodRequest from "../../components/ui/bloodRequest";
 import axios from "axios";
-import AddRequest from '../../assets/SVGs/AddRequest.svg'
+import AddRequest from '../../assets/SVGs/AddRequest.svg';
+import BloodRequestModal from "../../components/ui/createBloodRequestModal";
 
 const Bank = () => {
     const [bankData, setBankData] = useState([]);
     const [bloodRequests, setBloodRequests] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/api/get_bankstocks', {
             headers: {
@@ -35,6 +37,18 @@ const Bank = () => {
                 console.error("Error fetching blood request data:", error);
             });
     }, []);
+
+    const handleAddRequestClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleConfirmRequest = () => {
+        setIsModalOpen(false);
+    };
     return (
         <div className="bank-page">
             <div className="bank-cards-container">
@@ -55,10 +69,18 @@ const Bank = () => {
                 <span className="bank-text">
                     Blood Requests
                 </span>
-                    <div className="icon-request">
+                    <div className="icon-request" onClick={handleAddRequestClick}>
                         <h2>Add a Request</h2>
-                        <img src={AddRequest} alt="Add Request"/>
+                        <img src={AddRequest} alt="Add Request" />
                     </div>
+                    {isModalOpen && (
+                        <div className="modal-overlay">
+                            <BloodRequestModal
+                                onClose={handleCloseModal}
+                                onSubmit={handleConfirmRequest}
+                            />
+                        </div>
+                    )}
                 </div>
                 <div className="bank-cards">
                     {bloodRequests && bloodRequests.length > 0 ? (
