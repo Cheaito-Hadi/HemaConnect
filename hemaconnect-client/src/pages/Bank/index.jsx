@@ -10,7 +10,12 @@ const Bank = () => {
     const [bankData, setBankData] = useState([]);
     const [bloodRequests, setBloodRequests] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    useEffect(() => {
+
+    const confirmEdit = ()=> {
+        fetchBankData();
+        fetchBloodRequests();
+    }
+    function fetchBankData (){
         axios.get('http://127.0.0.1:8000/api/get_bankstocks', {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -23,6 +28,9 @@ const Bank = () => {
             .catch(error => {
                 console.error("Error fetching data:", error);
             });
+    }
+
+    function fetchBloodRequests(){
         axios.get('http://127.0.0.1:8000/api/get_bloodrequests', {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -36,6 +44,11 @@ const Bank = () => {
             .catch(error => {
                 console.error("Error fetching blood request data:", error);
             });
+    }
+    useEffect(() => {
+
+        fetchBankData();
+        fetchBloodRequests();
     }, []);
 
     const handleAddRequestClick = () => {
@@ -45,9 +58,19 @@ const Bank = () => {
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
-
-    const handleConfirmRequest = () => {
-        setIsModalOpen(false);
+    const handleConfirmRequest = async (requestData) => {
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/create_bloodrequest', requestData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                },
+            });
+            fetchBankData();
+            fetchBloodRequests();
+            setIsModalOpen(false);
+        } catch (error) {
+            console.error('Error creating blood request:', error);
+        }
     };
     return (
         <div className="bank-page">
@@ -60,6 +83,7 @@ const Bank = () => {
                             bloodType={item.bloodtype_name}
                             amount={item.amount}
                             id={item.id}
+                            onConfirm={confirmEdit}
                         />
                     ))}
                 </div>

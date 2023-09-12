@@ -3,7 +3,7 @@ import './styles.css';
 import bankEdit from '../../../assets/SVGs/bankEdit.svg';
 import axios from 'axios';
 
-const BankCard = ({bloodType, amount, id}) => {
+const BankCard = ({bloodType, amount, id, onConfirm}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [newAmount, setNewAmount] = useState(amount);
 
@@ -33,6 +33,7 @@ const BankCard = ({bloodType, amount, id}) => {
             console.log('Bank stock updated successfully:', updatedBankStock);
 
             setIsEditing(false);
+            onConfirm();
         } catch (error) {
             console.error('Error updating bank stock:', error);
         }

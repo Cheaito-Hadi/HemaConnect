@@ -25,7 +25,7 @@ class RequestController extends Controller
             $existingRequest->needed_amount += $request->needed_amount;
             $existingRequest->save();
 
-            return response()->json(["Blood Request" => $existingRequest]);
+            return response()->json(["Blood_Request" => $existingRequest]);
         }
 
         $new_request = new BloodRequest;
@@ -34,7 +34,7 @@ class RequestController extends Controller
         $new_request->hospital_id = $user->employees[0]->hospital->id;
         $new_request->save();
 
-        return response()->json(["Blood Request" => $new_request]);
+        return response()->json(["Blood_Request" => $new_request]);
     }
 
     public function getRequests()
