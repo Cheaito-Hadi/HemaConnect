@@ -54,7 +54,10 @@ const Bank = () => {
                 <span className="bank-text">
                     Blood Requests
                 </span>
-                    <img src={AddRequest} alt="Add Request" />
+                    <div className="icon-request">
+                        <h2>Add a Request</h2>
+                        <img src={AddRequest} alt="Add Request"/>
+                    </div>
                 </div>
                 <div className="bank-cards">
                     {bloodRequests && bloodRequests.length > 0 ? (

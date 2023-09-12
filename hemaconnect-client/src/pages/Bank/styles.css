@@ -4,7 +4,7 @@
 
 .bank-cards-container{
     display: flex;
-    background-color: #FFF0F0;
+    background-color: #F0F3F8;
     padding: 30px 50px;
     flex-direction: column;
     margin: 120px 40px;
@@ -30,7 +30,7 @@
 
 .blood-requests-container{
     display: flex;
-    background-color: #FFF0F0;
+    background-color: #F0F3F8;
     padding: 30px 50px;
     flex-direction: column;
     margin: 120px 40px;
@@ -44,4 +44,10 @@
 .blood-requests-icon{
     display: flex;
     justify-content: space-between;
+}
+
+.icon-request{
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }

@@ -9,6 +9,7 @@
     border: 1px solid #FF6767;
     font-size: 20px;
     font-style: normal;
+    flex-grow: 1;
 }
 
 .blood-request-wrapper{
