@@ -45,6 +45,7 @@ const Bank = () => {
                             key={index}
                             bloodType={item.bloodtype_name}
                             amount={item.amount}
+                            id={item.id}
                         />
                     ))}
                 </div>

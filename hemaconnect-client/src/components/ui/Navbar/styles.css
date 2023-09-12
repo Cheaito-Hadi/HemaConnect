@@ -39,6 +39,7 @@
 }
 .navbar a.active {
     color: black;
+    font-weight: 700;
 }
 
 .hemaconnect-logo{
