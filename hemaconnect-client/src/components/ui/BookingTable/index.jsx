@@ -8,7 +8,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 const TABLE_HEAD = ["Name", "Email", "Booking Time", "Blood Type", "Anemia", "Hepatitis", "Confirm Donation", "Delete"];
 
-export function BookingTable({bookingData}) {
+export function BookingTable({bookingData, onDelete}) {
     return (
         <Card className="h-full w-full">
             <table className="w-full min-w-max table-auto text-left">
@@ -66,7 +66,7 @@ export function BookingTable({bookingData}) {
                             </Typography>
                         </td>
                         <td className="p-4 align-middle" style={{ height: '50px', cursor: 'pointer' }}>
-                            <Typography variant="small" className="font-normal">
+                            <Typography variant="small" className="font-normal" onClick={() => onDelete(booking.id)}>
                                 <DeleteIcon color="error" />
                             </Typography>
                         </td>

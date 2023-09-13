@@ -24,6 +24,9 @@ const Booking = () => {
         };
         fetchBookingData();
     }, []);
+    const handleDeleteBooking = async (bookingId) => {
+
+    }
     return (
         <div className="booking-page">
                 <div>
@@ -31,7 +34,7 @@ const Booking = () => {
                 </div>
                 <div>
                     {bookingData && bookingData.length > 0 ? (
-                        <BookingTable bookingData={bookingData} />
+                        <BookingTable bookingData={bookingData} onDelete={handleDeleteBooking}/>
                     ) : (
                         <p>Loading booking data...</p>
                     )}
