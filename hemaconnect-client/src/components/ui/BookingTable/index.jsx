@@ -8,40 +8,7 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 const TABLE_HEAD = ["Name", "Email", "Booking Time", "Blood Type", "Anemia", "Hepatitis", "Confirm Donation", "Delete"];
 
-
-const TABLE_ROWS = [
-    {
-        name: "John Michael",
-        email: "john@example.com",
-        bookingTime: "2023-09-12 14:30:00",
-        bloodType: "O+",
-        anemia: true,
-        hepatitis: false,
-    }, {
-        name: "John Michael",
-        email: "john@example.com",
-        bookingTime: "2023-09-12 14:30:00",
-        bloodType: "O+",
-        anemia: true,
-        hepatitis: false,
-    }, {
-        name: "John Michael",
-        email: "john@example.com",
-        bookingTime: "2023-09-12 14:30:00",
-        bloodType: "O+",
-        anemia: true,
-        hepatitis: false,
-    }, {
-        name: "John Michael",
-        email: "john@example.com",
-        bookingTime: "2023-09-12 14:30:00",
-        bloodType: "O+",
-        anemia: true,
-        hepatitis: false,
-    },
-];
-
-export function BookingTable() {
+export function BookingTable({bookingData}) {
     return (
         <Card className="h-full w-full">
             <table className="w-full min-w-max table-auto text-left">
@@ -61,36 +28,36 @@ export function BookingTable() {
                 </tr>
                 </thead>
                 <tbody>
-                {TABLE_ROWS.map(({ name, email, bookingTime, bloodType, anemia, hepatitis }, index) => (
-                    <tr key={name} className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}>
+                {bookingData.map((booking, index) => (
+                    <tr key={booking.id} className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}>
                         <td className="p-4 align-middle" style={{ height: '50px' }}>
                             <Typography variant="small" color="blue-gray" className="font-normal">
-                                {name}
+                                {booking.user_name}
                             </Typography>
                         </td>
                         <td className="p-4 align-middle" style={{ height: '50px' }}>
                             <Typography variant="small" color="blue-gray" className="font-normal">
-                                {email}
+                                {booking.user_email}
                             </Typography>
                         </td>
                         <td className="p-4 align-middle" style={{ height: '50px' }}>
                             <Typography variant="small" color="blue-gray" className="font-normal">
-                                {new Date(bookingTime).toLocaleString()}
+                                {new Date(booking.time).toLocaleString()}
                             </Typography>
                         </td>
                         <td className="p-4 align-middle" style={{ height: '50px' }}>
                             <Typography variant="small" color="blue-gray" className="font-normal">
-                                {bloodType}
+                                {booking.user_blood_type}
                             </Typography>
                         </td>
                         <td className="p-4 align-middle" style={{ height: '50px' }}>
                             <Typography variant="small" color="blue-gray" className="font-normal">
-                                {anemia ? <CheckIcon color="primary" /> : <CloseIcon color="error" />}
+                                {booking.anemia === 1 ? <CheckIcon color="primary" /> : <CloseIcon color="error" />}
                             </Typography>
                         </td>
                         <td className="p-4 align-middle" style={{ height: '50px' }}>
                             <Typography variant="small" color="blue-gray" className="font-normal">
-                                {hepatitis ? <CheckIcon color="primary" /> : <CloseIcon color="error" />}
+                                {booking.hepatitis === 1 ? <CheckIcon color="primary" /> : <CloseIcon color="error" />}
                             </Typography>
                         </td>
                         <td className="p-4 align-middle" style={{ height: '50px', cursor: 'pointer' }}>
