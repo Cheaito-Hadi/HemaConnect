@@ -27,6 +27,6 @@ class BloodRequest extends Model
 
     public function bookings()
     {
-        return $this->hasMany(Booking::class, 'request_id');
+        return $this->hasMany(Booking::class,'request_id');
     }
 }

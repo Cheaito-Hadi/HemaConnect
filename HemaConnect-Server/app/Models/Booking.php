@@ -9,6 +9,7 @@ class Booking extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $table = "bookings";
 
     public function user()
     {
@@ -22,6 +23,7 @@ class Booking extends Model
 
     public function request()
     {
-        return $this->belongsTo(BloodRequest::class, 'request_id');
+        return $this->belongsTo(BloodRequest::class);
     }
+
 }

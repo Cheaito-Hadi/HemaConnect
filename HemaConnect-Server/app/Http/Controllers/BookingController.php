@@ -61,13 +61,7 @@ class BookingController extends Controller
         if (is_null($user)) {
             return response()->json(["message" => 'Failed']);
         }
-        $bloodRequest = $user->employees[0]->hospital->requests->find($id);
-
-        if (is_null($bloodRequest)) {
-            return response()->json(["message" => 'Blood request not found']);
-        }
-        $booking = $bloodRequest->bookings->where('id', $id)->first();
-
+        $booking = $user->employees[0]->hospital->bookings->where('id', $id)->first();
         if (is_null($booking)) {
             return response()->json(["message" => 'Booking not found']);
         }

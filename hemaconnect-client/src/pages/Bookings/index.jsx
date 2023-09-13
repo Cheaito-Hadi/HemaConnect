@@ -6,26 +6,36 @@ import axios from "axios";
 
 const Booking = () => {
     const [bookingData, setBookingData] = useState([]);
-    useEffect(() => {
-        const fetchBookingData = async () => {
-            debugger
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/api/get_bookings', {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")}`
-                    }
-                });
 
-                const bookingData = response.data.bookings;
-                setBookingData(bookingData);
-            } catch (error) {
-                console.error("Error fetching booking data:", error);
-            }
-        };
+    async function fetchBookingData  (){
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/get_bookings', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
+
+            const bookingData = response.data.bookings;
+            setBookingData(bookingData);
+        } catch (error) {
+            console.error("Error fetching booking data:", error);
+        }
+    }
+    useEffect(() => {
         fetchBookingData();
     }, []);
-    const handleDeleteBooking = async (bookingId) => {
-
+    const handleDeleteBooking = async (id) => {
+        debugger
+        try {
+            await axios.delete(`http://127.0.0.1:8000/api/delete_booking/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                },
+            });
+            fetchBookingData();
+        } catch (error) {
+            console.error(`Error deleting booking ID ${id}:`, error);
+        }
     }
     return (
         <div className="booking-page">
