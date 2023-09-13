@@ -10,9 +10,12 @@ const Booking = () => {
     const [selectedBooking, setSelectedBooking] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    async function fetchBookingData() {
+    async function fetchBookingData(search_value) {
+        if (!search_value){
+            search_value=""
+        }
         try {
-            const response = await axios.get('http://127.0.0.1:8000/api/get_bookings', {
+            const response = await axios.get(`http://127.0.0.1:8000/api/get_bookings?search_value=`+encodeURIComponent(search_value), {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -72,10 +75,15 @@ const Booking = () => {
             console.error(`Error creating donation:`, error);
         }
     }
+    function handleSearch (search_value) {
+        fetchBookingData(search_value);
+    }
     return (
         <div className="booking-page">
             <div>
-                <SearchBar/>
+                <SearchBar
+                onSearch={handleSearch}
+                />
             </div>
             <div>
                 {bookingData && bookingData.length > 0 ? (

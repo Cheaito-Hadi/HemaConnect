@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
-    public function createBooking (Request $request){
+    public function createBooking(Request $request)
+    {
         $user = Auth::user();
         if (is_null($user)) {
             return response()->json(["message" => 'Failed']);
@@ -19,9 +20,9 @@ class BookingController extends Controller
         $hospital = $bloodRequest->hospital;
 
         $booking = new Booking;
-        $booking->time = date("Y-m-d H:i:s",strtotime($request->time));
-        $booking->hepatitis = boolval($request->hepatitis) ;
-        $booking->anemia = boolval( $request->anemia);
+        $booking->time = date("Y-m-d H:i:s", strtotime($request->time));
+        $booking->hepatitis = boolval($request->hepatitis);
+        $booking->anemia = boolval($request->anemia);
         $booking->user_id = $user->id;
         $booking->hospital_id = $hospital->id;
         $booking->request_id = $bloodRequest->id;
@@ -33,19 +34,34 @@ class BookingController extends Controller
         ]);
     }
 
-    public function getBookings()
+    public function getBookings(Request $request)
     {
         $user = Auth::user();
         if (is_null($user)) {
             return response()->json(["message" => 'Failed']);
         }
-        $bookings = $user->employees[0]->hospital->bookings;
+        $search_value = $request->search_value;
+
+        if (!is_null($search_value) && !empty($search_value)) {
+            $bookings = Booking::join('users', 'users.id', '=', 'bookings.user_id')
+                ->join('bloodtypes', 'bloodtypes.id', '=', 'users.bloodtype_id')
+                ->where('bloodtypes.name', 'like', '%'.$search_value.'%')
+                ->orWhere('users.first_name', 'like', '%'.$search_value.'%')
+                ->orWhere('users.last_name', 'like', '%'.$search_value.'%')
+                ->get(['*','bookings.id as booking_id']);
+        } else {
+            $bookings = $user->employees[0]->hospital->bookings;
+        }
+
         foreach ($bookings as $booking) {
             $booking->user_email = $booking->user->email;
             $userFirstName = ucwords($booking->user->first_name);
             $userLastName = ucwords($booking->user->last_name);
             $booking->user_name = $userFirstName . ' ' . $userLastName;
             $booking->user_blood_type = $booking->user->bloodtype->name;
+            if($booking->booking_id){
+                $booking->id=$booking->booking_id;
+            }
             unset($booking->user);
         }
         return response()->json([
