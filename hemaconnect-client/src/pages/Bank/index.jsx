@@ -94,7 +94,7 @@ const Bank = () => {
                     Blood Requests
                 </span>
                     <div className="icon-request" onClick={handleAddRequestClick}>
-                        <h2>Add a Request</h2>
+                        <h2 className="add-request">Add a Request</h2>
                         <img src={AddRequest} alt="Add Request" />
                     </div>
                     {isModalOpen && (
