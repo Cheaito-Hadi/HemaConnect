@@ -22,9 +22,9 @@ const DonationModal = ({ onClose, onSubmit, selectedBooking }) => {
                 <img src={XMark} alt="Close" onClick={onClose}/>
             </div>
             <div className="modal-request-info">
-                <p>Name: {selectedBooking.name}</p>
-                <p>Booking: {new Date(selectedBooking.bookingTime).toLocaleString()}</p>
-                <p>Blood Type: {selectedBooking.bloodType}</p>
+                <p>Name: {selectedBooking.user_name}</p>
+                <p>Booking: {new Date(selectedBooking.time).toLocaleString()}</p>
+                <p>Blood Type: {selectedBooking.user_blood_type}</p>
             </div>
             <div className="amount-requested">
                 <label htmlFor="donatedAmount">Donated Amount (Kg):</label>
