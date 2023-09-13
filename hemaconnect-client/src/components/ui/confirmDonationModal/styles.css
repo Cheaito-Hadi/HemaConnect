@@ -1,0 +1,78 @@
+.modal-content-donation{
+    border-radius: 20px;
+    background: #F0F3F8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.modal-donation-title{
+    display: flex;
+    align-items: center;
+}
+
+.modal-content-donation h2 {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 95%;
+}
+
+.modal-request-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.title-info-wrapper{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.donation-title{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 40%;
+}
+
+.donation-info{
+    padding-left: 20px;
+    background-color: #FFF;
+    width: 60%;
+    border-radius: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.donated-amount{
+    padding-left: 20px;
+    background-color: #FFF;
+    width: 60%;
+    border-radius: 10px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.donated-amount-title{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 47%;
+}
