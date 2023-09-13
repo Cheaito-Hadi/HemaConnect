@@ -6,3 +6,7 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.confirmed-donation {
+    background-color: lightgreen;
+}

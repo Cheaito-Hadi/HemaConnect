@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import './styles.css';
 import SearchBar from "../../components/ui/searchBar";
 import BookingTable from "../../components/ui/BookingTable";
@@ -26,14 +26,9 @@ const Booking = () => {
     }
 
     useEffect(() => {
-
         fetchBookingData();
     }, []);
-    const handleConfirmDonation = (booking) => {
-        setSelectedBooking(booking);
-    };
     const handleAddRequestClick = (userSelectedBooking) => {
-        console.log(userSelectedBooking)
         setSelectedBooking(userSelectedBooking);
         setIsModalOpen(true);
     };
@@ -65,8 +60,14 @@ const Booking = () => {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 },
             });
+            setBookingData((prevBookingData) =>
+                prevBookingData.map((booking) =>
+                    booking.id === selectedBooking.id
+                        ? { ...booking, donated: true }
+                        : booking
+                )
+            );
             handleCloseModal();
-            fetchBookingData();
         } catch (error) {
             console.error(`Error creating donation:`, error);
         }
@@ -78,9 +79,10 @@ const Booking = () => {
             </div>
             <div>
                 {bookingData && bookingData.length > 0 ? (
-                    <BookingTable bookingData={bookingData}
-                                  onDelete={handleDeleteBooking}
-                                  onConfirmDonation={handleAddRequestClick}
+                    <BookingTable
+                        bookingData={bookingData}
+                        onDelete={handleDeleteBooking}
+                        onConfirmDonation={handleAddRequestClick}
                     />
                 ) : (
                     <p>Loading booking data...</p>

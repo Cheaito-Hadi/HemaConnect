@@ -1,15 +1,14 @@
 import React from 'react';
 import './styles.css';
-import {Card, Typography} from "@material-tailwind/react";
+import { Card, Typography } from "@material-tailwind/react";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import DonationModal from "../confirmDonationModal";
 
 const TABLE_HEAD = ["Name", "Email", "Booking Time", "Blood Type", "Anemia", "Hepatitis", "Confirm Donation", "Delete"];
 
-export function BookingTable({bookingData, onDelete, onConfirmDonation }) {
+export function BookingTable({ bookingData, onDelete, onConfirmDonation }) {
     return (
         <Card className="h-full w-full">
             <table className="w-full min-w-max table-auto text-left">
@@ -30,7 +29,12 @@ export function BookingTable({bookingData, onDelete, onConfirmDonation }) {
                 </thead>
                 <tbody>
                 {bookingData.map((booking, index) => (
-                    <tr key={booking.id} className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}>
+                    <tr
+                        key={booking.id}
+                        className={`${
+                            index % 2 === 0 ? "bg-white" : "bg-gray-100"
+                        } ${booking.donated ? "confirmed-donation" : ""}`}
+                    >
                         <td className="p-4 align-middle" style={{ height: '50px' }}>
                             <Typography variant="small" color="blue-gray" className="font-normal">
                                 {booking.user_name}
@@ -62,7 +66,7 @@ export function BookingTable({bookingData, onDelete, onConfirmDonation }) {
                             </Typography>
                         </td>
                         <td className="p-4 align-middle" style={{ height: '50px', cursor: 'pointer' }}>
-                            <Typography variant="small" color="green" className="font-normal" onClick={() => onConfirmDonation(booking)}>
+                            <Typography variant="small" color="blue" className="font-normal" onClick={() => onConfirmDonation(booking)}>
                                 <ThumbUpIcon />
                             </Typography>
                         </td>
