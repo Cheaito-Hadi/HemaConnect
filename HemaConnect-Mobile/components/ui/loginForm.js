@@ -1,8 +1,14 @@
 import {StyleSheet, View, Text, TextInput} from "react-native";
 import SVGImg from '../../assets/Hema.svg';
 import Button from "../base/customedButton";
+import { useNavigation } from '@react-navigation/native';
 
 const loginForm = () => {
+    const navigation = useNavigation();
+
+    const handleNavigateSignUp = () => {
+        navigation.navigate('RegisterScreen');
+    };
     return (
         <View style={styles.formContainer}>
             {/*<SVGImg width={200} height={200} />*/}
@@ -24,7 +30,7 @@ const loginForm = () => {
                     />
                 </View>
                 <View style={styles.signUp}>
-                    <Text>Not a Donor yet?<Text style={{fontWeight: '700'}}> Sign Up</Text></Text>
+                    <Text>Not a Donor yet?<Text style={{fontWeight: '700'} } onPress={handleNavigateSignUp}> Sign Up </Text></Text>
                 </View>
             </View>
         </View>
