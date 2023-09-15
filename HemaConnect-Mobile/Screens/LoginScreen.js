@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     formContainer: {
         alignItems: 'center',
         justifyContent: "center",
-        width: '100%'
+        width: '100%',
+        flex:1,
     },
 
 });
