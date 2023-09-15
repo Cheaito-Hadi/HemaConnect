@@ -1,7 +1,7 @@
-import {StyleSheet, View, Button, SafeAreaView} from "react-native";
-import RegisterForm from "../components/ui/registerForm";
+import {StyleSheet, View, Button, SafeAreaView, Platform} from "react-native";
+import RegisterForm from "../Components/UI/registerForm";
 import {useNavigation} from '@react-navigation/native';
-import ScreenTitle from "../components/base/screenTitle";
+import ScreenTitle from "../Components/Base/screenTitle";
 
 const RegisterScreen = () => {
     const navigation = useNavigation();
@@ -9,13 +9,12 @@ const RegisterScreen = () => {
         navigation.goBack();
     };
     return (
-        <SafeAreaView edges={['top']}>
+        <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
         <View>
             <ScreenTitle
                 title="Signup"
                 onBackPress={handleGoBack}
             />
-            <Button title="hello"/>
             <View style={styles.formContainer}>
 
                 <RegisterForm/>
@@ -31,6 +30,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         width: '100%',
     },
+    safeAndroidView:{
+        paddingTop: Platform.OS === 'android' ? 25 : 0,
+        flex: 1,
+    }
 
 });
 export default RegisterScreen;

@@ -1,5 +1,5 @@
 import {StyleSheet, View} from "react-native";
-import LoginForm from "../components/ui/loginForm";
+import LoginForm from "../Components/UI/loginForm";
 
 const LoginScreen = ()=>{
     return(

@@ -1,6 +1,6 @@
 import {StyleSheet, View, Text, TextInput} from "react-native";
 import SVGImg from '../../assets/Hema.svg';
-import Button from "../base/customedButton";
+import Button from "../Base/customedButton";
 import { useNavigation } from '@react-navigation/native';
 
 const loginForm = () => {
