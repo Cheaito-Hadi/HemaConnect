@@ -1,9 +1,15 @@
 import {StyleSheet, View, Text, TextInput} from "react-native";
 import {RadioButton} from 'react-native-paper';
 import Button from "../base/customedButton";
+import { useNavigation } from '@react-navigation/native';
 
 
 const registerForm = () => {
+    const navigation = useNavigation();
+
+    const handleNavigateLogin = () => {
+        navigation.navigate('LoginScreen');
+    };
     const radioOptions = [
         {label: 'A+', value: '1'},
         {label: 'A-', value: '2'},
@@ -60,7 +66,7 @@ const registerForm = () => {
                     />
                 </View>
                 <View style={styles.signUp}>
-                    <Text>Already a Donor?<Text style={{fontWeight: '700'}}> Log In</Text></Text>
+                    <Text>Already a Donor?<Text style={{fontWeight: '700'}} onPress={handleNavigateLogin}> Log In</Text></Text>
                 </View>
             </View>
         </View>
