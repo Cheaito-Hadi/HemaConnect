@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import RegisterForm from "./components/ui/registerForm";
+import RegisterScreen from "./screens/RegisterScreen";
 
 export default function App() {
     return (
         <View style={styles.container}>
-            <RegisterForm/>
+            <RegisterScreen/>
         </View>
     );
 }
