@@ -105,7 +105,7 @@ const registerForm = () => {
             const token = response.data.user.token;
             await AsyncStorage.setItem('authToken', token);
             console.log('AuthToken:', token);
-            navigation.navigate('FeedScreen')
+            navigation.navigate('BottomNavigator')
 
         } catch (error) {
             console.error('Registration error:', error);
