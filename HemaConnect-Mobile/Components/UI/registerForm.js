@@ -14,7 +14,14 @@ const registerForm = () => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [selectedBloodType, setSelectedBloodType] = useState('');
+    const [firstNameError, setFirstNameError] = useState('');
+    const [lastNameError, setLastNameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const [bloodTypeError, setBloodTypeError] = useState('');
 
     const handleNavigateLogin = () => {
         navigation.navigate('LoginScreen');
@@ -43,6 +50,46 @@ const registerForm = () => {
         ));
     };
     const handleRegistration = async () => {
+        setFirstNameError('');
+        setLastNameError('');
+        setEmailError('');
+        setPasswordError('');
+        setConfirmPasswordError('');
+        setBloodTypeError('');
+
+        if (!firstName) {
+            setFirstNameError('First name is required');
+            return;
+        }
+        if (!lastName) {
+            setLastNameError('Last name is required');
+            return;
+        }
+        if (!email) {
+            setEmailError('Email is required');
+            return;
+        }
+        const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        if (!emailPattern.test(email)) {
+            setEmailError('Invalid email format');
+            return;
+        }
+        if (!password) {
+            setPasswordError('Password is required');
+            return;
+        }
+        if (!confirmPassword) {
+            setConfirmPasswordError('Please confirm your password');
+            return;
+        }
+        if (password !== confirmPassword) {
+            setConfirmPasswordError('Passwords do not match');
+            return;
+        }
+        if (!selectedBloodType) {
+            setBloodTypeError('Blood type is required');
+            return;
+        }
         try {
             const response = await axios.post('http://192.168.0.113:8000/api/register', {
                 first_name: firstName,
@@ -73,18 +120,21 @@ const registerForm = () => {
                     value={firstName}
                     onChangeText={(firsName) => setFirstName(firsName)}
                 />
+                {firstNameError ? <Text style={styles.errorText}>{firstNameError}</Text> : null}
                 <TextInput
                     style={styles.credentials}
                     placeholder="Last name"
                     value={lastName}
                     onChangeText={(lastName) => setLastName(lastName)}
                 />
+                {lastNameError ? <Text style={styles.errorText}>{lastNameError}</Text> : null}
                 <TextInput
                     style={styles.credentials}
                     placeholder="Email"
                     value={email}
                     onChangeText={(email) => setEmail(email)}
                 />
+                {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
                 <TextInput
                     style={styles.credentials}
                     placeholder="Password"
@@ -92,16 +142,21 @@ const registerForm = () => {
                     value={password}
                     onChangeText={(password) => setPassword(password)}
                 />
+                {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
                 <TextInput
                     style={styles.credentials}
                     placeholder="Confirm Password"
                     secureTextEntry={true}
+                    value={confirmPassword}
+                    onChangeText={(confirmPassword) => setConfirmPassword(confirmPassword)}
                 />
+                {confirmPasswordError ? <Text style={styles.errorText}>{confirmPasswordError}</Text> : null}
                 <View>
                     <Text style={styles.bloodTypes}>Blood Type:</Text>
                     <View style={styles.radioButtonsRow}>
                         {renderRadioButtons()}
                     </View>
+                    {bloodTypeError ? <Text style={styles.errorText}>{bloodTypeError}</Text> : null}
                 </View>
                 <View style={styles.signUpBtn}>
                     <Button
@@ -110,7 +165,7 @@ const registerForm = () => {
                     />
                 </View>
                 <View style={styles.signUp}>
-                    <Text>Already a Donor?<Text style={{fontWeight: '700'}} onPress={handleNavigateLogin}> Log In</Text></Text>
+                    <Text>Already a Donor?<Text style={{ fontWeight: '700' }} onPress={handleNavigateLogin}> Log In</Text></Text>
                 </View>
             </View>
         </View>
@@ -122,7 +177,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: "center",
         width: '100%',
-        marginTop:40,
+        marginTop: 40,
     },
     radioButtonsRow: {
         flexDirection: 'row',
@@ -153,6 +208,10 @@ const styles = StyleSheet.create({
     },
     signUp: {
         marginTop: 40,
+    },
+    errorText: {
+        color: 'red',
+        marginTop: 5,
     },
 });
 
