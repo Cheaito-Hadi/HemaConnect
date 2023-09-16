@@ -17,7 +17,6 @@ const loginForm = () => {
     };
     const handleLogin = async () => {
         try {
-            debugger
             const response = await axios.post('http://192.168.0.113:8000/api/login', {
                 email: email,
                 password: password,
@@ -25,7 +24,7 @@ const loginForm = () => {
             const { token } = response.data.authorization;
             await AsyncStorage.setItem('authToken', token);
             console.log('AuthToken:', token);
-            console.log("You are in! Navigate ");
+            navigation.navigate('HomeScreen');
         } catch (error) {
             console.error('Login error:', error);
         }
