@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
     formContainer: {
         alignItems: 'center',
         justifyContent: "center",
-        width: '100%'
+        width: '100%',
+        marginTop:40,
     },
     radioButtonsRow: {
         flexDirection: 'row',
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     bloodTypes: {
-        marginTop: 10,
+        marginTop: 20,
         fontSize: 16,
         fontWeight: '400',
     },
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     signUp: {
-        marginTop: 20,
+        marginTop: 40,
     },
 });
 

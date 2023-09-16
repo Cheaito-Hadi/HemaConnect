@@ -16,7 +16,6 @@ const RegisterScreen = () => {
                 onBackPress={handleGoBack}
             />
             <View style={styles.formContainer}>
-
                 <RegisterForm/>
             </View>
         </View>
