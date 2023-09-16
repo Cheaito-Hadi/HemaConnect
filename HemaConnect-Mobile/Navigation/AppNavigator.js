@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import LoginScreen from "../Screens/LoginScreen";
@@ -18,6 +18,7 @@ const getIsSignedIn = async () => {
 }
 
 function AppNavigator() {
+    const navigationRef = useRef();
     const [isSignedIn, setIsSignedIn] = useState(false);
     useEffect(() => {
         async function checkAuthentication() {
@@ -26,17 +27,27 @@ function AppNavigator() {
         }
         checkAuthentication();
     }, []);
+    useEffect(() => {
+        const checkAuthentication = async () => {
+            try {
+                const userToken = await AsyncStorage.getItem('authToken');
+                if (userToken) {
+                    navigationRef.current?.navigate('BottomNavigator');
+                } else {
+                    navigationRef.current?.navigate('LoginScreen');
+                }
+            } catch (error) {
+            }
+        };
+        checkAuthentication();
+    }, []);
     return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName="LoginScreen" screenOptions={{ headerShown: false }}>
-                {isSignedIn ? (
-                    <Stack.Screen name="BottomNavigator" component={BottomNavigator} options={{ headerShown: false }} />
-                ) : (
-                    <>
-                        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-                        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-                    </>
-                )}
+        <NavigationContainer ref={navigationRef}>
+            <Stack.Navigator
+                screenOptions={{headerShown: false}}>
+                <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown: false}}/>
+                <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{headerShown: false}}/>
+                <Stack.Screen name="BottomNavigator" component={BottomNavigator} options={{headerShown: false}}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
