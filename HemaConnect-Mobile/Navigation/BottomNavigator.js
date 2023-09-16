@@ -10,13 +10,17 @@ const Tab = createMaterialBottomTabNavigator();
 
 const BottomNavigator = () => {
     return (
-        <Tab.Navigator labeled={false} barStyle={{ backgroundColor: 'black' }} activeColor='white'>
+        <Tab.Navigator labeled={false} barStyle={{ backgroundColor: 'black' }} activeColor='black' inactiveColor="#707070"
+                       tabBarOptions={{
+            style: { backgroundColor: 'red' },
+        }}
+        >
             <Tab.Screen
                 name="Feed"
                 component={FeedScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcon name='home' color={color} size={26} />
+                        <MaterialCommunityIcon name='home' color={color} size={30} />
                     ),
                 }}
             />
@@ -25,7 +29,7 @@ const BottomNavigator = () => {
                 component={AppointmentsScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcon name='calendar' color={color} size={26} />
+                        <MaterialCommunityIcon name='calendar' color={color} size={30} />
                     ),
                 }}
             />
@@ -34,7 +38,7 @@ const BottomNavigator = () => {
                 component={MapsScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcon name='map' color={color} size={26} />
+                        <MaterialCommunityIcon name='map' color={color} size={30} />
                     ),
                 }}
             />
@@ -43,7 +47,7 @@ const BottomNavigator = () => {
                 component={SettingsScreen}
                 options={{
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcon name='hammer-screwdriver' color={color} size={26} />
+                        <MaterialCommunityIcon name='hammer-screwdriver' color={color} size={30} />
                     ),
                 }}
             />
