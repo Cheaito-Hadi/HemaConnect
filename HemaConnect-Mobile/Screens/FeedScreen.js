@@ -1,9 +1,9 @@
 import {View,Text, StyleSheet} from "react-native";
 
-const Home =()=>{
+const FeedScreen =()=>{
     return(
       <View style={styles.homeContainer}>
-          <Text>This is the Home Page</Text>
+          <Text>This is the Feed Page</Text>
       </View>
     );
 }
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Home;
+export default FeedScreen;

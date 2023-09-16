@@ -41,7 +41,7 @@ const loginForm = () => {
             const { token } = response.data.authorization;
             await AsyncStorage.setItem('authToken', token);
             console.log('AuthToken:', token);
-            navigation.navigate('HomeScreen');
+            navigation.navigate('FeedScreen');
         } catch (error) {
             if (error.response) {
                 if (error.response.status === 401) {
