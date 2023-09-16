@@ -1,4 +1,4 @@
-import {StyleSheet, View, Button, SafeAreaView, Platform} from "react-native";
+import {StyleSheet, View, SafeAreaView, Platform} from "react-native";
 import RegisterForm from "../Components/UI/registerForm";
 import {useNavigation} from '@react-navigation/native';
 import ScreenTitle from "../Components/Base/screenTitle";
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     safeAndroidView:{
-        paddingTop: Platform.OS === 'android' ? 25 : 0,
+        paddingTop: Platform.OS === 'android' ? 30 : 0,
         flex: 1,
     }
 

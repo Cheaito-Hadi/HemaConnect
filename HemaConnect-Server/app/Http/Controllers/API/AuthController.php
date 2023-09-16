@@ -33,6 +33,7 @@ class AuthController extends Controller
         }
 
         $user = Auth::user();
+        $user->bloodtype;
         return response()->json([
             'message' => 'Logged in',
             'user' => $user,
