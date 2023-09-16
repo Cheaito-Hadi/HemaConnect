@@ -1,4 +1,4 @@
-import {StyleSheet, View, Text, TextInput} from "react-native";
+import { StyleSheet, View, Text, TextInput } from "react-native";
 import SVGImg from '../../assets/Hema.svg';
 import Button from "../Base/customedButton";
 import { useNavigation } from '@react-navigation/native';
@@ -9,13 +9,30 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const loginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
     const navigation = useNavigation();
 
     const handleNavigateSignUp = () => {
         navigation.navigate('RegisterScreen');
     };
+
     const handleLogin = async () => {
+        setEmailError('');
+        setPasswordError('');
+        if (!email) {
+            setEmailError('Email is required');
+            return;
+        }
+        if (!password) {
+            setPasswordError('Password is required');
+            return;
+        }
+        if (!isValidEmail(email)) {
+            setEmailError('Invalid email format');
+            return;
+        }
         try {
             const response = await axios.post('http://192.168.0.113:8000/api/login', {
                 email: email,
@@ -26,9 +43,20 @@ const loginForm = () => {
             console.log('AuthToken:', token);
             navigation.navigate('HomeScreen');
         } catch (error) {
-            console.error('Login error:', error);
+            if (error.response) {
+                if (error.response.status === 401) {
+                    setPasswordError('Incorrect Credentials');
+                }
+            } else {
+                console.error('Login error:', error);
+            }
         }
     };
+    const isValidEmail = (email) => {
+        const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        return emailPattern.test(email);
+    };
+
     return (
         <View style={styles.formContainer}>
             {/*<SVGImg width={200} height={200} />*/}
@@ -41,6 +69,7 @@ const loginForm = () => {
                     value={email}
                     onChangeText={(text) => setEmail(text)}
                 />
+                {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
                 <TextInput
                     style={styles.credentials}
                     placeholder="Password"
@@ -48,6 +77,7 @@ const loginForm = () => {
                     value={password}
                     onChangeText={(text) => setPassword(text)}
                 />
+                {passwordError ? <Text style={styles.errorText}>{passwordError}</Text> : null}
                 <View style={styles.loginBtn}>
                     <Button
                         buttonTitle="Login"
@@ -55,7 +85,7 @@ const loginForm = () => {
                     />
                 </View>
                 <View style={styles.signUp}>
-                    <Text>Not a Donor yet?<Text style={{fontWeight: '700'} } onPress={handleNavigateSignUp}> Sign Up </Text></Text>
+                    <Text>Not a Donor yet?<Text style={{ fontWeight: '700' }} onPress={handleNavigateSignUp}> Sign Up </Text></Text>
                 </View>
             </View>
         </View>
@@ -76,7 +106,7 @@ const styles = StyleSheet.create({
         fontSize: 32,
         fontWeight: "500",
         fontStyle: "normal",
-        marginBottom:5,
+        marginBottom: 5,
     },
     hero: {
         fontSize: 16,
@@ -98,9 +128,12 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     signUp: {
-        marginTop:20,
+        marginTop: 20,
     },
-
+    errorText: {
+        color: 'red',
+        marginTop: 5,
+    },
 });
 
 export default loginForm;
