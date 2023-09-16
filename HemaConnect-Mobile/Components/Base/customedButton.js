@@ -6,7 +6,7 @@ const Button = (props) => {
             <TouchableOpacity
                 style={styles.button}
                 onPress={() => {
-                    handlePress();
+                    props.handlePress();
                 }}
             >
                 <Text style={styles.buttonText}>{props.buttonTitle}</Text>

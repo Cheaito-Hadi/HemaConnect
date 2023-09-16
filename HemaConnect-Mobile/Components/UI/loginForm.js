@@ -2,12 +2,33 @@ import {StyleSheet, View, Text, TextInput} from "react-native";
 import SVGImg from '../../assets/Hema.svg';
 import Button from "../Base/customedButton";
 import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const loginForm = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const navigation = useNavigation();
 
     const handleNavigateSignUp = () => {
         navigation.navigate('RegisterScreen');
+    };
+    const handleLogin = async () => {
+        try {
+            debugger
+            const response = await axios.post('http://192.168.0.113:8000/api/login', {
+                email: email,
+                password: password,
+            });
+            const { token } = response.data.authorization;
+            await AsyncStorage.setItem('authToken', token);
+            console.log('AuthToken:', token);
+            console.log("You are in! Navigate ");
+        } catch (error) {
+            console.error('Login error:', error);
+        }
     };
     return (
         <View style={styles.formContainer}>
@@ -18,15 +39,20 @@ const loginForm = () => {
                 <TextInput
                     style={styles.credentials}
                     placeholder="Email"
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
                 />
                 <TextInput
                     style={styles.credentials}
                     placeholder="Password"
                     secureTextEntry={true}
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
                 />
                 <View style={styles.loginBtn}>
                     <Button
                         buttonTitle="Login"
+                        handlePress={handleLogin}
                     />
                 </View>
                 <View style={styles.signUp}>
