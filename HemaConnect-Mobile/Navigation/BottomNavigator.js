@@ -4,6 +4,7 @@ import FeedScreen from '../Screens/FeedScreen';
 import AppointmentsScreen from '../Screens/AppointmentsScreen';
 import MapsScreen from '../Screens/MapsScreen';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+import SettingsScreen from "../Screens/SettingsScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -34,6 +35,15 @@ const BottomNavigator = () => {
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcon name='map' color={color} size={26} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Settings"
+                component={SettingsScreen}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcon name='hammer-screwdriver' color={color} size={26} />
                     ),
                 }}
             />
