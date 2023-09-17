@@ -1,57 +1,69 @@
-import {View,Text, StyleSheet, SafeAreaView, Platform} from "react-native";
+import React from "react";
+import { View, Text, StyleSheet, SafeAreaView, Platform, ScrollView } from "react-native";
 import UserInfo from "../Components/UI/userInfo";
 import Donation from "../Components/UI/dontaionForm";
 import RequestCard from "../Components/UI/requestCard";
 
-const FeedScreen =()=>{
-    return(
+const FeedScreen = () => {
+    return (
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
-      <View style={styles.homeContainer}>
-          <View style={styles.userInfoField}>
-          <UserInfo/>
-          </View>
-          <View style={styles.donationContainer}>
-              <Donation/>
-          </View>
-          <View style={styles.requestsContainer}>
-              <Text style={styles.recentRequestText}>Recent Requests</Text>
-              <RequestCard/>
-          </View>
-      </View>
-            </SafeAreaView>
+            <View style={styles.homeContainer}>
+                <View style={styles.userInfoField}>
+                    <UserInfo />
+                </View>
+                <View style={styles.donationContainer}>
+                    <Donation />
+                </View>
+                <View style={styles.requestsContainer}>
+                    <Text style={styles.recentRequestText}>Recent Requests</Text>
+                    <ScrollView>
+                        <RequestCard />
+                        <RequestCard />
+                        <RequestCard />
+                        <RequestCard />
+                        <RequestCard />
+                        <RequestCard />
+                        <RequestCard />
+                        <RequestCard />
+                    </ScrollView>
+                </View>
+            </View>
+        </SafeAreaView>
     );
 }
+
 const styles = StyleSheet.create({
     homeContainer: {
         alignItems: 'center',
         width: '100%',
-        flex:1,
-        backgroundColor:'#F7F0F3',
+        flex: 1,
+        backgroundColor: '#F7F0F3',
     },
-    userInfoField:{
-        height:50,
-        marginTop:20,
-        alignItems:'flex-start',
-        justifyContent:'flex-start',
-        width:'90%'
+    userInfoField: {
+        height: 50,
+        marginTop: 20,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        width: '90%'
     },
-    safeAndroidView:{
+    safeAndroidView: {
         paddingTop: Platform.OS === 'android' ? 30 : 0,
         flex: 1,
     },
-    donationContainer:{
-        marginTop:20,
-        width:'90%',
+    donationContainer: {
+        marginTop: 20,
+        width: '90%',
     },
-    requestsContainer:{
-        width:'90%',
-        marginTop:20,
+    requestsContainer: {
+        flex: 1,
+        width: '90%',
+        marginTop:10
     },
-    recentRequestText:{
-        fontSize:16,
-        fontWeight:'800',
-    }
-
+    recentRequestText: {
+        fontSize: 16,
+        fontWeight: '800',
+        marginBottom: 10
+    },
 });
 
 export default FeedScreen;

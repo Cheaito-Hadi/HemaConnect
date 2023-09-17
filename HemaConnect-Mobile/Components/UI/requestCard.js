@@ -5,14 +5,13 @@ const RequestCard = () => {
         <View style={styles.cardContainer}>
             <View style={styles.insideCard}>
                 <View style={styles.leftInside}>
-                    <Image style={{height: 50, width: 50}} source={require('../../assets/SaintGeorge.png')}/>
+                    <Image style={styles.imageStyling} source={require('../../assets/SaintGeorge.png')}/>
                     <Text style={styles.hospitalText}>Saint George Hospital</Text>
                 </View>
                 <View style={styles.bloodTypeNeeded}>
                     <Text style={styles.bloodTypeNeededText}>O+</Text>
                 </View>
             </View>
-
         </View>
     );
 }
@@ -28,6 +27,7 @@ const styles = StyleSheet.create({
         borderColor: '#F6D5D5',
         shadowColor: 'rgba(246, 213, 213, 0.50)',
         elevation: 5,
+        marginBottom:10
     },
     insideCard: {
         justifyContent: "space-between",
@@ -37,6 +37,13 @@ const styles = StyleSheet.create({
     leftInside: {
         flexDirection: "row",
         alignItems: "center",
+    },
+    imageStyling: {
+        height: 50,
+        width: 50,
+        borderRadius: 50,
+        borderColor: '#000',
+        borderWidth: 0.5
     },
     hospitalText: {
         fontWeight: '700',

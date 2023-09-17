@@ -7,7 +7,7 @@ const lastDonationData = {
 };
 
 const donateAfterData = {
-    dayNumber: '0',
+    dayNumber: '5',
     date: '08-05-2023',
 };
 
