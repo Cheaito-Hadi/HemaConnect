@@ -1,15 +1,16 @@
 import {Text, View, StyleSheet, Image} from "react-native";
+import React from "react";
 
-const RequestCard = () => {
+const RequestCard = ({imageSource,hospitalName,bloodType}) => {
     return (
         <View style={styles.cardContainer}>
             <View style={styles.insideCard}>
                 <View style={styles.leftInside}>
-                    <Image style={styles.imageStyling} source={require('../../assets/SaintGeorge.png')}/>
-                    <Text style={styles.hospitalText}>Saint George Hospital</Text>
+                    <Image style={styles.imageStyling} source={imageSource} />
+                    <Text style={styles.hospitalText}>{hospitalName}</Text>
                 </View>
                 <View style={styles.bloodTypeNeeded}>
-                    <Text style={styles.bloodTypeNeededText}>O+</Text>
+                    <Text style={styles.bloodTypeNeededText}>{bloodType}</Text>
                 </View>
             </View>
         </View>
