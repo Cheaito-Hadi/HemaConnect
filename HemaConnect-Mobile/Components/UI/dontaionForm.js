@@ -1,17 +1,55 @@
 import {Text, View, StyleSheet} from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-const lastDonationData = {
-    dayNumber: '1',
-    date: '02-05-2023',
-};
-
-const donateAfterData = {
-    dayNumber: '0',
-    date: '08-05-2023',
-};
+import React, { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Axios from "axios";
 
 const Donation = () => {
+    const [lastDonationData, setLastDonationData] = useState({
+        dayNumber: "",
+        date: "",
+    });
+
+    const [donateAfterData, setDonateAfterData] = useState({
+        dayNumber: "",
+        date: "",
+    });
+    const fetchData = async () => {
+        try {
+            const authToken = await AsyncStorage.getItem("authToken");
+            const response = await Axios.get("http://192.168.0.113:8000/api/get_lastdonation", {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            });
+            const data = response.data.Donation;
+            const lastDonationDate = new Date(data.time);
+            const currentDate = new Date();
+            const daysSinceLastDonation = Math.floor(
+                (currentDate - lastDonationDate) / (1000 * 60 * 60 * 24)
+            );
+
+            setLastDonationData({
+                dayNumber: daysSinceLastDonation.toString(),
+                date: data.time.substring(0, 10),
+            });
+
+            setDonateAfterData({
+                dayNumber: data.donate_after.toString(),
+                date: data.donate_after_date,
+            });
+
+            await AsyncStorage.setItem("DonationData", JSON.stringify(data));
+        } catch (error) {
+            console.error("Error fetching donation data:", error);
+        }
+    };
+
+    useEffect(() => {
+
+        fetchData();
+    }, []);
+
     let renderView;
     if (donateAfterData.dayNumber === '0') {
         renderView = (
