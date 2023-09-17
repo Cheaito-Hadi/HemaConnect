@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\BankStockController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DonationController;
 use App\Http\Controllers\RequestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,4 +41,6 @@ Route::post('/create_booking', [BookingController::class, 'createBooking']);
 Route::get('/get_bookings', [BookingController::class, 'getBookings']);
 Route::delete('/delete_booking/{id}', [BookingController::class, 'deleteBooking']);
 Route::post('/bookings/search', [BookingController::class, 'searchBookings']);
+
+Route::get('/get_lastdonation', [DonationController::class, "getLastDonation"]);
 
