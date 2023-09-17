@@ -1,38 +1,54 @@
 import {Text, View, StyleSheet} from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Donations={
-    dayNumber:'1',
-    date:'02-05-2023'
+const lastDonationData = {
+    dayNumber: '1',
+    date: '02-05-2023',
 };
+
+const donateAfterData = {
+    dayNumber: '0',
+    date: '08-05-2023',
+};
+
 const Donation = () => {
+    let renderView;
+    if (donateAfterData.dayNumber === '0') {
+        renderView = (
+            <View style={styles.Able}>
+                <MaterialCommunityIcons name="check-circle" size={20} color="#ffcd01" style={styles.icon} />
+                <Text style={styles.ableText}>Your health shows that you are able to donate!</Text>
+            </View>
+        );
+    } else {
+        renderView = (
+            <View style={styles.notAble}>
+                <MaterialCommunityIcons name="alert-circle" size={20} color="#ffcd01" style={styles.icon} />
+                <Text style={styles.notAbleText}>Your health shows that you are ineligible to donate</Text>
+            </View>
+        );
+    }
+
     return (
         <View>
             <View style={styles.donationWrapper}>
                 <View style={styles.lastDonation}>
                     <Text style={styles.lastAfter}>Last Donation</Text>
-                    <Text style={styles.dayNumber}>{Donations.dayNumber}</Text>
-                    <Text style={styles.daysLeft}>Day Ago</Text>
-                    <Text style={styles.dateText}>{Donations.date}</Text>
+                    <Text style={styles.dayNumber}>{lastDonationData.dayNumber}</Text>
+                    <Text style={styles.daysLeft}>Days ago</Text>
+                    <Text style={styles.dateText}>{lastDonationData.date}</Text>
                 </View>
                 <View style={styles.lastDonation}>
                     <Text style={styles.lastAfter}>Donate After</Text>
-                    <Text style={styles.dayNumber}>5</Text>
+                    <Text style={styles.dayNumber}>{donateAfterData.dayNumber}</Text>
                     <Text style={styles.daysLeft}>Days</Text>
-                    <Text style={styles.dateText}>08-05-2023</Text>
+                    <Text style={styles.dateText}>{donateAfterData.date}</Text>
                 </View>
             </View>
-            <View style={styles.notAble}>
-                <MaterialCommunityIcons name="alert-circle" size={20} color="#ffcd01" style={styles.icon} />
-                <Text style={styles.notAbleText}>Your health shows that you are ineligible to donate</Text>
-            </View>
-            <View style={styles.Able}>
-                <MaterialCommunityIcons name="check-circle" size={20} color="#ffcd01" style={styles.icon} />
-                <Text style={styles.ableText}>Your health shows that you are able to donate!</Text>
-            </View>
+            {renderView}
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     donationWrapper: {
