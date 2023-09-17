@@ -13,7 +13,8 @@ const FeedScreen =()=>{
           <View style={styles.donationContainer}>
               <Donation/>
           </View>
-          <View>
+          <View style={styles.requestsContainer}>
+              <Text style={styles.recentRequestText}>Recent Requests</Text>
               <RequestCard/>
           </View>
       </View>
@@ -41,6 +42,14 @@ const styles = StyleSheet.create({
     donationContainer:{
         marginTop:20,
         width:'90%',
+    },
+    requestsContainer:{
+        width:'90%',
+        marginTop:20,
+    },
+    recentRequestText:{
+        fontSize:16,
+        fontWeight:'800',
     }
 
 });
