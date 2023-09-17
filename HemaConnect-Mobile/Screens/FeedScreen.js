@@ -1,6 +1,7 @@
 import {View,Text, StyleSheet, SafeAreaView, Platform} from "react-native";
 import UserInfo from "../Components/UI/userInfo";
 import Donation from "../Components/UI/dontaionForm";
+import RequestCard from "../Components/UI/requestCard";
 
 const FeedScreen =()=>{
     return(
@@ -11,6 +12,9 @@ const FeedScreen =()=>{
           </View>
           <View style={styles.donationContainer}>
               <Donation/>
+          </View>
+          <View>
+              <RequestCard/>
           </View>
       </View>
             </SafeAreaView>
