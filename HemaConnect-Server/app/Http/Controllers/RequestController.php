@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BankStock;
+use App\Models\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\BloodRequest;
@@ -90,4 +91,41 @@ class RequestController extends Controller
             "donation" => $donation
         ]);
     }
+
+    public function getUserRequests()
+    {
+        $user = Auth::user();
+        $userBloodType = $user->bloodtype;
+        $hospitals = Hospital::all();
+        $filteredHospitals = $hospitals->filter(function ($hospital) use ($userBloodType) {
+            $matchingRequests = $hospital->requests->filter(function ($request) use ($userBloodType) {
+                return $request->bloodtype_id == $userBloodType->id;
+            });
+            return $matchingRequests->isNotEmpty();
+        })->map(function ($hospital) use ($userBloodType) {
+            $filteredRequests = $hospital->requests->filter(function ($request) use ($userBloodType) {
+                return $request->bloodtype_id == $userBloodType->id;
+            })->map(function ($request) {
+                return [
+                    "id" => $request->id,
+                    "needed_amount" => $request->needed_amount,
+                    "bloodtype_id" => $request->bloodtype_id,
+                    "hospital_id" => $request->hospital_id,
+                    "blood_type_name" => $request->bloodType->name,
+                ];
+            });
+            return [
+                "hospital_info" => [
+                    "name" => $hospital->name,
+                    "logo_url" => $hospital->logo_url,
+                ],
+                "requests" => $filteredRequests->values(),
+            ];
+        });
+        return response()->json([
+            "message" => "success",
+            "Blood_Requests" => $filteredHospitals,
+        ]);
+    }
+
 }

@@ -36,6 +36,7 @@ Route::post('/bankstocks/{id}', [BankStockController::class, 'updateBankStocks']
 Route::post('/create_bloodrequest', [RequestController::class, 'createRequest']);
 Route::get('/get_bloodrequests', [RequestController::class, "getRequests"]);
 Route::post('/create_donation', [RequestController::class, 'createDonation']);
+Route::get('/get_userrequests', [RequestController::class, 'getUserRequests']);
 
 Route::post('/create_booking', [BookingController::class, 'createBooking']);
 Route::get('/get_bookings', [BookingController::class, 'getBookings']);
