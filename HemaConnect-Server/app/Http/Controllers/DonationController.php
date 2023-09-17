@@ -18,8 +18,10 @@ class DonationController extends Controller
             $currentDate = Carbon::now();
             $daysSinceLastDonation = $currentDate->diffInDays($lastDonationDate);
             $donateAfter = 70 - $daysSinceLastDonation;
+            $donateAfterDate = $currentDate->addDays($donateAfter)->toDateString();
             $donation->last_donated_at = $daysSinceLastDonation;
             $donation->donate_after = $donateAfter;
+            $donation->donate_after_date = $donateAfterDate;
 
             return response()->json([
                 "message" => "success",
