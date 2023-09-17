@@ -14,38 +14,49 @@ const Donation = () => {
         dayNumber: "",
         date: "",
     });
-    const fetchData = async () => {
-        try {
-            const authToken = await AsyncStorage.getItem("authToken");
-            const response = await Axios.get("http://192.168.0.113:8000/api/get_lastdonation", {
-                headers: {
-                    Authorization: `Bearer ${authToken}`,
-                },
-            });
-            const data = response.data.Donation;
-            const lastDonationDate = new Date(data.time);
-            const currentDate = new Date();
-            const daysSinceLastDonation = Math.floor(
-                (currentDate - lastDonationDate) / (1000 * 60 * 60 * 24)
-            );
-
-            setLastDonationData({
-                dayNumber: daysSinceLastDonation.toString(),
-                date: data.time.substring(0, 10),
-            });
-
-            setDonateAfterData({
-                dayNumber: data.donate_after.toString(),
-                date: data.donate_after_date,
-            });
-
-            await AsyncStorage.setItem("DonationData", JSON.stringify(data));
-        } catch (error) {
-            console.error("Error fetching donation data:", error);
-        }
-    };
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const authToken = await AsyncStorage.getItem("authToken");
+                const response = await Axios.get("http://192.168.0.113:8000/api/get_lastdonation", {
+                    headers: {
+                        Authorization: `Bearer ${authToken}`,
+                    },
+                });
+
+                const data = response.data.Donation;
+                if (data) {
+                    const lastDonationDate = new Date(data.time);
+                    const currentDate = new Date();
+                    const daysSinceLastDonation = Math.floor(
+                        (currentDate - lastDonationDate) / (1000 * 60 * 60 * 24)
+                    );
+                    setLastDonationData({
+                        dayNumber: daysSinceLastDonation.toString(),
+                        date: lastDonationDate.toLocaleDateString(),
+                    });
+                    setDonateAfterData({
+                        dayNumber: data.donate_after.toString(),
+                        date: data.donate_after_date,
+                    });
+                    if (data) {
+                        await AsyncStorage.setItem("DonationData", JSON.stringify(data));
+                    }
+                } else {
+                    setDonateAfterData({
+                        dayNumber: "0",
+                        date: new Date().toLocaleDateString(),
+                    });
+                    setLastDonationData({
+                        dayNumber: "0",
+                        date: new Date().toLocaleDateString(),
+                    })
+                }
+            } catch (error) {
+                console.error("Error fetching donation data:", error);
+            }
+        };
 
         fetchData();
     }, []);
@@ -93,11 +104,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        width: '100%'
     },
     lastDonation: {
         height: 150,
-        width: 175,
+        width: '45%',
         backgroundColor: '#FF6767',
         borderRadius: 10,
         padding: 10,
