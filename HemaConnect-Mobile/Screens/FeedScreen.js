@@ -1,10 +1,31 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { View, Text, StyleSheet, SafeAreaView, Platform, ScrollView } from "react-native";
 import UserInfo from "../Components/UI/userInfo";
 import Donation from "../Components/UI/dontaionForm";
 import RequestCard from "../Components/UI/requestCard";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FeedScreen = () => {
+    const [requestsData, setRequestsData] = useState([]);
+    const fetchData = async () => {
+        try {
+            const authToken = await AsyncStorage.getItem("authToken");
+            const response = await axios.get("http://192.168.0.113:8000/api/get_userrequests", {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            });
+            await AsyncStorage.setItem("requestsData", JSON.stringify(response.data));
+            setRequestsData(response.data.Blood_Requests);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     return (
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
             <View style={styles.homeContainer}>
@@ -17,14 +38,14 @@ const FeedScreen = () => {
                 <View style={styles.requestsContainer}>
                     <Text style={styles.recentRequestText}>Recent Requests</Text>
                     <ScrollView>
-                        <RequestCard />
-                        <RequestCard />
-                        <RequestCard />
-                        <RequestCard />
-                        <RequestCard />
-                        <RequestCard />
-                        <RequestCard />
-                        <RequestCard />
+                        {requestsData.map((bloodRequest, index) => (
+                            <RequestCard
+                                key={index}
+                                imageSource={{ uri: `http://192.168.0.113:8000/storage/${bloodRequest.hospital_info.logo_url}` }}
+                                hospitalName={bloodRequest.hospital_info.name}
+                                bloodType={bloodRequest.requests[0].blood_type_name}
+                            />
+                        ))}
                     </ScrollView>
                 </View>
             </View>

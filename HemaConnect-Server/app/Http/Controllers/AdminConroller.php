@@ -13,9 +13,9 @@ class AdminConroller extends Controller
         $new_hospital->latitude = $request->latitude;
         $new_hospital->longitude = $request->longitude;
         $new_hospital->phone_number = $request->phone_number;
-        $file_name = time() . "post_image" . "." . $request->logo_url->extension();
-        $request->logo_url->move(storage_path('images'), $file_name);
-        $new_hospital->logo_url = storage_path("images") . "\\" . $file_name;
+        $file_name = time() . "_" . uniqid() . "_hospital_logo." . $request->logo_url->getClientOriginalExtension();
+        $request->logo_url->storeAs('public/hospitalLogos', $file_name);
+        $new_hospital->logo_url ="hospitalLogos/". $file_name;
         $new_hospital->save();
 
         return response()->json([
