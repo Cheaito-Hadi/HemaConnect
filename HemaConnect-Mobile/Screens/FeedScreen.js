@@ -9,7 +9,7 @@ const FeedScreen =()=>{
           <View style={styles.userInfoField}>
           <UserInfo/>
           </View>
-          <View>
+          <View style={styles.donationContainer}>
               <Donation/>
           </View>
       </View>
@@ -33,6 +33,10 @@ const styles = StyleSheet.create({
     safeAndroidView:{
         paddingTop: Platform.OS === 'android' ? 30 : 0,
         flex: 1,
+    },
+    donationContainer:{
+        marginTop:20,
+        width:'90%',
     }
 
 });
