@@ -63,9 +63,11 @@ class AuthController extends Controller
         $user->bloodtype_id = $request->bloodtype_id;
         $user->usertype_id = $request->usertype_id;
         $user->save();
+        $user->bloodtype;
 
         $token = Auth::login($user);
         $user->token = $token;
+
 
         return response()->json([
             'message' => 'User created successfully',

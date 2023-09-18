@@ -6,6 +6,7 @@ import {useNavigation} from "@react-navigation/native";
 const Settings = () => {
     const navigation = useNavigation();
     const handleLogout = async () => {
+        await AsyncStorage.removeItem("User Data")
         await AsyncStorage.removeItem("authToken");
         navigation.navigate('LoginScreen');
     };
