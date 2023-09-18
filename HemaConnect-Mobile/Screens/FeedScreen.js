@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { View, Text, StyleSheet, SafeAreaView, Platform, ScrollView } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, Platform, ScrollView,  RefreshControl } from "react-native";
 import UserInfo from "../Components/UI/userInfo";
 import Donation from "../Components/UI/dontaionForm";
 import RequestCard from "../Components/UI/requestCard";
@@ -8,6 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const FeedScreen = () => {
     const [requestsData, setRequestsData] = useState([]);
+    const [refreshing, setRefreshing] = useState(false);
     const fetchData = async () => {
         try {
             const authToken = await AsyncStorage.getItem("authToken");
@@ -22,12 +23,23 @@ const FeedScreen = () => {
             console.error("Error fetching data:", error);
         }
     };
+    const onRefresh = async () => {
+        setRefreshing(true);
+        try {
+            await fetchData();
+        } finally {
+            setRefreshing(false);
+        }
+    };
     useEffect(() => {
         fetchData();
     }, []);
 
     return (
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
+            <ScrollView refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }>
             <View style={styles.homeContainer}>
                 <View style={styles.userInfoField}>
                     <UserInfo />
@@ -37,7 +49,8 @@ const FeedScreen = () => {
                 </View>
                 <View style={styles.requestsContainer}>
                     <Text style={styles.recentRequestText}>Recent Requests</Text>
-                    <ScrollView>
+                    <ScrollView
+                    >
                         {requestsData.map((bloodRequest, index) => (
                             <RequestCard
                                 key={index}
@@ -49,6 +62,7 @@ const FeedScreen = () => {
                     </ScrollView>
                 </View>
             </View>
+            </ScrollView>
         </SafeAreaView>
     );
 }
