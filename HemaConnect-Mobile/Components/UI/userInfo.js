@@ -1,18 +1,40 @@
 import {View, Text, StyleSheet} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useEffect, useState } from 'react';
 
 const userInfo = () => {
+    const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        AsyncStorage.getItem('userData', (error, result) => {
+            if (!error) {
+                const userData = JSON.parse(result);
+                setUserData(userData);
+            } else {
+                console.error('Error fetching user data from AsyncStorage:', error);
+            }
+        });
+    }, []);
     return (
         <View style={styles.infoContainer}>
-            <View style={styles.infoWrapper}>
-                <View style={styles.infoImage}></View>
-                <Text style={styles.infoName}>Hadi Cheaito</Text>
-                <View style={styles.infoBlood}>
-                    <Text style={styles.infoBloodText}>A+</Text>
+            {userData ? (
+                <View style={styles.infoWrapper}>
+                    <View style={styles.infoImage}></View>
+                    <Text style={styles.infoName}>
+                        {userData.first_name}
+                    </Text>
+                    <View style={styles.infoBlood}>
+                        <Text style={styles.infoBloodText}>
+                            {userData.bloodtype.name}
+                        </Text>
+                    </View>
                 </View>
-            </View>
+            ) : (
+                <Text>Loading user data...</Text>
+            )}
         </View>
     );
-}
+};
 const styles = StyleSheet.create({
     infoContainer: {
         alignItems: "center",
@@ -32,6 +54,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 20,
         fontWeight: "700",
+        textTransform:"uppercase",
     },
     infoBlood: {
         borderRadius: 30,

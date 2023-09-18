@@ -42,7 +42,7 @@ const FeedScreen = () => {
             }>
             <View style={styles.homeContainer}>
                 <View style={styles.userInfoField}>
-                    <UserInfo />
+                    <UserInfo/>
                 </View>
                 <View style={styles.donationContainer}>
                     <Donation />
