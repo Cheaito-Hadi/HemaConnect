@@ -1,6 +1,6 @@
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, Image} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 const userInfo = () => {
     const [userData, setUserData] = useState(null);
@@ -19,7 +19,10 @@ const userInfo = () => {
         <View style={styles.infoContainer}>
             {userData ? (
                 <View style={styles.infoWrapper}>
-                    <View style={styles.infoImage}></View>
+                    <Image
+                        style={styles.infoImage}
+                        source={require('../../assets/default.jpg')}
+                    />
                     <Text style={styles.infoName}>
                         {userData.first_name}
                     </Text>
@@ -47,14 +50,14 @@ const styles = StyleSheet.create({
     infoWrapper: {
         flexDirection: "row",
         alignItems: "center",
-        width:'100%',
+        width: '100%',
         justifyContent: "space-between",
     },
     infoName: {
         textAlign: "center",
         fontSize: 20,
         fontWeight: "700",
-        textTransform:"uppercase",
+        textTransform: "uppercase",
     },
     infoBlood: {
         borderRadius: 30,
@@ -70,13 +73,13 @@ const styles = StyleSheet.create({
         width: 50,
         backgroundColor: "#FF6767",
     },
-    infoBloodText:{
+    infoBloodText: {
         backgroundColor: "#FF6767",
-        justifyContent:'center',
-        alignItems:'center',
-        color:'#FFF',
-        fontWeight:'700',
-        fontSize:14,
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: '#FFF',
+        fontWeight: '700',
+        fontSize: 14,
 
     }
 
