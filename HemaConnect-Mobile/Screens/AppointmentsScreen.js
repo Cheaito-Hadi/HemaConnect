@@ -1,11 +1,12 @@
-import {View, Text, StyleSheet, SafeAreaView, Platform, Button} from "react-native";
+import {View, Text, StyleSheet, SafeAreaView, Platform, TouchableOpacity} from "react-native";
 import React, {useState} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-
 const Appointments = () => {
-    const [date, setDate] = useState(new Date(1598051730000));
+    const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
+    const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const formattedDate = date.toLocaleDateString();
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate;
@@ -29,13 +30,16 @@ const Appointments = () => {
     return (
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
             <View style={styles.homeContainer}>
-                <View style={styles.calendarWrapper}>
-                    <Text style={styles.pickDateText}>Your Next Booking</Text>
-                </View>
-                <View>
-                    <Button onPress={showDatepicker} title="Show date picker!"/>
-                    <Button onPress={showTimepicker} title="Show time picker!"/>
-                    <Text>selected: {date.toLocaleString()}</Text>
+                <View style={styles.bookingWrapper}>
+                    <Text style={styles.appointmentText}>Book an Appointment</Text>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity style={styles.buttonStyle} onPress={showDatepicker}>
+                            <Text style={styles.buttonText}>Book A Date</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.buttonStyle} onPress={showTimepicker}>
+                            <Text style={styles.buttonText}>Book A Time</Text>
+                        </TouchableOpacity>
+                    </View>
                     {show && (
                         <DateTimePicker
                             testID="dateTimePicker"
@@ -46,6 +50,9 @@ const Appointments = () => {
                         />
                     )}
                 </View>
+                <View style={styles.selectedWrapper}>
+                <Text style={styles.selectedText}>Selected: <Text style={styles.dateTimeselected}>{formattedDate} - {formattedTime}</Text> </Text>
+                </View>
             </View>
         </SafeAreaView>
     );
@@ -54,25 +61,60 @@ const Appointments = () => {
 const styles = StyleSheet.create({
     homeContainer: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        backgroundColor: '#F7F0F3'
+        backgroundColor: '#F7F0F3',
+        alignItems: "center",
+        justifyContent: "center"
     },
     safeAndroidView: {
         paddingTop: Platform.OS === 'android' ? 30 : 0,
         flex: 1,
     },
-    pickDateText: {
-        fontSize: 16,
-        fontWeight: '500',
-        marginTop: 10,
-        textAlign: 'justify',
+    bookingWrapper: {
+        width: '90%',
+        alignItems: 'flex-start',
     },
-    calendarWrapper: {
-        justifyContent: "center",
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         width: '100%',
-        paddingHorizontal: 20,
     },
+    buttonStyle: {
+        borderRadius: 10,
+        backgroundColor: "#ff6767",
+        paddingVertical:15,
+        paddingHorizontal:40,
+        width:'45%',
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: 'white',
+        fontWeight: 'bold',
+    },
+    appointmentText:{
+        fontSize:16,
+        fontWeight:'700',
+        marginBottom:10,
+        textAlign:'left',
+    },
+    selectedText:{
+        fontSize:16,
+        fontWeight:'500',
+        marginBottom:10,
+    },
+    dateTimeselected:{
+        fontSize:16,
+        fontWeight:'600',
+        marginBottom:10,
+    },
+    selectedWrapper:{
+        paddingVertical:10,
+        width:'90%',
+        backgroundColor:'#FFF',
+        alignItems:"center",
+        justifyContent:"center",
+        borderRadius:15,
+        marginTop:10,
+    }
 });
 
 export default Appointments;
