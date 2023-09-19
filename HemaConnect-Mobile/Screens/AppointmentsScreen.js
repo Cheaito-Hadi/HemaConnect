@@ -12,8 +12,8 @@ const Appointments = () => {
     const [showItemSelector, setShowItemSelector] = useState(false);
 
     const mockData = [
-        {key: '1', name: 'Hospital 1'},
-        {key: '2', name: 'Hospital 2'},
+        {key: '1', name: 'Saint George'},
+        {key: '2', name: 'dsadasddadadsadaddddddddddssssssssss'},
         {key: '3', name: 'Hospital 3'},
         {key: '4', name: 'Hospital 4'},
         {key: '5', name: 'Hospital 5'},
@@ -63,10 +63,10 @@ const Appointments = () => {
                     <Text style={styles.appointmentText}>Book an Appointment</Text>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.buttonStyle} onPress={showDatepicker}>
-                            <Text style={styles.buttonText}>Book A Date</Text>
+                            <Text style={styles.buttonText}>Book a Date</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.buttonStyle} onPress={showTimepicker}>
-                            <Text style={styles.buttonText}>Book A Time</Text>
+                            <Text style={styles.buttonText}>Book a Time</Text>
                         </TouchableOpacity>
                     </View>
                     {show && (
@@ -83,7 +83,7 @@ const Appointments = () => {
                     <Text style={styles.selectedText}>Selected: <Text
                         style={styles.dateTimeselected}>{formattedDate} - {formattedTime}</Text></Text>
                 </View>
-                <View>
+                <View style={styles.bookingWrapper}>
                     <TouchableOpacity style={styles.selectItemButton} onPress={() => setShowItemSelector(true)}>
                         <Text style={styles.buttonText}>Select a Hospital</Text>
                     </TouchableOpacity>
@@ -112,8 +112,9 @@ const Appointments = () => {
                             </View>
                         </View>
                     </Modal>
-                    <View style={styles.selectedWrapper}>
-                        <Text style={styles.selectedText}>Selected: {selectedItem}</Text>
+                    <View style={styles.selectedWrapperHospital}>
+                        <Text style={styles.selectedText}>Selected: <Text
+                            style={styles.dateTimeselected}>{selectedItem} Hospital</Text></Text>
                     </View>
                 </View>
             </View>
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     appointmentText: {
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: '700',
         marginBottom: 10,
         textAlign: 'left',
@@ -185,27 +186,55 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     modalContent: {
-        width: '80%',
-        backgroundColor: 'white',
+        width: '70%',
+        backgroundColor: '#F7F0F3',
         borderRadius: 10,
         padding: 20,
         maxHeight: '50%',
         elevation: 5,
+        alignItems: "center",
     },
     listItem: {
         padding: 20,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
+        borderBottomWidth: 0.5,
+        borderBottomColor: "#ff6767",
     },
     selectItemButton: {
         borderRadius: 10,
         backgroundColor: "#ff6767",
         paddingVertical: 15,
         paddingHorizontal: 40,
-        width: '50%',
+        width: '60%',
         alignItems: 'center',
         marginTop: 20,
     },
+    selectedWrapperHospital: {
+        paddingVertical: 10,
+        width: '100%',
+        backgroundColor: '#FFF',
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 15,
+        marginTop: 10,
+    },
+    modalTitle: {
+        textAlign: "center",
+        fontWeight: '500',
+        fontSize: 16,
+    },
+    closeButton: {
+        padding: 10,
+        backgroundColor: '#ff6767',
+        width: '30%',
+        borderRadius: 10,
+        marginTop: 10,
+        alignItems: "center",
+    },
+    closeButtonText: {
+        color: '#FFF',
+        fontSize: 16,
+        fontWeight: '500'
+    }
 });
 
 export default Appointments;
