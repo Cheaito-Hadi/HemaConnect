@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminConroller;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\BankStockController;
 use App\Http\Controllers\BookingController;
@@ -47,5 +47,5 @@ Route::get('/get_userbookings', [BookingController::class, 'getUserBooking']);
 
 Route::get('/get_lastdonation', [DonationController::class, "getLastDonation"]);
 
-Route::post('/create_hospital', [AdminConroller::class, "createHospital"]);
+Route::post('/create_hospital', [AdminController::class, "createHospital"]);
 
