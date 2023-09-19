@@ -43,6 +43,7 @@ Route::post('/create_booking', [BookingController::class, 'createBooking']);
 Route::get('/get_bookings', [BookingController::class, 'getBookings']);
 Route::delete('/delete_booking/{id}', [BookingController::class, 'deleteBooking']);
 Route::post('/bookings/search', [BookingController::class, 'searchBookings']);
+Route::get('/get_userbookings', [BookingController::class, 'getUserBooking']);
 
 Route::get('/get_lastdonation', [DonationController::class, "getLastDonation"]);
 

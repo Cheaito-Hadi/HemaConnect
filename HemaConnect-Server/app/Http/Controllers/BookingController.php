@@ -128,4 +128,26 @@ class BookingController extends Controller
             "bookings" => $bookings
         ]);
     }
+
+    public function getUserBooking(){
+        $user= Auth::user();
+        $user_bookings = $user->bookings->sortByDesc('time');
+        $last_booking = $user_bookings->first();
+        $hospital_details = $last_booking->hospital;
+        $last_booking->hospital_detailes=$hospital_details;
+
+        if (!$last_booking) {
+            return response()->json([
+                "message" => "No upcoming bookings found."
+            ]);
+        }
+
+        unset($last_booking->hospital_detailes->phone_number);
+        unset($last_booking->hospital_detailes->longitude);
+        unset($last_booking->hospital_detailes->latitude);
+        unset($last_booking->hospital);
+        return response()->json([
+            "upcoming_booking" => $last_booking
+        ]);
+    }
 }
