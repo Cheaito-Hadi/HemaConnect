@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     requestsContainer: {
         flex: 1,
         width: '90%',
-        marginTop:10
+        marginTop:20
     },
     recentRequestText: {
         fontSize: 16,

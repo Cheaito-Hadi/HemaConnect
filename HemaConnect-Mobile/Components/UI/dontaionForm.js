@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#2D2D2D',
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 10,
+        marginTop: 20,
         flexDirection: 'row',
     },
     notAbleText: {
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#007c00',
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 10,
+        marginTop: 20,
         flexDirection: 'row',
     },
     ableText: {
