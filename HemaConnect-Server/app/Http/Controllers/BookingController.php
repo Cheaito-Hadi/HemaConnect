@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BloodRequest;
 use App\Models\Booking;
+use App\Models\Donation;
 use App\Models\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,9 +60,13 @@ class BookingController extends Controller
             $userLastName = ucwords($booking->user->last_name);
             $booking->user_name = $userFirstName . ' ' . $userLastName;
             $booking->user_blood_type = $booking->user->bloodtype->name;
-            if($booking->booking_id){
-                $booking->id=$booking->booking_id;
+
+            $donated = false;
+            $donation = Donation::where('request_id',$booking->request_id)->where('user_id', $booking->user_id)->first();
+            if($donation){
+                $donated = true;
             }
+            $booking->donated=$donated;
             unset($booking->user);
         }
         return response()->json([
