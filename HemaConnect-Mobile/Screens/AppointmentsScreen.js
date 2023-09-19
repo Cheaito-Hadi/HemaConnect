@@ -1,12 +1,30 @@
-import {View, Text, StyleSheet, SafeAreaView, Platform, TouchableOpacity} from "react-native";
+import {View, Text, StyleSheet, SafeAreaView, Platform, TouchableOpacity, Modal, FlatList} from "react-native";
 import React, {useState} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
+
 const Appointments = () => {
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
-    const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const formattedTime = date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
     const formattedDate = date.toLocaleDateString();
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [showItemSelector, setShowItemSelector] = useState(false);
+
+    const mockData = [
+        {key: '1', name: 'Hospital 1'},
+        {key: '2', name: 'Hospital 2'},
+        {key: '3', name: 'Hospital 3'},
+        {key: '4', name: 'Hospital 4'},
+        {key: '5', name: 'Hospital 5'},
+        {key: '6', name: 'Hospital 6'},
+        {key: '7', name: 'Hospital 7'},
+        {key: '8', name: 'Hospital 8'},
+        {key: '9', name: 'Hospital 9'},
+        {key: '10', name: 'Hospital 10'},
+        {key: '11', name: 'Hospital 11'},
+        {key: '12', name: 'Hospital 12'},
+    ];
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate;
@@ -26,6 +44,17 @@ const Appointments = () => {
     const showTimepicker = () => {
         showMode('time');
     };
+    const renderListItem = ({item}) => (
+        <TouchableOpacity
+            style={styles.listItem}
+            onPress={() => {
+                setSelectedItem(item.name);
+                setShowItemSelector(false);
+            }}
+        >
+            <Text>{item.name}</Text>
+        </TouchableOpacity>
+    );
 
     return (
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
@@ -51,7 +80,41 @@ const Appointments = () => {
                     )}
                 </View>
                 <View style={styles.selectedWrapper}>
-                <Text style={styles.selectedText}>Selected: <Text style={styles.dateTimeselected}>{formattedDate} - {formattedTime}</Text> </Text>
+                    <Text style={styles.selectedText}>Selected: <Text
+                        style={styles.dateTimeselected}>{formattedDate} - {formattedTime}</Text></Text>
+                </View>
+                <View>
+                    <TouchableOpacity style={styles.selectItemButton} onPress={() => setShowItemSelector(true)}>
+                        <Text style={styles.buttonText}>Select a Hospital</Text>
+                    </TouchableOpacity>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={showItemSelector}
+                        onRequestClose={() => {
+                            setShowItemSelector(false);
+                        }}
+                    >
+                        <View style={styles.modalContainer}>
+                            <View style={styles.modalContent}>
+                                <Text style={styles.modalTitle}>Hospitals</Text>
+                                <FlatList
+                                    data={mockData}
+                                    renderItem={renderListItem}
+                                    keyExtractor={(item) => item.key}
+                                />
+                                <TouchableOpacity
+                                    style={styles.closeButton}
+                                    onPress={() => setShowItemSelector(false)}
+                                >
+                                    <Text style={styles.closeButtonText}>Close</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </Modal>
+                    <View style={styles.selectedWrapper}>
+                        <Text style={styles.selectedText}>Selected: {selectedItem}</Text>
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
@@ -81,40 +144,68 @@ const styles = StyleSheet.create({
     buttonStyle: {
         borderRadius: 10,
         backgroundColor: "#ff6767",
-        paddingVertical:15,
-        paddingHorizontal:40,
-        width:'45%',
+        paddingVertical: 15,
+        paddingHorizontal: 40,
+        width: '45%',
         alignItems: 'center',
     },
     buttonText: {
         color: 'white',
         fontWeight: 'bold',
     },
-    appointmentText:{
-        fontSize:16,
-        fontWeight:'700',
-        marginBottom:10,
-        textAlign:'left',
+    appointmentText: {
+        fontSize: 16,
+        fontWeight: '700',
+        marginBottom: 10,
+        textAlign: 'left',
     },
-    selectedText:{
-        fontSize:16,
-        fontWeight:'500',
-        marginBottom:10,
+    selectedText: {
+        fontSize: 16,
+        fontWeight: '500',
+        marginBottom: 10,
     },
-    dateTimeselected:{
-        fontSize:16,
-        fontWeight:'600',
-        marginBottom:10,
+    dateTimeselected: {
+        fontSize: 16,
+        fontWeight: '600',
+        marginBottom: 10,
     },
-    selectedWrapper:{
-        paddingVertical:10,
-        width:'90%',
-        backgroundColor:'#FFF',
-        alignItems:"center",
-        justifyContent:"center",
-        borderRadius:15,
-        marginTop:10,
-    }
+    selectedWrapper: {
+        paddingVertical: 10,
+        width: '90%',
+        backgroundColor: '#FFF',
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 15,
+        marginTop: 10,
+    },
+    modalContainer: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modalContent: {
+        width: '80%',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 20,
+        maxHeight: '50%',
+        elevation: 5,
+    },
+    listItem: {
+        padding: 20,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
+    },
+    selectItemButton: {
+        borderRadius: 10,
+        backgroundColor: "#ff6767",
+        paddingVertical: 15,
+        paddingHorizontal: 40,
+        width: '50%',
+        alignItems: 'center',
+        marginTop: 20,
+    },
 });
 
 export default Appointments;
