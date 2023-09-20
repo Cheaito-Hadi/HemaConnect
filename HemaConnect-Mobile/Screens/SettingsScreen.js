@@ -17,7 +17,7 @@ const Settings = () => {
 
     const loadUserData = async () => {
         try {
-            const userDataJson = await AsyncStorage.getItem("User Data");
+            const userDataJson = await AsyncStorage.getItem("userData");
             if (userDataJson) {
                 const userDataObj = JSON.parse(userDataJson);
                 setUserData(userDataObj);
@@ -58,7 +58,6 @@ const Settings = () => {
         });
 
         try {
-            debugger
             const authToken = await AsyncStorage.getItem("authToken");
             const response = await axios.post('http://192.168.0.113:8000/api/uploadprofile', formData, {
                 headers: {
@@ -77,7 +76,7 @@ const Settings = () => {
             <View style={styles.profileContainer}>
                 <TouchableOpacity onPress={pickImage}>
                     <Image
-                        source={{ uri: `http://192.168.0.113:8000/storage/${userData.image_url}` }}
+                        source={{ uri: `http://192.168.0.113:8000/storage/${userData?.image_url}` }}
                         style={styles.profileImage}
                     />
                 </TouchableOpacity>
