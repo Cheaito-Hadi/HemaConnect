@@ -63,6 +63,7 @@ const Appointments = () => {
                 <View style={styles.nextAppointmentContainer}>
                     <NextAppointment/>
                 </View>
+                <View style={styles.horizontalLine}/>
                 <View style={styles.bookingWrapper}>
                     <Text style={styles.appointmentText}>Book an Appointment</Text>
                     <View style={styles.buttonContainer}>
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F7F0F3',
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "flex-start"
     },
     safeAndroidView: {
         paddingTop: Platform.OS === 'android' ? 30 : 0,
@@ -159,7 +160,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     appointmentText: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: '700',
         marginBottom: 10,
         textAlign: 'left',
@@ -239,9 +240,18 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500'
     },
-    nextAppointmentContainer:{
-        width:'90%'
-    }
+    nextAppointmentContainer: {
+        width: '90%',
+        marginTop: 40,
+        marginBottom: 40
+    },
+    horizontalLine: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#000',
+        marginVertical: 10,
+        width: '90%',
+        marginBottom:30,
+    },
 });
 
 export default Appointments;
