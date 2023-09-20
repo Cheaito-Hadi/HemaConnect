@@ -77,7 +77,7 @@ const Appointments = () => {
                     <Text style={styles.appointmentText}>Book an Appointment</Text>
                     <TouchableOpacity style={styles.inputField} onPress={showDatepicker}>
                         <Text style={styles.inputValue}>
-                            {selectedDate ? formattedDate : 'Choose a date'}
+                            {selectedDate ? formattedDate : <Text style={styles.placeHolder}>Select a Date...</Text> }
                         </Text>
                     </TouchableOpacity>
                     {show && (
@@ -91,14 +91,14 @@ const Appointments = () => {
                     )}
                     <TouchableOpacity style={styles.inputField} onPress={showTimepicker}>
                         <Text style={styles.inputValue}>
-                            {selectedTime ? formattedTime : 'Choose a time'}
+                            {selectedTime ? formattedTime : <Text style={styles.placeHolder}>Select a Time...</Text>}
                         </Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.bookingWrapper}>
                     <TouchableOpacity style={styles.inputField} onPress={() => setShowItemSelector(true)}>
                         <Text style={styles.inputValue}>
-                            {selectedHospital ? selectedHospital : 'Choose a hospital'}
+                            {selectedHospital ? selectedHospital : <Text style={styles.placeHolder}>Select a Hospital...</Text>}
                         </Text>
                     </TouchableOpacity>
                     <Modal
@@ -198,6 +198,23 @@ const styles = StyleSheet.create({
         width: '90%',
         marginBottom: 30,
     },
+    inputField:{
+        padding:10,
+        width:'90%',
+        backgroundColor:'#FFF',
+        marginBottom:20,
+        borderRadius:10,
+        shadowColor: 'rgba(0,0,0,1)',
+        elevation: 5,
+    },
+    inputValue:{
+        fontSize:16,
+        fontWeight:'400',
+        marginLeft:10
+    },
+    placeHolder:{
+        color:'#5B5B5B'
+    }
 });
 
 export default Appointments;
