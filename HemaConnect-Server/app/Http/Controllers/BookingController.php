@@ -27,6 +27,11 @@ class BookingController extends Controller
                 "error" => "less than 3 hours"
             ]);
         }
+        if ($bookingTime->isPast()) {
+            return response()->json([
+                "error" => "Past time"
+            ]);
+        }
 
         $booking = new Booking;
         $booking->time = $bookingTime;
