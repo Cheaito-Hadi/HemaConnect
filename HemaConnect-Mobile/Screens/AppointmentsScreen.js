@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, SafeAreaView, Platform, TouchableOpacity, Modal, FlatList } from "react-native";
-import React, { useState } from 'react';
+import {View, Text, StyleSheet, SafeAreaView, Platform, TouchableOpacity, Modal, FlatList} from "react-native";
+import React, {useState} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import NextAppointment from "../Components/UI/nextAppointmentForm";
 
@@ -7,27 +7,29 @@ const Appointments = () => {
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(false);
-    const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const formattedTime = date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
     const formattedDate = date.toLocaleDateString();
     const [selectedItem, setSelectedItem] = useState(null);
     const [showItemSelector, setShowItemSelector] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
     const [selectedHospital, setSelectedHospital] = useState(null);
+    const [hepatitisAnswer, setHepatitisAnswer] = useState(null);
+    const [anemiaAnswer, setAnemiaAnswer] = useState(null);
 
     const mockData = [
-        { key: '1', name: 'Saint George' },
-        { key: '2', name: 'dsadasddadadsadaddddddddddssssssssss' },
-        { key: '3', name: 'Hospital 3' },
-        { key: '4', name: 'Hospital 4' },
-        { key: '5', name: 'Hospital 5' },
-        { key: '6', name: 'Hospital 6' },
-        { key: '7', name: 'Hospital 7' },
-        { key: '8', name: 'Hospital 8' },
-        { key: '9', name: 'Hospital 9' },
-        { key: '10', name: 'Hospital 10' },
-        { key: '11', name: 'Hospital 11' },
-        { key: '12', name: 'Hospital 12' },
+        {key: '1', name: 'Saint George'},
+        {key: '2', name: 'dsadasddadadsadaddddddddddssssssssss'},
+        {key: '3', name: 'Hospital 3'},
+        {key: '4', name: 'Hospital 4'},
+        {key: '5', name: 'Hospital 5'},
+        {key: '6', name: 'Hospital 6'},
+        {key: '7', name: 'Hospital 7'},
+        {key: '8', name: 'Hospital 8'},
+        {key: '9', name: 'Hospital 9'},
+        {key: '10', name: 'Hospital 10'},
+        {key: '11', name: 'Hospital 11'},
+        {key: '12', name: 'Hospital 12'},
     ];
 
     const onChange = (event, selectedDate) => {
@@ -36,7 +38,7 @@ const Appointments = () => {
         setDate(currentDate);
         setSelectedDate(currentDate);
 
-        const formattedTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const formattedTime = currentDate.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
         setSelectedTime(formattedTime);
     };
 
@@ -53,7 +55,7 @@ const Appointments = () => {
         showMode('time');
     };
 
-    const renderListItem = ({ item }) => (
+    const renderListItem = ({item}) => (
         <TouchableOpacity
             style={styles.listItem}
             onPress={() => {
@@ -70,14 +72,14 @@ const Appointments = () => {
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
             <View style={styles.homeContainer}>
                 <View style={styles.nextAppointmentContainer}>
-                    <NextAppointment />
+                    <NextAppointment/>
                 </View>
-                <View style={styles.horizontalLine} />
+                <View style={styles.horizontalLine}/>
                 <View style={styles.bookingWrapper}>
                     <Text style={styles.appointmentText}>Book an Appointment</Text>
                     <TouchableOpacity style={styles.inputField} onPress={showDatepicker}>
                         <Text style={styles.inputValue}>
-                            {selectedDate ? formattedDate : <Text style={styles.placeHolder}>Select a Date...</Text> }
+                            {selectedDate ? formattedDate : <Text style={styles.placeHolder}>Select a Date...</Text>}
                         </Text>
                     </TouchableOpacity>
                     {show && (
@@ -98,7 +100,8 @@ const Appointments = () => {
                 <View style={styles.bookingWrapper}>
                     <TouchableOpacity style={styles.inputField} onPress={() => setShowItemSelector(true)}>
                         <Text style={styles.inputValue}>
-                            {selectedHospital ? selectedHospital : <Text style={styles.placeHolder}>Select a Hospital...</Text>}
+                            {selectedHospital ? selectedHospital :
+                                <Text style={styles.placeHolder}>Select a Hospital...</Text>}
                         </Text>
                     </TouchableOpacity>
                     <Modal
@@ -126,6 +129,57 @@ const Appointments = () => {
                             </View>
                         </View>
                     </Modal>
+                    <View>
+                        <Text style={styles.questionText}>Do you Have Hepatitis</Text>
+                        <View style={styles.checkboxContainer}>
+                            <View style={styles.checkboxLabelContainer}>
+                                <TouchableOpacity
+                                    style={[
+                                        styles.checkbox,
+                                        hepatitisAnswer === 'YES' && styles.selectedCheckbox,
+                                    ]}
+                                    onPress={() => setHepatitisAnswer('YES')}
+                                />
+                                <Text style={styles.checkboxLabel}>Yes</Text>
+                            </View>
+                            <View style={styles.checkboxLabelContainer}>
+                                <TouchableOpacity
+                                    style={[
+                                        styles.checkbox,
+                                        hepatitisAnswer === 'NO' && styles.selectedCheckbox,
+                                    ]}
+                                    onPress={() => setHepatitisAnswer('NO')}
+                                />
+                                <Text style={styles.checkboxLabel}>No</Text>
+                            </View>
+                        </View>
+                    </View>
+
+                    <View>
+                        <Text style={styles.questionText}>Do you Have Anemia</Text>
+                        <View style={styles.checkboxContainer}>
+                            <View style={styles.checkboxLabelContainer}>
+                                <TouchableOpacity
+                                    style={[
+                                        styles.checkbox,
+                                        anemiaAnswer === 'YES' && styles.selectedCheckbox,
+                                    ]}
+                                    onPress={() => setAnemiaAnswer('YES')}
+                                />
+                                <Text style={styles.checkboxLabel}>Yes</Text>
+                            </View>
+                            <View style={styles.checkboxLabelContainer}>
+                                <TouchableOpacity
+                                    style={[
+                                        styles.checkbox,
+                                        anemiaAnswer === 'NO' && styles.selectedCheckbox,
+                                    ]}
+                                    onPress={() => setAnemiaAnswer('NO')}
+                                />
+                                <Text style={styles.checkboxLabel}>No</Text>
+                            </View>
+                        </View>
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
@@ -194,27 +248,27 @@ const styles = StyleSheet.create({
     horizontalLine: {
         borderBottomWidth: 1,
         borderBottomColor: '#000',
-        marginVertical: 10,
         width: '90%',
-        marginBottom: 30,
+        marginBottom: 20,
     },
-    inputField:{
-        padding:10,
-        width:'90%',
-        backgroundColor:'#FFF',
-        marginBottom:20,
-        borderRadius:10,
+    inputField: {
+        padding: 10,
+        width: '90%',
+        backgroundColor: '#FFF',
+        marginBottom: 20,
+        borderRadius: 10,
         shadowColor: 'rgba(0,0,0,1)',
         elevation: 5,
     },
-    inputValue:{
-        fontSize:16,
-        fontWeight:'400',
-        marginLeft:10
+    inputValue: {
+        fontSize: 16,
+        fontWeight: '400',
+        marginLeft: 10
     },
-    placeHolder:{
-        color:'#5B5B5B'
-    }
+    placeHolder: {
+        color: '#5B5B5B'
+    },
+
 });
 
 export default Appointments;
