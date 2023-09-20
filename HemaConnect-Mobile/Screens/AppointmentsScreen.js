@@ -1,6 +1,7 @@
 import {View, Text, StyleSheet, SafeAreaView, Platform, TouchableOpacity, Modal, FlatList} from "react-native";
 import React, {useState} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import NextAppointment from "../Components/UI/nextAppointmentForm";
 
 const Appointments = () => {
     const [date, setDate] = useState(new Date());
@@ -59,6 +60,9 @@ const Appointments = () => {
     return (
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
             <View style={styles.homeContainer}>
+                <View>
+                    <NextAppointment/>
+                </View>
                 <View style={styles.bookingWrapper}>
                     <Text style={styles.appointmentText}>Book an Appointment</Text>
                     <View style={styles.buttonContainer}>
