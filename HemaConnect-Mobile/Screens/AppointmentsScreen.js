@@ -118,7 +118,7 @@ const Appointments = () => {
                     </Modal>
                     <View style={styles.selectedWrapperHospital}>
                         <Text style={styles.selectedText}>Selected: <Text
-                            style={styles.dateTimeselected}>{selectedItem} Hospital</Text></Text>
+                            style={styles.dateTimeSelected}>{selectedItem} Hospital</Text></Text>
                     </View>
                 </View>
             </View>
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         marginBottom: 10,
     },
-    dateTimeselected: {
+    dateTimeSelected: {
         fontSize: 16,
         fontWeight: '600',
         marginBottom: 10,

@@ -1,7 +1,30 @@
 import {View, Text, Image, StyleSheet} from "react-native";
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const nextAppointment = () => {
+const nextAppointment = ({imageSource,hospitalName,bloodType}) => {
+
+    const [bookingData, setBookingData] = useState(null);
+    const fetchBooking = async () => {
+        try {
+            const authToken = await AsyncStorage.getItem("authToken");
+            const response = await axios.get('http://192.168.0.113:8000/api/get_userbookings', {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            });
+            const data = response.data.upcoming_booking;
+            setBookingData(data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    useEffect(() => {
+        fetchBooking();
+    }, []);
+
     return (
         <View>
             <Text style={styles.upComingBooking}>Upcoming Appointment</Text>
@@ -9,11 +32,11 @@ const nextAppointment = () => {
                 <View style={styles.bookingCard}>
                     <View style={styles.leftInside}>
                         <Image style={styles.hospitalImage}
-                               source={require('../../assets/default.jpg')}/>
+                               source={{ uri: `http://192.168.0.113:8000/storage/${bookingData.hospital_detailes.logo_url}` }}/>
                     </View>
                     <View style={styles.hospitalDateWrapper}>
-                        <Text style={styles.hospitalStyle}>Saint George Hospital</Text>
-                        <Text style={styles.comingDate}>22/22/2222 12:40</Text>
+                        <Text style={styles.hospitalStyle}>{bookingData.hospital_detailes.name}</Text>
+                        <Text style={styles.comingDate}>{bookingData.time}</Text>
                     </View>
                 </View>
             </View>
