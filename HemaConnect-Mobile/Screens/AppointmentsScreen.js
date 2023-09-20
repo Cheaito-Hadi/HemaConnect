@@ -60,7 +60,7 @@ const Appointments = () => {
     return (
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
             <View style={styles.homeContainer}>
-                <View>
+                <View style={styles.nextAppointmentContainer}>
                     <NextAppointment/>
                 </View>
                 <View style={styles.bookingWrapper}>
@@ -238,6 +238,9 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 16,
         fontWeight: '500'
+    },
+    nextAppointmentContainer:{
+        width:'90%'
     }
 });
 
