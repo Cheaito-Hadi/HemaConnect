@@ -1,8 +1,10 @@
 import {View, Text, StyleSheet, SafeAreaView, Platform, TouchableOpacity, Modal, FlatList} from "react-native";
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import NextAppointment from "../Components/UI/nextAppointmentForm";
 import CustomedButton from "../Components/Base/customedButton";
+import Axios from 'axios';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Appointments = () => {
     const [date, setDate] = useState(new Date());
@@ -10,28 +12,30 @@ const Appointments = () => {
     const [show, setShow] = useState(false);
     const formattedTime = date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
     const formattedDate = date.toLocaleDateString();
-    const [selectedItem, setSelectedItem] = useState(null);
     const [showItemSelector, setShowItemSelector] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedTime, setSelectedTime] = useState(null);
-    const [selectedHospital, setSelectedHospital] = useState(null);
     const [hepatitisAnswer, setHepatitisAnswer] = useState(null);
     const [anemiaAnswer, setAnemiaAnswer] = useState(null);
+    const [requestData, setRequestData] = useState([]);
+    const [selectedRequestId, setSelectedRequestId] = useState(null);
+    const [selectedHospitalName, setSelectedHospitalName] = useState(null);
 
-    const mockData = [
-        {key: '1', name: 'Saint George'},
-        {key: '2', name: 'dsadasddadadsadaddddddddddssssssssss'},
-        {key: '3', name: 'Hospital 3'},
-        {key: '4', name: 'Hospital 4'},
-        {key: '5', name: 'Hospital 5'},
-        {key: '6', name: 'Hospital 6'},
-        {key: '7', name: 'Hospital 7'},
-        {key: '8', name: 'Hospital 8'},
-        {key: '9', name: 'Hospital 9'},
-        {key: '10', name: 'Hospital 10'},
-        {key: '11', name: 'Hospital 11'},
-        {key: '12', name: 'Hospital 12'},
-    ];
+    const fetchHospitals = async () => {
+        try {
+            const authToken = await AsyncStorage.getItem("authToken");
+            const response = await Axios.get('http://192.168.0.113:8000/api/get_userrequests' ,{
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            });
+            if (response.data && response.data.message === 'success') {
+                setRequestData(response.data.Blood_Requests);
+            }
+        } catch (error) {
+            console.error('Error fetching hospitals:', error);
+        }
+    };
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
@@ -56,16 +60,20 @@ const Appointments = () => {
         showMode('time');
     };
 
+    useEffect(() => {
+        fetchHospitals();
+    }, []);
+
     const renderListItem = ({item}) => (
         <TouchableOpacity
             style={styles.listItem}
             onPress={() => {
-                setSelectedItem(item.name);
-                setSelectedHospital(item.name);
+                setSelectedRequestId(item.requests[0].id);
+                setSelectedHospitalName(item.hospital_info.name);
                 setShowItemSelector(false);
             }}
         >
-            <Text>{item.name}</Text>
+            <Text>{item.hospital_info.name}</Text>
         </TouchableOpacity>
     );
 
@@ -101,8 +109,7 @@ const Appointments = () => {
                 <View style={styles.bookingWrapper}>
                     <TouchableOpacity style={styles.inputField} onPress={() => setShowItemSelector(true)}>
                         <Text style={styles.inputValue}>
-                            {selectedHospital ? selectedHospital :
-                                <Text style={styles.placeHolder}>Select a Hospital...</Text>}
+                            {selectedHospitalName ? selectedHospitalName : <Text style={styles.placeHolder}>Select a Hospital...</Text>}
                         </Text>
                     </TouchableOpacity>
                     <Modal
@@ -117,9 +124,9 @@ const Appointments = () => {
                             <View style={styles.modalContent}>
                                 <Text style={styles.modalTitle}>Hospitals</Text>
                                 <FlatList
-                                    data={mockData}
+                                    data={requestData}
                                     renderItem={renderListItem}
-                                    keyExtractor={(item) => item.key}
+                                    keyExtractor={(item) => item.requests[0].id.toString()}
                                 />
                                 <TouchableOpacity
                                     style={styles.closeButton}
