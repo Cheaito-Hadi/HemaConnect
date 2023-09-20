@@ -2,6 +2,7 @@ import {View, Text, StyleSheet, SafeAreaView, Platform, TouchableOpacity, Modal,
 import React, {useState} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import NextAppointment from "../Components/UI/nextAppointmentForm";
+import CustomedButton from "../Components/Base/customedButton";
 
 const Appointments = () => {
     const [date, setDate] = useState(new Date());
@@ -180,6 +181,11 @@ const Appointments = () => {
                             </View>
                         </View>
                     </View>
+                    <View style={styles.bookButton}>
+                        <CustomedButton
+                            buttonTitle="Book"
+                        />
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
@@ -253,7 +259,7 @@ const styles = StyleSheet.create({
     },
     inputField: {
         padding: 10,
-        width: '90%',
+        width: '100%',
         backgroundColor: '#FFF',
         marginBottom: 20,
         borderRadius: 10,
@@ -301,7 +307,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         marginRight:50
-    }
+    },
 });
 
 export default Appointments;
