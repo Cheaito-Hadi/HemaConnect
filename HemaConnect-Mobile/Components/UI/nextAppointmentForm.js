@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const nextAppointment = ({imageSource,hospitalName,bloodType}) => {
+const nextAppointment = () => {
 
     const [bookingData, setBookingData] = useState(null);
     const fetchBooking = async () => {
@@ -28,18 +28,24 @@ const nextAppointment = ({imageSource,hospitalName,bloodType}) => {
     return (
         <View>
             <Text style={styles.upComingBooking}>Upcoming Appointment</Text>
-            <View style={styles.bookingContainer}>
-                <View style={styles.bookingCard}>
-                    <View style={styles.leftInside}>
-                        <Image style={styles.hospitalImage}
-                               source={{ uri: `http://192.168.0.113:8000/storage/${bookingData.hospital_detailes.logo_url}` }}/>
-                    </View>
-                    <View style={styles.hospitalDateWrapper}>
-                        <Text style={styles.hospitalStyle}>{bookingData.hospital_detailes.name}</Text>
-                        <Text style={styles.comingDate}>{bookingData.time}</Text>
+            {bookingData ? (
+                <View style={styles.bookingContainer}>
+                    <View style={styles.bookingCard}>
+                        <View style={styles.leftInside}>
+                            <Image
+                                style={styles.hospitalImage}
+                                source={{ uri: `http://192.168.0.113:8000/storage/${bookingData?.hospital_detailes?.logo_url}` }}
+                            />
+                        </View>
+                        <View style={styles.hospitalDateWrapper}>
+                            <Text style={styles.hospitalStyle}>{bookingData?.hospital_detailes?.name}</Text>
+                            <Text style={styles.comingDate}>{bookingData?.time}</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
+            ) : (
+                <Text>Getting your Appointment</Text>
+            )}
         </View>
     );
 }
