@@ -278,11 +278,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500',
         marginBottom: 10,
-        marginTop:10
+        marginTop: 10
     },
     checkboxContainer: {
         flexDirection: 'row',
-        marginTop:10
+        marginTop: 10
     },
     checkbox: {
         width: 20,
@@ -302,12 +302,16 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#000',
     },
-    checkboxLabelContainer:{
-        flexDirection:"row",
-        alignItems:"center",
-        justifyContent:"center",
-        marginRight:50
+    checkboxLabelContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        marginRight: 50
     },
+    bookButton: {
+        marginTop: 10,
+        width: '100%',
+    }
 });
 
 export default Appointments;
