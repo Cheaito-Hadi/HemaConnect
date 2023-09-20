@@ -44,24 +44,26 @@ const Settings = () => {
         const result = await ImagePicker.launchImageLibraryAsync();
 
         if (!result.cancelled) {
-            setImage(result.uri);
-            await uploadImage(result.uri);
+            setImage(result.assets[0].uri);
+            await uploadImage(result.assets[0].uri);
         }
     };
 
     const uploadImage = async (uri) => {
         const formData = new FormData();
-        formData.append('image', {
+        formData.append('profile_image', {
             uri,
-            type: 'image/*',
+            type: 'image/jpeg',
             name: 'profile.jpg',
         });
 
         try {
+            debugger
             const authToken = await AsyncStorage.getItem("authToken");
             const response = await axios.post('http://192.168.0.113:8000/api/uploadprofile', formData, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
+                    'Content-Type': 'multipart/form-data; ',
                 },
             });
             console.log("Image upload response:", response.data);
