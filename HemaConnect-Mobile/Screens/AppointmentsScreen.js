@@ -268,7 +268,40 @@ const styles = StyleSheet.create({
     placeHolder: {
         color: '#5B5B5B'
     },
-
+    questionText: {
+        fontSize: 16,
+        fontWeight: '500',
+        marginBottom: 10,
+        marginTop:10
+    },
+    checkboxContainer: {
+        flexDirection: 'row',
+        marginTop:10
+    },
+    checkbox: {
+        width: 20,
+        height: 20,
+        borderWidth: 1,
+        borderColor: '#5e5e5e',
+        backgroundColor: '#FFF',
+        marginRight: 10,
+        borderRadius: 3,
+        shadowColor: 'rgba(0,0,0,0.6)',
+        elevation: 5,
+    },
+    selectedCheckbox: {
+        backgroundColor: '#ff6767',
+    },
+    checkboxLabel: {
+        fontSize: 16,
+        color: '#000',
+    },
+    checkboxLabelContainer:{
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"center",
+        marginRight:50
+    }
 });
 
 export default Appointments;
