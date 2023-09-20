@@ -1,5 +1,5 @@
 import {View, Text, StyleSheet, SafeAreaView, Platform, TouchableOpacity, Modal, FlatList} from "react-native";
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import NextAppointment from "../Components/UI/nextAppointmentForm";
 import CustomedButton from "../Components/Base/customedButton";
@@ -24,7 +24,7 @@ const Appointments = () => {
     const fetchHospitals = async () => {
         try {
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await Axios.get('http://192.168.0.113:8000/api/get_userrequests' ,{
+            const response = await Axios.get('http://192.168.0.113:8000/api/get_userrequests', {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
@@ -58,6 +58,30 @@ const Appointments = () => {
 
     const showTimepicker = () => {
         showMode('time');
+    };
+
+    const handleBooking = async () => {
+        try {
+            const selectedDateTime = `${selectedDate.toISOString().split('T')[0]} ${selectedTime}`;
+            const requestData = {
+                request_id: selectedRequestId,
+                hepatitis: hepatitisAnswer === 'YES' ? 1 : 0,
+                anemia: anemiaAnswer === 'YES' ? 1 : 0,
+                time: selectedDateTime,
+            };
+            const authToken = await AsyncStorage.getItem("authToken");
+            const response = await Axios.post('http://192.168.0.113:8000/api/create_booking', requestData, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            });
+
+            if (response.data && response.data.message === 'Booking created successfully') {
+                console.log('Booking successful:', response.data);
+            }
+        } catch (error) {
+            console.error('Error making booking:', error);
+        }
     };
 
     useEffect(() => {
@@ -109,7 +133,8 @@ const Appointments = () => {
                 <View style={styles.bookingWrapper}>
                     <TouchableOpacity style={styles.inputField} onPress={() => setShowItemSelector(true)}>
                         <Text style={styles.inputValue}>
-                            {selectedHospitalName ? selectedHospitalName : <Text style={styles.placeHolder}>Select a Hospital...</Text>}
+                            {selectedHospitalName ? selectedHospitalName :
+                                <Text style={styles.placeHolder}>Select a Hospital...</Text>}
                         </Text>
                     </TouchableOpacity>
                     <Modal
@@ -191,6 +216,7 @@ const Appointments = () => {
                     <View style={styles.bookButton}>
                         <CustomedButton
                             buttonTitle="Book"
+                            handlePress={handleBooking}
                         />
                     </View>
                 </View>
@@ -226,9 +252,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    modalTitle:{
-      fontSize:16,
-      fontWeight:'500',
+    modalTitle: {
+        fontSize: 16,
+        fontWeight: '500',
     },
     modalContent: {
         width: '70%',
@@ -320,7 +346,7 @@ const styles = StyleSheet.create({
         marginRight: 50
     },
     bookButton: {
-        marginTop:'10%',
+        marginTop: '10%',
         width: '100%',
     }
 });
