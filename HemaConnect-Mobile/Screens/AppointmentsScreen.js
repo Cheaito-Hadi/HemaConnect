@@ -219,6 +219,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    modalTitle:{
+      fontSize:16,
+      fontWeight:'500',
+    },
     modalContent: {
         width: '70%',
         backgroundColor: '#F7F0F3',
@@ -231,7 +235,7 @@ const styles = StyleSheet.create({
     listItem: {
         padding: 20,
         borderBottomWidth: 0.5,
-        borderBottomColor: "#ff6767",
+        borderBottomColor: "gray",
     },
     closeButton: {
         padding: 10,
