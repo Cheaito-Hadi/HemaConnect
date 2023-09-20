@@ -6,6 +6,7 @@ use App\Models\BloodRequest;
 use App\Models\Booking;
 use App\Models\Donation;
 use App\Models\Hospital;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,10 +47,10 @@ class BookingController extends Controller
         if (!is_null($search_value) && !empty($search_value)) {
             $bookings = Booking::join('users', 'users.id', '=', 'bookings.user_id')
                 ->join('bloodtypes', 'bloodtypes.id', '=', 'users.bloodtype_id')
-                ->where('bloodtypes.name', 'like', '%'.$search_value.'%')
-                ->orWhere('users.first_name', 'like', '%'.$search_value.'%')
-                ->orWhere('users.last_name', 'like', '%'.$search_value.'%')
-                ->get(['*','bookings.id as booking_id']);
+                ->where('bloodtypes.name', 'like', '%' . $search_value . '%')
+                ->orWhere('users.first_name', 'like', '%' . $search_value . '%')
+                ->orWhere('users.last_name', 'like', '%' . $search_value . '%')
+                ->get(['*', 'bookings.id as booking_id']);
         } else {
             $bookings = $user->employees[0]->hospital->bookings;
         }
@@ -62,11 +63,11 @@ class BookingController extends Controller
             $booking->user_blood_type = $booking->user->bloodtype->name;
 
             $donated = false;
-            $donation = Donation::where('request_id',$booking->request_id)->where('user_id', $booking->user_id)->first();
-            if($donation){
+            $donation = Donation::where('request_id', $booking->request_id)->where('user_id', $booking->user_id)->first();
+            if ($donation) {
                 $donated = true;
             }
-            $booking->donated=$donated;
+            $booking->donated = $donated;
             unset($booking->user);
         }
         return response()->json([
@@ -129,25 +130,34 @@ class BookingController extends Controller
         ]);
     }
 
-    public function getUserBooking(){
-        $user= Auth::user();
-        $user_bookings = $user->bookings->sortByDesc('time');
-        $last_booking = $user_bookings->first();
-        $hospital_details = $last_booking->hospital;
-        $last_booking->hospital_detailes=$hospital_details;
+    public function getUserBooking()
+    {
+        $user = Auth::user();
+        $currentTime = now();
+        $user_bookings = $user->bookings->filter(function ($booking) use ($currentTime) {
+            $bookingTime = Carbon::createFromFormat('Y-m-d H:i:s', $booking->time);
+            return $bookingTime->isFuture();
+        })->sortBy(function ($booking) use ($currentTime) {
 
-        if (!$last_booking) {
+            $bookingTime = Carbon::createFromFormat('Y-m-d H:i:s', $booking->time);
+            return $bookingTime->diffInSeconds($currentTime);
+        });
+        $upcoming_booking = $user_bookings->first();
+        if (!$upcoming_booking) {
             return response()->json([
                 "message" => "No upcoming bookings found."
             ]);
         }
-
-        unset($last_booking->hospital_detailes->phone_number);
-        unset($last_booking->hospital_detailes->longitude);
-        unset($last_booking->hospital_detailes->latitude);
-        unset($last_booking->hospital);
+        $hospital_details = $upcoming_booking->hospital;
+        $upcoming_booking->hospital_detailes = [
+            "id" => $hospital_details->id,
+            "name" => $hospital_details->name,
+            "logo_url" => $hospital_details->logo_url
+        ];
+        unset($upcoming_booking->hospital);
         return response()->json([
-            "upcoming_booking" => $last_booking
+            "upcoming_booking" => $upcoming_booking
         ]);
     }
+
 }
