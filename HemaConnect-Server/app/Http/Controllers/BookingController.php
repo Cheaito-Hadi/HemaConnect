@@ -20,9 +20,16 @@ class BookingController extends Controller
         }
         $bloodRequest = BloodRequest::where('id', $request->request_id)->first();
         $hospital = $bloodRequest->hospital;
+        $bookingTime = Carbon::createFromFormat('Y-m-d H:i:s', $request->time);
+        $timeDifferenceHours = now()->diffInHours($bookingTime);
+        if ($timeDifferenceHours < 6) {
+            return response()->json([
+                "error" => "less than 3 hours"
+            ]);
+        }
 
         $booking = new Booking;
-        $booking->time = date("Y-m-d H:i:s", strtotime($request->time));
+        $booking->time = $bookingTime;
         $booking->hepatitis = boolval($request->hepatitis);
         $booking->anemia = boolval($request->anemia);
         $booking->user_id = $user->id;
