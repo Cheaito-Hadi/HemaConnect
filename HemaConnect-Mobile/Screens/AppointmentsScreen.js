@@ -204,13 +204,13 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     bookingWrapper: {
-        width: '90%',
+        width: '80%',
         alignItems: 'flex-start',
     },
     appointmentText: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: '700',
-        marginBottom: 10,
+        marginBottom: '4%',
         textAlign: 'left',
     },
     modalContainer: {
@@ -247,21 +247,21 @@ const styles = StyleSheet.create({
         fontWeight: '500'
     },
     nextAppointmentContainer: {
-        width: '90%',
-        marginTop: 40,
-        marginBottom: 40
+        width: '80%',
+        marginTop: '5%',
+        marginBottom: '8%'
     },
     horizontalLine: {
         borderBottomWidth: 1,
         borderBottomColor: '#000',
-        width: '90%',
-        marginBottom: 20,
+        width: '80%',
+        marginBottom: '6%',
     },
     inputField: {
         padding: 10,
         width: '100%',
         backgroundColor: '#FFF',
-        marginBottom: 20,
+        marginBottom: '6%',
         borderRadius: 10,
         shadowColor: 'rgba(0,0,0,1)',
         elevation: 5,
@@ -277,12 +277,12 @@ const styles = StyleSheet.create({
     questionText: {
         fontSize: 16,
         fontWeight: '500',
-        marginBottom: 10,
-        marginTop: 10
+        marginBottom: '2%',
+        marginTop: '1%',
     },
     checkboxContainer: {
         flexDirection: 'row',
-        marginTop: 10
+        marginTop: '5%'
     },
     checkbox: {
         width: 20,
@@ -309,7 +309,7 @@ const styles = StyleSheet.create({
         marginRight: 50
     },
     bookButton: {
-        marginTop: 10,
+        marginTop:'10%',
         width: '100%',
     }
 });

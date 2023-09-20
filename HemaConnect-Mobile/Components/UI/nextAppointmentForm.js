@@ -91,9 +91,9 @@ const styles = StyleSheet.create({
         fontWeight:'500',
     },
     upComingBooking:{
-        fontSize:20,
+        fontSize:18,
         fontWeight:'700',
-        marginBottom:40,
+        marginBottom:'5%',
     }
 
 })
