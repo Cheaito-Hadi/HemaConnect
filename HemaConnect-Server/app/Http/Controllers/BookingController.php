@@ -33,6 +33,20 @@ class BookingController extends Controller
             ]);
         }
 
+        $donation = $user->donations->sortByDesc('time')->first();
+
+        if ($donation) {
+            $lastDonationDate = Carbon::parse($donation->time);
+            $currentDate = Carbon::now();
+            $daysSinceLastDonation = $currentDate->diffInDays($lastDonationDate);
+            $donateAfter = 50 - $daysSinceLastDonation;
+            if ($donateAfter > 0) {
+                return response()->json([
+                    "error" => "wait $donateAfter to donate"
+                ]);
+            }
+        }
+
         $booking = new Booking;
         $booking->time = $bookingTime;
         $booking->hepatitis = boolval($request->hepatitis);
@@ -44,7 +58,8 @@ class BookingController extends Controller
 
         return response()->json([
             "message" => "Booking created successfully",
-            "booking" => $booking
+            "booking" => $booking,
+            "donation"=>$donation
         ]);
     }
 
