@@ -22,7 +22,7 @@ class BookingController extends Controller
         $hospital = $bloodRequest->hospital;
         $bookingTime = Carbon::createFromFormat('Y-m-d H:i:s', $request->time);
         $timeDifferenceHours = now()->diffInHours($bookingTime);
-        if ($timeDifferenceHours < 6) {
+        if ($timeDifferenceHours < 3) {
             return response()->json([
                 "error" => "less than 3 hours"
             ]);
