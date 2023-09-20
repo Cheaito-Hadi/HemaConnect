@@ -20,6 +20,11 @@ const Appointments = () => {
     const [requestData, setRequestData] = useState([]);
     const [selectedRequestId, setSelectedRequestId] = useState(null);
     const [selectedHospitalName, setSelectedHospitalName] = useState(null);
+    const [dateError, setDateError] = useState('');
+    const [timeError, setTimeError] = useState('');
+    const [hospitalError, setHospitalError] = useState('');
+    const [hepatitisError, setHepatitisError] = useState('');
+    const [anemiaError, setAnemiaError] = useState('');
 
     const fetchHospitals = async () => {
         try {
@@ -61,8 +66,45 @@ const Appointments = () => {
     };
 
     const handleBooking = async () => {
+        setDateError('');
+        setTimeError('');
+        setHospitalError('');
+        setHepatitisError('');
+        setAnemiaError('');
+
+        let isValid = true;
+
+        if (!selectedDate) {
+            setDateError('Please select a date.');
+            isValid = false;
+        }
+
+        if (!selectedTime) {
+            setTimeError('Please select a time.');
+            isValid = false;
+        }
+
+        if (!selectedHospitalName) {
+            setHospitalError('Please select a hospital.');
+            isValid = false;
+        }
+
+        if (!hepatitisAnswer) {
+            setHepatitisError('Please select an option for Hepatitis.');
+            isValid = false;
+        }
+
+        if (!anemiaAnswer) {
+            setAnemiaError('Please select an option for Anemia.');
+            isValid = false;
+        }
+
+        if (!isValid) {
+            return;
+        }
+
         try {
-            const selectedDateTime = `${selectedDate.toISOString().split('T')[0]} ${selectedTime}`;
+            const selectedDateTime = `${selectedDate.toISOString().split('T')[0]} ${selectedTime.replace(/ AM| PM/g, "")}:00`;
             const requestData = {
                 request_id: selectedRequestId,
                 hepatitis: hepatitisAnswer === 'YES' ? 1 : 0,
@@ -115,6 +157,7 @@ const Appointments = () => {
                             {selectedDate ? formattedDate : <Text style={styles.placeHolder}>Select a Date...</Text>}
                         </Text>
                     </TouchableOpacity>
+                    <Text style={styles.errorText}>{dateError}</Text>
                     {show && (
                         <DateTimePicker
                             testID="dateTimePicker"
@@ -129,6 +172,7 @@ const Appointments = () => {
                             {selectedTime ? formattedTime : <Text style={styles.placeHolder}>Select a Time...</Text>}
                         </Text>
                     </TouchableOpacity>
+                    <Text style={styles.errorText}>{timeError}</Text>
                 </View>
                 <View style={styles.bookingWrapper}>
                     <TouchableOpacity style={styles.inputField} onPress={() => setShowItemSelector(true)}>
@@ -137,6 +181,7 @@ const Appointments = () => {
                                 <Text style={styles.placeHolder}>Select a Hospital...</Text>}
                         </Text>
                     </TouchableOpacity>
+                    <Text style={styles.errorText}>{hospitalError}</Text>
                     <Modal
                         animationType="slide"
                         transparent={true}
@@ -186,6 +231,7 @@ const Appointments = () => {
                                 <Text style={styles.checkboxLabel}>No</Text>
                             </View>
                         </View>
+                        <Text style={styles.errorText}>{hepatitisError}</Text>
                     </View>
 
                     <View>
@@ -212,6 +258,7 @@ const Appointments = () => {
                                 <Text style={styles.checkboxLabel}>No</Text>
                             </View>
                         </View>
+                        <Text style={styles.errorText}>{anemiaError}</Text>
                     </View>
                     <View style={styles.bookButton}>
                         <CustomedButton
@@ -298,7 +345,6 @@ const styles = StyleSheet.create({
         padding: 10,
         width: '100%',
         backgroundColor: '#FFF',
-        marginBottom: '6%',
         borderRadius: 10,
         shadowColor: 'rgba(0,0,0,1)',
         elevation: 5,
@@ -319,7 +365,7 @@ const styles = StyleSheet.create({
     },
     checkboxContainer: {
         flexDirection: 'row',
-        marginTop: '5%'
+        marginTop: '2%'
     },
     checkbox: {
         width: 20,
@@ -346,9 +392,11 @@ const styles = StyleSheet.create({
         marginRight: 50
     },
     bookButton: {
-        marginTop: '10%',
         width: '100%',
-    }
+    },
+    errorText: {
+        color: 'red',
+    },
 });
 
 export default Appointments;

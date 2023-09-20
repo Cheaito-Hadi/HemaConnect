@@ -59,7 +59,6 @@ class BookingController extends Controller
         return response()->json([
             "message" => "Booking created successfully",
             "booking" => $booking,
-            "donation"=>$donation
         ]);
     }
 
