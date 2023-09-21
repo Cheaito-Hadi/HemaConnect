@@ -5,10 +5,21 @@ import Donation from "../Components/UI/dontaionForm";
 import RequestCard from "../Components/UI/requestCard";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Axios from "axios";
 
 const FeedScreen = () => {
     const [requestsData, setRequestsData] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
+    const [lastDonationData, setLastDonationData] = useState({
+        dayNumber: "",
+        date: "",
+    });
+
+    const [donateAfterData, setDonateAfterData] = useState({
+        dayNumber: "",
+        date: "",
+    });
+
     const fetchData = async () => {
         try {
             const authToken = await AsyncStorage.getItem("authToken");
@@ -23,15 +34,61 @@ const FeedScreen = () => {
             console.error("Error fetching data:", error);
         }
     };
+    const fetchDonation = async () => {
+        try {
+            const authToken = await AsyncStorage.getItem("authToken");
+            const response = await Axios.get("http://192.168.0.113:8000/api/get_lastdonation", {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            });
+
+            const data = response.data.Donation;
+            if (data) {
+                const lastDonationDate = new Date(data.time);
+                const currentDate = new Date();
+                const daysSinceLastDonation = Math.floor(
+                    (currentDate - lastDonationDate) / (1000 * 60 * 60 * 24)
+                );
+                setLastDonationData({
+                    dayNumber: daysSinceLastDonation.toString(),
+                    date: lastDonationDate.toLocaleDateString(),
+                });
+                setDonateAfterData({
+                    dayNumber: data.donate_after.toString(),
+                    date: data.donate_after_date,
+                });
+                if (data) {
+                    await AsyncStorage.setItem("DonationData", JSON.stringify(data));
+                }
+            } else {
+                setDonateAfterData({
+                    dayNumber: "0",
+                    date: new Date().toLocaleDateString(),
+                });
+                setLastDonationData({
+                    dayNumber: "0",
+                    date: new Date().toLocaleDateString(),
+                })
+            }
+        } catch (error) {
+            console.error("Error fetching donation data:", error);
+        }
+        finally {
+            setRefreshing(false);
+        }
+    };
     const onRefresh = async () => {
         setRefreshing(true);
         try {
-            await fetchData();
+            fetchData();
+            fetchDonation();
         } finally {
             setRefreshing(false);
         }
     };
     useEffect(() => {
+        fetchDonation();
         fetchData();
     }, []);
 
@@ -45,7 +102,7 @@ const FeedScreen = () => {
                     <UserInfo/>
                 </View>
                 <View style={styles.donationContainer}>
-                    <Donation />
+                    <Donation lastDon={lastDonationData} donAfter={donateAfterData} />
                 </View>
                 <View style={styles.requestsContainer}>
                     <Text style={styles.recentRequestText}>Recent Requests</Text>

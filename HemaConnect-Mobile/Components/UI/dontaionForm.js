@@ -1,79 +1,11 @@
-import {Text, View, StyleSheet, RefreshControl, SafeAreaView, ScrollView} from "react-native";
+import {Text, View, StyleSheet, SafeAreaView } from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import React, {useEffect, useState} from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import Axios from "axios";
+import React from "react";
 
-const Donation = () => {
-    const [lastDonationData, setLastDonationData] = useState({
-        dayNumber: "",
-        date: "",
-    });
-
-    const [donateAfterData, setDonateAfterData] = useState({
-        dayNumber: "",
-        date: "",
-    });
-    const [refreshing, setRefreshing] = React.useState(false);
-
-
-
-    const fetchData = async () => {
-        try {
-            const authToken = await AsyncStorage.getItem("authToken");
-            const response = await Axios.get("http://192.168.0.113:8000/api/get_lastdonation", {
-                headers: {
-                    Authorization: `Bearer ${authToken}`,
-                },
-            });
-
-            const data = response.data.Donation;
-            if (data) {
-                const lastDonationDate = new Date(data.time);
-                const currentDate = new Date();
-                const daysSinceLastDonation = Math.floor(
-                    (currentDate - lastDonationDate) / (1000 * 60 * 60 * 24)
-                );
-                setLastDonationData({
-                    dayNumber: daysSinceLastDonation.toString(),
-                    date: lastDonationDate.toLocaleDateString(),
-                });
-                setDonateAfterData({
-                    dayNumber: data.donate_after.toString(),
-                    date: data.donate_after_date,
-                });
-                if (data) {
-                    await AsyncStorage.setItem("DonationData", JSON.stringify(data));
-                }
-            } else {
-                setDonateAfterData({
-                    dayNumber: "0",
-                    date: new Date().toLocaleDateString(),
-                });
-                setLastDonationData({
-                    dayNumber: "0",
-                    date: new Date().toLocaleDateString(),
-                })
-            }
-        } catch (error) {
-            console.error("Error fetching donation data:", error);
-        }
-        finally {
-            setRefreshing(false);
-        }
-    };
-    const onRefresh = () => {
-        setRefreshing(true);
-        fetchData();
-    };
-
-    useEffect(() => {
-
-        fetchData();
-    }, []);
+const Donation = ({lastDon,donAfter}) => {
 
     let renderView;
-    if (donateAfterData.dayNumber === '0') {
+    if (donAfter.dayNumber === '0') {
         renderView = (
             <View style={styles.Able}>
                 <MaterialCommunityIcons name="check-circle" size={20} color="#ffcd01" style={styles.icon}/>
@@ -91,27 +23,23 @@ const Donation = () => {
 
     return (
         <SafeAreaView>
-            <ScrollView
-                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-            >
                 <View>
                     <View style={styles.donationWrapper}>
                         <View style={styles.lastDonation}>
                             <Text style={styles.lastAfter}>Last Donation</Text>
-                            <Text style={styles.dayNumber}>{lastDonationData.dayNumber}</Text>
+                            <Text style={styles.dayNumber}>{lastDon.dayNumber}</Text>
                             <Text style={styles.daysLeft}>Days ago</Text>
-                            <Text style={styles.dateText}>{lastDonationData.date}</Text>
+                            <Text style={styles.dateText}>{lastDon.date}</Text>
                         </View>
                         <View style={styles.lastDonation}>
                             <Text style={styles.lastAfter}>Donate After</Text>
-                            <Text style={styles.dayNumber}>{donateAfterData.dayNumber}</Text>
+                            <Text style={styles.dayNumber}>{donAfter.dayNumber}</Text>
                             <Text style={styles.daysLeft}>Days</Text>
-                            <Text style={styles.dateText}>{donateAfterData.date}</Text>
+                            <Text style={styles.dateText}>{donAfter.date}</Text>
                         </View>
                     </View>
                     {renderView}
                 </View>
-            </ScrollView>
         </SafeAreaView>
     );
 };
