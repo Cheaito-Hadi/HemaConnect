@@ -1,54 +1,81 @@
 import React from 'react';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View } from 'react-native';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FeedScreen from '../Screens/FeedScreen';
 import AppointmentsScreen from '../Screens/AppointmentsScreen';
 import MapsScreen from '../Screens/MapsScreen';
-import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import SettingsScreen from "../Screens/SettingsScreen";
+import SettingsScreen from '../Screens/SettingsScreen';
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
+
+const CustomTabBar = ({ state, descriptors, navigation }) => {
+    return (
+        <View style={{ flexDirection: 'row', backgroundColor: 'black', height: 60 }}>
+            {state.routes.map((route, index) => {
+                const { options } = descriptors[route.key];
+
+                return (
+                    <View
+                        key={index}
+                        style={{
+                            flex: 1,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: state.index === index ? '#ff6767' : 'black',
+                        }}
+                        onTouchStart={() => navigation.navigate(route.name)}
+                    >
+                        <MaterialCommunityIcon
+                            name={options.tabBarIconName}
+                            color={state.index === index ? '#FFF' : '#707070'}
+                            size={30}
+                        />
+                    </View>
+                );
+            })}
+        </View>
+    );
+};
 
 const BottomNavigator = () => {
     return (
-        <Tab.Navigator labeled={false} barStyle={{ backgroundColor: 'black' }} activeColor='black' inactiveColor="#707070"
-                       tabBarOptions={{
-            style: { backgroundColor: 'red' },
-        }}
+        <Tab.Navigator
+            tabBar={(props) => <CustomTabBar {...props} />}
+            tabBarOptions={{
+                tabBarShowLabel: false,
+            }}
         >
             <Tab.Screen
                 name="Feed"
                 component={FeedScreen}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcon name='home' color={color} size={30} />
-                    ),
+                    headerShown: false,
+                    tabBarIconName: 'home',
                 }}
             />
             <Tab.Screen
                 name="Appointment"
                 component={AppointmentsScreen}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcon name='calendar' color={color} size={30} />
-                    ),
+                    headerShown: false,
+                    tabBarIconName: 'calendar',
                 }}
             />
             <Tab.Screen
                 name="Map"
                 component={MapsScreen}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcon name='map' color={color} size={30} />
-                    ),
+                    headerShown: false,
+                    tabBarIconName: 'map',
                 }}
             />
             <Tab.Screen
                 name="Settings"
                 component={SettingsScreen}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcon name='hammer-screwdriver' color={color} size={30} />
-                    ),
+                    headerShown: false,
+                    tabBarIconName: 'account',
                 }}
             />
         </Tab.Navigator>
