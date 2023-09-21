@@ -66,6 +66,7 @@ const Appointments = () => {
     };
 
     const handleBooking = async () => {
+        debugger
         setDateError('');
         setTimeError('');
         setHospitalError('');

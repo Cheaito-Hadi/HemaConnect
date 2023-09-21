@@ -18,35 +18,35 @@ class BookingController extends Controller
         if (is_null($user)) {
             return response()->json(["message" => 'Failed']);
         }
-        $bloodRequest = BloodRequest::where('id', $request->request_id)->first();
+        $bloodRequest = BloodRequest::find($request->request_id);
+        if (!$bloodRequest) {
+            return response()->json(["error" => 'Blood request not found']);
+        }
         $hospital = $bloodRequest->hospital;
         $bookingTime = Carbon::createFromFormat('Y-m-d H:i:s', $request->time);
         $timeDifferenceHours = now()->diffInHours($bookingTime);
         if ($timeDifferenceHours < 3) {
             return response()->json([
-                "error" => "less than 3 hours"
+                "error" => "3 hours in advance"
             ]);
         }
         if ($bookingTime->isPast()) {
             return response()->json([
-                "error" => "Past time"
+                "error" => "Past Time"
             ]);
         }
 
         $donation = $user->donations->sortByDesc('time')->first();
-
         if ($donation) {
             $lastDonationDate = Carbon::parse($donation->time);
             $currentDate = Carbon::now();
             $daysSinceLastDonation = $currentDate->diffInDays($lastDonationDate);
-            $donateAfter = 50 - $daysSinceLastDonation;
-            if ($donateAfter > 0) {
+            if ($daysSinceLastDonation < 30 && $bookingTime->lt($lastDonationDate->addDays(30))) {
                 return response()->json([
-                    "error" => "wait $donateAfter to donate"
+                    "error" => "Wait 30 days after last donation"
                 ]);
             }
         }
-
         $booking = new Booking;
         $booking->time = $bookingTime;
         $booking->hepatitis = boolval($request->hepatitis);
