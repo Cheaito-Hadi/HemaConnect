@@ -105,12 +105,18 @@ const Appointments = () => {
         }
 
         try {
-            const selectedDateTime = `${selectedDate.toISOString().split('T')[0]} ${selectedTime.replace(/ AM| PM/g, "")}:00`;
+            const select = selectedDate.getFullYear() +
+                "-" +((selectedDate.getMonth()+1) <10 ? "0" + (selectedDate.getMonth() + 1) : (selectedDate.getMonth()+1)) +
+                "-" + (selectedDate.getDate() <10 ?"0" + selectedDate.getDate() : selectedDate.getDate()) +
+                " " + (selectedDate.getHours() <10 ?"0" + selectedDate.getHours() : selectedDate.getHours()) +
+                ":" + (selectedDate.getMinutes() <10 ?"0" + selectedDate.getMinutes() : selectedDate.getMinutes())+
+                ":00"
+
             const requestData = {
                 request_id: selectedRequestId,
                 hepatitis: hepatitisAnswer === 'YES' ? 1 : 0,
                 anemia: anemiaAnswer === 'YES' ? 1 : 0,
-                time: selectedDateTime,
+                time: select,
             };
             const authToken = await AsyncStorage.getItem("authToken");
             const response = await Axios.post('http://192.168.0.113:8000/api/create_booking', requestData, {
@@ -122,6 +128,9 @@ const Appointments = () => {
             if (response.data && response.data.message === 'Booking created successfully') {
                 console.log('Booking successful:', response.data);
                 setBookingStatus({ type: 'success', message: 'Booking successful!' });
+            } else if (response.data && response.data.error === '3 hours in advance') {
+                console.log('Booking error: 3 hours in advance');
+                setBookingStatus({ type: 'error', message: 'You cannot book before 3 hours from now.' });
             } else {
                 console.log('Booking not successful:', response.data);
                 setBookingStatus({ type: 'error', message: 'Booking not successful. Please try again.' });
