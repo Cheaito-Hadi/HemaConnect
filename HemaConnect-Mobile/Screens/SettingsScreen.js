@@ -70,6 +70,30 @@ const Settings = () => {
             console.error("Image upload error:", error);
         }
     };
+    const renderProfileImage = () => {
+        if (userData && userData.image_url) {
+            return (
+                <TouchableOpacity onPress={pickImage}>
+                    <Image
+                        source={{
+                            uri: `http://192.168.0.113:8000/storage/${userData.image_url}`,
+                        }}
+                        style={styles.profileImage}
+                    />
+                </TouchableOpacity>
+            );
+        } else {
+            return (
+                <TouchableOpacity onPress={pickImage}>
+                    <Image
+                        source={require('../assets/default.jpg')}
+                        style={styles.defaultProfileImage}
+                    />
+                </TouchableOpacity>
+            );
+        }
+    };
+
 
     return (
         <SafeAreaView edges={["top"]} style={styles.safeAndroidView}>
@@ -78,14 +102,7 @@ const Settings = () => {
             </View>
             <View style={styles.homeContainer}>
                 <View style={styles.profileContainer}>
-                    <TouchableOpacity onPress={pickImage}>
-                        <Image
-                            source={{
-                                uri: `http://192.168.0.113:8000/storage/${userData?.image_url}`,
-                            }}
-                            style={styles.profileImage}
-                        />
-                    </TouchableOpacity>
+                    {renderProfileImage()}
                     <Text style={styles.uploadButtonText} onPress={pickImage}>Change Profile Image</Text>
                     <View style={styles.line}/>
                 </View>
@@ -201,6 +218,13 @@ const styles = StyleSheet.create({
         borderBottomColor: "#FF6767",
         width: "100%",
     },
+    defaultProfileImage:{
+        width: 200,
+        height: 200,
+        borderRadius: 100,
+        backgroundColor: "#FF6767",
+        marginBottom: 20,
+    }
 });
 
 export default Settings;
