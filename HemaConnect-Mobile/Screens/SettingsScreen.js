@@ -5,7 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from "@react-navigation/native";
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
-import {Ionicons} from "@expo/vector-icons";
 
 const Settings = () => {
     const navigation = useNavigation();
