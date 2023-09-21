@@ -25,6 +25,7 @@ const Appointments = () => {
     const [hospitalError, setHospitalError] = useState('');
     const [hepatitisError, setHepatitisError] = useState('');
     const [anemiaError, setAnemiaError] = useState('');
+    const [bookingStatus, setBookingStatus] = useState(null);
 
     const fetchHospitals = async () => {
         try {
@@ -66,7 +67,6 @@ const Appointments = () => {
     };
 
     const handleBooking = async () => {
-        debugger
         setDateError('');
         setTimeError('');
         setHospitalError('');
@@ -121,6 +121,10 @@ const Appointments = () => {
 
             if (response.data && response.data.message === 'Booking created successfully') {
                 console.log('Booking successful:', response.data);
+                setBookingStatus({ type: 'success', message: 'Booking successful!' });
+            } else {
+                console.log('Booking not successful:', response.data);
+                setBookingStatus({ type: 'error', message: 'Booking not successful. Please try again.' });
             }
         } catch (error) {
             console.error('Error making booking:', error);
@@ -261,6 +265,11 @@ const Appointments = () => {
                         </View>
                         <Text style={styles.errorText}>{anemiaError}</Text>
                     </View>
+                    {bookingStatus && (
+                        <Text style={bookingStatus.type === 'success' ? styles.successText : styles.errorText}>
+                            {bookingStatus.message}
+                        </Text>
+                    )}
                     <View style={styles.bookButton}>
                         <CustomedButton
                             buttonTitle="Book"
@@ -397,6 +406,11 @@ const styles = StyleSheet.create({
     },
     errorText: {
         color: 'red',
+        fontSize: 16,
+    },
+    successText: {
+        fontSize: 16,
+        color: 'green',
     },
 });
 
