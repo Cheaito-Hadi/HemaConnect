@@ -6,5 +6,7 @@ use Illuminate\Http\Request;
 
 class MapController extends Controller
 {
-    //
+    public function getHospitals(){
+
+    }
 }

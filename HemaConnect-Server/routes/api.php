@@ -5,6 +5,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\BankStockController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -51,4 +52,6 @@ Route::get('/get_lastdonation', [DonationController::class, "getLastDonation"]);
 Route::post('/create_hospital', [AdminController::class, "createHospital"]);
 
 Route::post('/uploadprofile', [UserController::class, "uploadImage"]);
+
+Route::get('/gethospitals', [MapController::class, "getHospitals"]);
 
