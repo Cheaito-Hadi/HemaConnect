@@ -76,6 +76,7 @@ const Settings = () => {
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
             <View style={styles.titleContainer}>
                 <Text style={styles.textTitle}>My Profile</Text>
+
             </View>
             <View style={styles.homeContainer}>
                 <View style={styles.profileContainer}>
