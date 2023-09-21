@@ -72,31 +72,44 @@ const Settings = () => {
     };
 
     return (
-        <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
+        <SafeAreaView edges={["top"]} style={styles.safeAndroidView}>
             <View style={styles.titleContainer}>
                 <Text style={styles.textTitle}>My Profile</Text>
-
             </View>
             <View style={styles.homeContainer}>
                 <View style={styles.profileContainer}>
                     <TouchableOpacity onPress={pickImage}>
                         <Image
-                            source={{uri: `http://192.168.0.113:8000/storage/${userData?.image_url}`}}
+                            source={{
+                                uri: `http://192.168.0.113:8000/storage/${userData?.image_url}`,
+                            }}
                             style={styles.profileImage}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.uploadButton}
-                        onPress={pickImage}
-                    >
-                        <Text style={styles.uploadButtonText}>Change Profile Image</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.uploadButtonText} onPress={pickImage}>Change Profile Image</Text>
+                    <View style={styles.line}/>
+                </View>
+                <View style={styles.infoWrapper}>
+                    <View style={styles.labelContainer}>
+                        <Text style={styles.label}>Full Name:</Text>
+                        <Text style={styles.infoText}>
+                            {userData.first_name} {userData.last_name}
+                        </Text>
+                    </View>
+                    <View style={styles.line}/>
+                    <View style={styles.labelContainer}>
+                        <Text style={styles.label}>Email:</Text>
+                        <Text style={styles.infoText}>{userData.email}</Text>
+                    </View>
+                    <View style={styles.line}/>
+                    <View style={styles.labelContainer}>
+                        <Text style={styles.label}>Blood Type:</Text>
+                        <Text style={styles.infoText}>{userData.bloodtype_id}</Text>
+                    </View>
+                    <View style={styles.line}/>
                 </View>
                 <View style={styles.logOut}>
-                    <Button
-                        buttonTitle="Logout"
-                        handlePress={handleLogout}
-                    />
+                    <Button buttonTitle="Logout" handlePress={handleLogout}/>
                 </View>
             </View>
         </SafeAreaView>
@@ -105,10 +118,10 @@ const Settings = () => {
 
 const styles = StyleSheet.create({
     homeContainer: {
-        alignItems: 'center',
+        alignItems: "center",
         justifyContent: "flex-start",
-        marginTop:'10%',
-        width: '100%',
+        marginTop: "10%",
+        width: "100%",
         flex: 1,
     },
     profileContainer: {
@@ -123,32 +136,33 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     uploadButton: {
-        backgroundColor: '#ff6767',
+        backgroundColor: "#ff6767",
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 5,
-        justifyContent:"center",
-        alignItems:"center",
+        justifyContent: "center",
+        alignItems: "center",
     },
     uploadButtonText: {
-        color: '#FFF',
-        fontSize: 16,
-        fontWeight: '500',
+        color: "#000",
+        fontSize: 18,
+        fontWeight: "500",
+        textAlign: "center"
     },
     logOut: {
-        position: 'absolute',
+        position: "absolute",
         bottom: 20,
         right: 20,
     },
     safeAndroidView: {
-        paddingTop: Platform.OS === 'android' ? 30 : 0,
+        paddingTop: Platform.OS === "android" ? 30 : 0,
         flex: 1,
     },
     titleContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: "row",
+        alignItems: "center",
         justifyContent: "center",
-        backgroundColor: '#FF6767',
+        backgroundColor: "#FF6767",
         height: 80,
         borderBottomRightRadius: 15,
         borderBottomLeftRadius: 15,
@@ -156,10 +170,37 @@ const styles = StyleSheet.create({
     textTitle: {
         alignItems: "center",
         justifyContent: "center",
-        color: '#FFF',
-        fontWeight: '500',
+        color: "#FFF",
+        fontWeight: "500",
         fontSize: 20,
-    }
+    },
+    infoWrapper: {
+        marginTop: "30%",
+        width: "80%",
+    },
+    labelContainer: {
+        marginTop: 10,
+        width: "100%",
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    label: {
+        fontSize: 18,
+        fontWeight: "500",
+        marginBottom: 5,
+        width: "40%",
+    },
+    infoText: {
+        fontSize: 16,
+        marginBottom: 5,
+        width: "60%",
+        fontWeight: "400",
+    },
+    line: {
+        borderBottomWidth: 0.5,
+        borderBottomColor: "#FF6767",
+        width: "100%",
+    },
 });
 
 export default Settings;
