@@ -131,6 +131,12 @@ const Appointments = () => {
             } else if (response.data && response.data.error === '3 hours in advance') {
                 console.log('Booking error: 3 hours in advance');
                 setBookingStatus({ type: 'error', message: 'You cannot book before 3 hours from now.' });
+            } else if (response.data && response.data.error === 'Past Time') {
+                console.log('Can not book in the past');
+                setBookingStatus({ type: 'error', message: 'Can not book in the past' });
+            } else if (response.data && response.data.error === 'Wait 30 days after last donation') {
+                console.log('Wait 30 days after last donation');
+                setBookingStatus({ type: 'error', message: 'Wait 30 days after donation to book' });
             } else {
                 console.log('Booking not successful:', response.data);
                 setBookingStatus({ type: 'error', message: 'Booking not successful. Please try again.' });
