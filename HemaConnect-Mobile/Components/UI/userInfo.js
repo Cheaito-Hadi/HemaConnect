@@ -1,6 +1,6 @@
-import {View, Text, StyleSheet, Image} from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 const userInfo = () => {
     const [userData, setUserData] = useState(null);
@@ -15,14 +15,32 @@ const userInfo = () => {
             }
         });
     }, []);
+
+    const renderProfileImage = () => {
+        if (userData && userData.image_url) {
+            return (
+                <Image
+                    source={{
+                        uri: `http://192.168.0.113:8000/storage/${userData.image_url}`,
+                    }}
+                    style={styles.profileImage}
+                />
+            );
+        } else {
+            return (
+                <Image
+                    source={require('../../assets/default.jpg')}
+                    style={styles.defaultImage}
+                />
+            );
+        }
+    };
+
     return (
         <View style={styles.infoContainer}>
             {userData ? (
                 <View style={styles.infoWrapper}>
-                    <Image
-                        style={styles.infoImage}
-                        source={require('../../assets/default.jpg')}
-                    />
+                    {renderProfileImage()}
                     <Text style={styles.infoName}>
                         {userData.first_name}
                     </Text>
@@ -38,6 +56,7 @@ const userInfo = () => {
         </View>
     );
 };
+
 const styles = StyleSheet.create({
     infoContainer: {
         alignItems: "center",
@@ -67,7 +86,12 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    infoImage: {
+    profileImage: {
+        borderRadius: 30,
+        height: 50,
+        width: 50,
+    },
+    defaultImage: {
         borderRadius: 30,
         height: 50,
         width: 50,
@@ -80,9 +104,7 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontWeight: '700',
         fontSize: 14,
-
     }
-
 });
 
 export default userInfo;
