@@ -1,4 +1,4 @@
-import {View, StyleSheet,TouchableOpacity, Text} from "react-native";
+import {View, StyleSheet,TouchableOpacity, Text,Linking} from "react-native";
 import MapView, {Marker} from 'react-native-maps';
 import axios from "axios";
 import React, {useEffect, useState} from 'react';
@@ -43,11 +43,12 @@ const Map = () => {
             });
 
     }
+
     const onRefresh = async () => {
         setRefreshing(true);
         try {
-            getUserLocation();
-            fetchHospitals();
+            const url='tel://76194601'
+            Linking.openURL(url)
         } finally {
             setRefreshing(false);
         }
@@ -131,5 +132,4 @@ const styles = StyleSheet.create({
         height: 200,
     }
 });
-
 export default Map;
