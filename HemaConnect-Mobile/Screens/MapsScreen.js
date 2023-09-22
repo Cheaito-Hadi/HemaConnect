@@ -1,10 +1,11 @@
-import {View, StyleSheet, Button, TouchableOpacity, Text, RefreshControl, ScrollView} from "react-native";
+import {View, StyleSheet,TouchableOpacity, Text} from "react-native";
 import MapView, {Marker} from 'react-native-maps';
 import axios from "axios";
 import React, {useEffect, useState} from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from 'expo-location';
 import MapViewDirections from "react-native-maps-directions";
+import * as Contacts from 'expo-contacts';
 
 const Map = () => {
     const [hospitals, setHospitals] = useState([]);
