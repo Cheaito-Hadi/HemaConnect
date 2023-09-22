@@ -1,30 +1,32 @@
 import {View, StyleSheet, Button, TouchableOpacity, Text, RefreshControl, ScrollView} from "react-native";
 import MapView, {Marker} from 'react-native-maps';
 import axios from "axios";
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from 'expo-location';
 
 const Map = () => {
     const [hospitals, setHospitals] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
-    const [location, setLocation] =useState(null);
+    const [location, setLocation] = useState(null);
 
-    const getUserLocation = async () =>{
-        let { status } = await Location.requestForegroundPermissionsAsync();
+    const getUserLocation = async () => {
+        let {status} = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
             return;
         }
 
         const userLocation =
             await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest, maximumAge: 10000});
-            setLocation({long:userLocation.coords.longitude , lat:userLocation.coords.latitude})
-        console.log(userLocation)
+        if (userLocation) {
+            console.log(userLocation)
+            setLocation({long: userLocation.coords.longitude, lat: userLocation.coords.latitude})
+        }
     }
 
-    const fetchHospitals = async ()=>{
+    const fetchHospitals = async () => {
         const authToken = await AsyncStorage.getItem("authToken");
-        axios.get('http://192.168.0.110:8000/api/gethospitals', {
+        axios.get('http://192.168.1.15:8000/api/gethospitals', {
             headers: {
                 Authorization: `Bearer ${authToken}`,
             },
@@ -76,11 +78,15 @@ const Map = () => {
                     />
 
                 ))}
-                <Marker  coordinate={{
-                    latitude: parseFloat(location.lat),
-                    longitude: parseFloat(location.long),
-                }}
-                         />
+
+                {location && (
+                    <Marker coordinate={{
+                        latitude: parseFloat(location.lat),
+                        longitude: parseFloat(location.long),
+                    }}
+                    />
+                )}
+
             </MapView>
             <TouchableOpacity style={styles.buttonRefresh} onPress={onRefresh}>
                 <Text style={styles.buttonRefresh}>Refresh</Text>
@@ -101,9 +107,9 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
-    buttonRefresh:{
-        width:200,
-        height:200,
+    buttonRefresh: {
+        width: 200,
+        height: 200,
     }
 });
 

@@ -59,7 +59,7 @@ const Settings = () => {
 
         try {
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await axios.post('http://192.168.0.110:8000/api/uploadprofile', formData, {
+            const response = await axios.post('http://192.168.1.15:8000/api/uploadprofile', formData, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'multipart/form-data; ',
@@ -76,7 +76,7 @@ const Settings = () => {
                 <TouchableOpacity onPress={pickImage}>
                     <Image
                         source={{
-                            uri: `http://192.168.0.110:8000/storage/${userData.image_url}`,
+                            uri: `http://192.168.1.15:8000/storage/${userData.image_url}`,
                         }}
                         style={styles.profileImage}
                     />
