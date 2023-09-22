@@ -4,11 +4,13 @@ import axios from "axios";
 import React, {useEffect, useState} from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from 'expo-location';
+import MapViewDirections from "react-native-maps-directions";
 
 const Map = () => {
     const [hospitals, setHospitals] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
     const [location, setLocation] = useState(null);
+    const GOOGLE_MAPS_APIKEY = 'AIzaSyDHUtORXXAhUn_c-UbE_6pWSPXzeKwrZpc';
 
     const getUserLocation = async () => {
         let {status} = await Location.requestForegroundPermissionsAsync();
@@ -67,15 +69,31 @@ const Map = () => {
                 }}
             >
                 {hospitals.map((hospital, index) => (
-                    <Marker
-                        key={index}
-                        coordinate={{
-                            latitude: parseFloat(hospital.hospital_info.latitude),
-                            longitude: parseFloat(hospital.hospital_info.longitude),
-                        }}
-                        title={hospital.hospital_info.name}
-                        description={`Phone: ${hospital.hospital_info.phone_number}`}
-                    />
+                    <>
+                        <Marker
+                            key={index}
+                            coordinate={{
+                                latitude: parseFloat(hospital.hospital_info.latitude),
+                                longitude: parseFloat(hospital.hospital_info.longitude),
+                            }}
+                            title={hospital.hospital_info.name}
+                            description={`Phone: ${hospital.hospital_info.phone_number}`}
+                        />
+                        {location && (
+                        <MapViewDirections
+                            origin={{
+                                latitude: parseFloat(location.lat),
+                                longitude: parseFloat(location.long),
+                            }}
+                            destination={{
+                                latitude: parseFloat(hospital.hospital_info.latitude),
+                                longitude: parseFloat(hospital.hospital_info.longitude),
+                            }}
+                            apikey={GOOGLE_MAPS_APIKEY}
+                            strokeColor="hotpink"
+                            strokeWidth={7}
+                        />)}
+                    </>
 
                 ))}
 
