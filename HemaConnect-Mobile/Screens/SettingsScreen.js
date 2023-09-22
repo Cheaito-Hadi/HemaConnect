@@ -121,7 +121,7 @@ const Settings = () => {
                     <View style={styles.line}/>
                     <View style={styles.labelContainer}>
                         <Text style={styles.label}>Blood Type:</Text>
-                        <Text style={styles.infoText}>{userData.bloodtype_id}</Text>
+                        <Text style={styles.infoText}>{userData.bloodtype.name}</Text>
                     </View>
                     <View style={styles.line}/>
                 </View>
