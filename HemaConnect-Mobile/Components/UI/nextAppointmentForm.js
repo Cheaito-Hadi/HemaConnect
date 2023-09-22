@@ -9,7 +9,7 @@ const nextAppointment = () => {
     const fetchBooking = async () => {
         try {
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await axios.get('http://192.168.0.113:8000/api/get_userbookings', {
+            const response = await axios.get('http://192.168.0.110:8000/api/get_userbookings', {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
@@ -34,7 +34,7 @@ const nextAppointment = () => {
                         <View style={styles.leftInside}>
                             <Image
                                 style={styles.hospitalImage}
-                                source={{ uri: `http://192.168.0.113:8000/storage/${bookingData?.hospital_detailes?.logo_url}` }}
+                                source={{ uri: `http://192.168.0.110:8000/storage/${bookingData?.hospital_detailes?.logo_url}` }}
                             />
                         </View>
                         <View style={styles.hospitalDateWrapper}>

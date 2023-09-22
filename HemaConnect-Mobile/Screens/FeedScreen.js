@@ -23,7 +23,7 @@ const FeedScreen = () => {
     const fetchData = async () => {
         try {
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await axios.get("http://192.168.0.113:8000/api/get_userrequests", {
+            const response = await axios.get("http://192.168.0.110:8000/api/get_userrequests", {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
@@ -37,7 +37,7 @@ const FeedScreen = () => {
     const fetchDonation = async () => {
         try {
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await Axios.get("http://192.168.0.113:8000/api/get_lastdonation", {
+            const response = await Axios.get("http://192.168.0.110:8000/api/get_lastdonation", {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
@@ -111,7 +111,7 @@ const FeedScreen = () => {
                         {requestsData.map((bloodRequest, index) => (
                             <RequestCard
                                 key={index}
-                                imageSource={{ uri: `http://192.168.0.113:8000/storage/${bloodRequest.hospital_info.logo_url}` }}
+                                imageSource={{ uri: `http://192.168.0.110:8000/storage/${bloodRequest.hospital_info.logo_url}` }}
                                 hospitalName={bloodRequest.hospital_info.name}
                                 bloodType={bloodRequest.requests[0].blood_type_name}
                             />
