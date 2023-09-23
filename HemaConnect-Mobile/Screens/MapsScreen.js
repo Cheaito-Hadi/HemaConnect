@@ -4,7 +4,10 @@ import {
     Linking,
     Platform,
     SafeAreaView,
-    ScrollView
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    Modal
 } from "react-native";
 import MapView, {Marker} from 'react-native-maps';
 import axios from "axios";
@@ -18,6 +21,8 @@ const Map = () => {
     const [hospitals, setHospitals] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
     const [location, setLocation] = useState(null);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [selectedHospital, setSelectedHospital] = useState(null);
     const GOOGLE_MAPS_APIKEY = 'AIzaSyDHUtORXXAhUn_c-UbE_6pWSPXzeKwrZpc';
 
     const getUserLocation = async () => {
@@ -50,6 +55,15 @@ const Map = () => {
             });
 
     }
+    const openModal = (hospital) => {
+        setSelectedHospital(hospital);
+        setIsModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setSelectedHospital(null);
+        setIsModalVisible(false);
+    };
 
     const onRefresh = async () => {
         setRefreshing(true);
@@ -115,23 +129,78 @@ const Map = () => {
                         />
                     )}
                 </MapView>
-                <ScrollView
-                    horizontal
-                    style={styles.horizontalViewStyle}
-                >
+                <ScrollView horizontal style={styles.horizontalViewStyle}>
                     <View style={styles.cardsContainerMap}>
                         {hospitals.map((hospital, index) => (
-                            <Card
-                                width={250}
+                            <TouchableOpacity
                                 key={index}
-                                imageSource={{uri: `http://192.168.0.107:8000/storage/${hospital.hospital_info.logo_url}`}}
-                                hospitalName={hospital.hospital_info.name}
-                                bloodType={hospital.requests[0].blood_type_name}
-                            />
-
+                                onPress={() => openModal(hospital)}
+                            >
+                                <Card
+                                    width={250}
+                                    imageSource={{ uri: `http://192.168.0.107:8000/storage/${hospital.hospital_info.logo_url}` }}
+                                    hospitalName={hospital.hospital_info.name}
+                                    bloodType={hospital.requests[0].blood_type_name}
+                                />
+                            </TouchableOpacity>
                         ))}
                     </View>
                 </ScrollView>
+                <ScrollView horizontal style={styles.horizontalViewStyle}>
+                    <View style={styles.cardsContainerMap}>
+                        {hospitals.map((hospital, index) => (
+                            <TouchableOpacity
+                                key={index}
+                                onPress={() => openModal(hospital)}
+                            >
+                                <Card
+                                    width={250}
+                                    imageSource={{ uri: `http://192.168.0.107:8000/storage/${hospital.hospital_info.logo_url}` }}
+                                    hospitalName={hospital.hospital_info.name}
+                                    bloodType={hospital.requests[0].blood_type_name}
+                                />
+                            </TouchableOpacity>
+                        ))}
+                    </View>
+                </ScrollView>
+                <Modal
+                    visible={isModalVisible}
+                    animationType="slide"
+                    transparent={true}
+                    onRequestClose={closeModal}
+                >
+                    <View style={styles.modalContainer}>
+                        {selectedHospital && (
+                            <View style={styles.modalContentMap}>
+                                <View style={styles.modalHeader}>
+                                    <Text style={styles.modalTitle}>{selectedHospital.hospital_info.name}</Text>
+                                    <TouchableOpacity onPress={closeModal}>
+                                        <Text style={styles.closeButton}>Close</Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.modalBody}>
+                                    <Text>Phone: {selectedHospital.hospital_info.phone_number}</Text>
+                                </View>
+                                <View style={styles.modalButtonsContainer}>
+                                    <TouchableOpacity
+                                        style={styles.modalButton}
+                                        onPress={() => {
+                                        }}
+                                    >
+                                        <Text>Button 1</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        style={styles.modalButton}
+                                        onPress={() => {
+                                        }}
+                                    >
+                                        <Text>Button 2</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        )}
+                    </View>
+                </Modal>
             </View>
         </SafeAreaView>
     );
@@ -171,6 +240,46 @@ const styles = StyleSheet.create({
     cardsContainerMap: {
         flexDirection: "row",
         width: '70%',
+    },
+    modalContainer: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    modalContentMap: {
+        width: '80%',
+        backgroundColor: 'white', // White background
+        borderRadius: 10,
+        padding: 20,
+        elevation: 5,
+        alignItems: "center",
+    },
+    modalHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+    },
+    modalTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    closeButton: {
+        color: 'blue',
+    },
+    modalBody: {
+        marginBottom: 20,
+    },
+    modalButtonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    modalButton: {
+        backgroundColor: 'lightblue',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        marginHorizontal: 10,
+        borderRadius: 5,
     },
 });
 export default Map;
