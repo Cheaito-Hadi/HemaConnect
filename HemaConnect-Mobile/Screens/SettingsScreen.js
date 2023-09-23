@@ -10,7 +10,7 @@ const Settings = () => {
     const navigation = useNavigation();
     const [userData, setUserData] = useState({});
     const [image, setImage] = useState(null);
-    const [newProfileImage, setProfileImage] = useState(null);
+    const [profileImage, setProfileImage] = useState(null);
 
     useEffect(() => {
         loadUserData();
@@ -95,7 +95,7 @@ const Settings = () => {
             return (
                 <TouchableOpacity onPress={pickImage}>
                     <Image
-                        source={newProfileImage}
+                        source={profileImage}
                         style={styles.profileImage}
                     />
                 </TouchableOpacity>
