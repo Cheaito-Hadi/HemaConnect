@@ -74,10 +74,10 @@ const Map = () => {
         setIsModalVisible(false);
     };
 
-    const onRefresh = async () => {
+    const onCall = async (phoneNumber) => {
         setRefreshing(true);
         try {
-            const url = 'hospital_number'
+            const url = `tel:${phoneNumber}`;
             Linking.openURL(url)
         } finally {
             setRefreshing(false);
@@ -192,9 +192,7 @@ const Map = () => {
                                     </TouchableOpacity>
                                     <TouchableOpacity
                                         style={styles.modalButtonCall}
-                                        onPress={() => {
-
-                                        }}
+                                        onPress={() => onCall(selectedHospital.hospital_info.phone_number)}
                                     >
                                         <Text style={styles.modalTextCall}>Call</Text>
                                     </TouchableOpacity>
