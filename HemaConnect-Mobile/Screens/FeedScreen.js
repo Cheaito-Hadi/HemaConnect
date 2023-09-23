@@ -5,7 +5,6 @@ import Donation from "../Components/UI/dontaionForm";
 import RequestCard from "../Components/UI/requestCard";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Axios from "axios";
 
 const FeedScreen = () => {
     const [requestsData, setRequestsData] = useState([]);
@@ -37,7 +36,7 @@ const FeedScreen = () => {
     const fetchDonation = async () => {
         try {
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await Axios.get("http://192.168.0.107:8000/api/get_lastdonation", {
+            const response = await axios.get("http://192.168.0.107:8000/api/get_lastdonation", {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
