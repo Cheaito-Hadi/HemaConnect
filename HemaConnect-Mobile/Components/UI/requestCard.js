@@ -1,9 +1,9 @@
 import {Text, View, StyleSheet, Image} from "react-native";
 import React from "react";
 
-const RequestCard = ({imageSource,hospitalName,bloodType}) => {
+const RequestCard = ({imageSource,hospitalName,bloodType,width}) => {
     return (
-        <View style={styles.cardContainer}>
+        <View style={[styles.cardContainer, {width:width}]}>
             <View style={styles.insideCard}>
                 <View style={styles.leftInside}>
                     <Image style={styles.imageStyling} source={imageSource} />
@@ -20,7 +20,6 @@ const RequestCard = ({imageSource,hospitalName,bloodType}) => {
 const styles = StyleSheet.create({
     cardContainer: {
         height: 70,
-        width: '100%',
         backgroundColor: '#FFF',
         padding: 10,
         borderRadius: 10,
