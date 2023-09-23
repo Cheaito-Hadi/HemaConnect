@@ -7,7 +7,7 @@ import {
     ScrollView,
     Text,
     TouchableOpacity,
-    Modal
+    Modal, Image
 } from "react-native";
 import MapView, {Marker} from 'react-native-maps';
 import axios from "axios";
@@ -17,6 +17,7 @@ import * as Location from 'expo-location';
 import MapViewDirections from "react-native-maps-directions";
 import Card from "../Components/UI/requestCard";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import BlueMarker from '../assets/MyMarker.png'
 
 const Map = () => {
     const [hospitals, setHospitals] = useState([]);
@@ -123,11 +124,17 @@ const Map = () => {
                     ))}
 
                     {location && (
-                        <Marker coordinate={{
-                            latitude: parseFloat(location.lat),
-                            longitude: parseFloat(location.long),
-                        }}
-                        />
+                        <Marker
+                            coordinate={{
+                                latitude: parseFloat(location.lat),
+                                longitude: parseFloat(location.long),
+                            }}
+                        >
+                            <Image
+                                source={BlueMarker}
+                                style={{width: 40, height: 40}}
+                            />
+                        </Marker>
                     )}
                 </MapView>
                 <ScrollView horizontal style={styles.horizontalViewStyle}>
@@ -158,7 +165,7 @@ const Map = () => {
                             <View style={styles.modalContentMap}>
                                 <View style={styles.closeWrapper}>
                                     <TouchableOpacity onPress={closeModal} style={styles.closeButton}>
-                                        <Icon name="close" size={24} color="#000" />
+                                        <Icon name="close" size={24} color="#000"/>
                                     </TouchableOpacity>
                                 </View>
                                 <View style={styles.modalHeader}>
@@ -283,9 +290,9 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontWeight: '500'
     },
-    closeWrapper:{
-        width:'100%',
-        alignItems:"flex-end",
+    closeWrapper: {
+        width: '100%',
+        alignItems: "flex-end",
     },
     closeButton: {
         color: '#000',
