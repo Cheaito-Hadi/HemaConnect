@@ -1,8 +1,9 @@
-import { StyleSheet, View, Text, TextInput } from "react-native";
-import SVGImg from '../../assets/Hema.svg';
+import {StyleSheet, View, Text, TextInput} from "react-native";
+import Hema from '../../assets/Hema.svg';
+import Connect from '../../assets/Connect.svg';
 import Button from "../Base/customedButton";
-import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -38,7 +39,7 @@ const loginForm = () => {
                 email: email,
                 password: password,
             });
-            const { token } = response.data.authorization;
+            const {token} = response.data.authorization;
             await AsyncStorage.setItem('authToken', token);
             console.log('AuthToken:', token);
             const userData = response.data.user;
@@ -63,7 +64,10 @@ const loginForm = () => {
 
     return (
         <View style={styles.formContainer}>
-            {/*<SVGImg width={200} height={200} />*/}
+            <View style={styles.logoWrapper}>
+                <Hema width={100} height={50}/>
+                <Connect width={150} height={50}/>
+            </View>
             <View style={styles.loginWrapper}>
                 <Text style={styles.loginText}>Log In</Text>
                 <Text style={styles.hero}>Welcome, Hero of Compassion!</Text>
@@ -89,7 +93,8 @@ const loginForm = () => {
                     />
                 </View>
                 <View style={styles.signUp}>
-                    <Text>Not a Donor yet?<Text style={{ fontWeight: '700' }} onPress={handleNavigateSignUp}> Sign Up </Text></Text>
+                    <Text>Not a Donor yet?<Text style={{fontWeight: '700'}} onPress={handleNavigateSignUp}> Sign
+                        Up </Text></Text>
                 </View>
             </View>
         </View>
@@ -137,6 +142,13 @@ const styles = StyleSheet.create({
     errorText: {
         color: 'red',
         marginTop: 5,
+    },
+    logoWrapper:{
+        flexDirection:"row",
+        width:'100%',
+        alignItems:"center",
+        justifyContent:"center",
+        marginBottom:'15%'
     },
 });
 
