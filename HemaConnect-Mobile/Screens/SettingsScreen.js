@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import {View, Text, StyleSheet, Image, TouchableOpacity, Alert, SafeAreaView, Platform} from "react-native";
+import React, {useEffect, useState} from "react";
+import {Alert, Image, Platform, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Button from "../Components/Base/customedButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from "@react-navigation/native";
@@ -10,9 +10,11 @@ const Settings = () => {
     const navigation = useNavigation();
     const [userData, setUserData] = useState({});
     const [image, setImage] = useState(null);
+    const [newProfileImage, setProfileImage] = useState(null);
 
     useEffect(() => {
         loadUserData();
+        setNewImage();
     }, []);
 
     const loadUserData = async () => {
@@ -21,7 +23,11 @@ const Settings = () => {
             if (userDataJson) {
                 const userDataObj = JSON.parse(userDataJson);
                 setUserData(userDataObj);
+                setProfileImage({
+                    uri: `http://192.168.0.107:8000/storage/${userDataObj.image_url}`,
+                })
             }
+
         } catch (error) {
             console.error("Error loading user data:", error);
         }
@@ -39,7 +45,7 @@ const Settings = () => {
         if (permissionResult.granted === false) {
             Alert.alert("Permission to access camera roll is required!");
             return;
-        }
+        };
 
         const result = await ImagePicker.launchImageLibraryAsync();
 
@@ -56,7 +62,6 @@ const Settings = () => {
             type: 'image/jpeg',
             name: 'profile.jpg',
         });
-
         try {
             const authToken = await AsyncStorage.getItem("authToken");
             const response = await axios.post('http://192.168.0.107:8000/api/uploadprofile', formData, {
@@ -65,19 +70,32 @@ const Settings = () => {
                     'Content-Type': 'multipart/form-data; ',
                 },
             });
-            console.log("Image upload response:", response.data);
+
+            let userData = await AsyncStorage.getItem('userData');
+            userData = JSON.parse(userData);
+            userData.image_url = response.data.image_url;
+            await AsyncStorage.setItem('userData', JSON.stringify(userData));
+            setProfileImage({
+                uri: `http://192.168.0.107:8000/storage/${userData.image_url}`,
+            })
+            console.log('User Data:', userData);
+
         } catch (error) {
             console.error("Image upload error:", error);
         }
     };
+
+    const setNewImage=()=>{
+        setProfileImage({
+            uri: `http://192.168.0.107:8000/storage/${userData.image_url}`,
+        })
+    }
     const renderProfileImage = () => {
         if (userData && userData.image_url) {
             return (
                 <TouchableOpacity onPress={pickImage}>
                     <Image
-                        source={{
-                            uri: `http://192.168.0.107:8000/storage/${userData.image_url}`,
-                        }}
+                        source={newProfileImage}
                         style={styles.profileImage}
                     />
                 </TouchableOpacity>

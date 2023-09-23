@@ -18,6 +18,7 @@ class UserController extends Controller
            return response()->json([
                "status" => "success",
                "message" => "Profile image uploaded successfully.",
+               "image_url"=> $user->image_url
            ]);
        } else {
            return response()->json([
