@@ -24,6 +24,8 @@ const Map = () => {
     const [refreshing, setRefreshing] = useState(false);
     const [location, setLocation] = useState(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [showStreet, setShowStreet] = useState(false);
+    const [destination, setDestination]= useState(null)
     const [selectedHospital, setSelectedHospital] = useState(null);
     const GOOGLE_MAPS_APIKEY = 'AIzaSyDHUtORXXAhUn_c-UbE_6pWSPXzeKwrZpc';
 
@@ -60,6 +62,11 @@ const Map = () => {
     const openModal = (hospital) => {
         setSelectedHospital(hospital);
         setIsModalVisible(true);
+        setDestination(
+            {
+                latitude: parseFloat(hospital.hospital_info.latitude),
+                longitude: parseFloat(hospital.hospital_info.longitude),
+        })
     };
 
     const closeModal = () => {
@@ -70,7 +77,7 @@ const Map = () => {
     const onRefresh = async () => {
         setRefreshing(true);
         try {
-            const url = 'tel://76194601'
+            const url = 'hospital_number'
             Linking.openURL(url)
         } finally {
             setRefreshing(false);
@@ -94,6 +101,7 @@ const Map = () => {
                         longitudeDelta: 0.0421,
                     }}
                 >
+
                     {hospitals.map((hospital, index) => (
                         <React.Fragment key={index}>
                             <Marker
@@ -105,23 +113,20 @@ const Map = () => {
                                 title={hospital.hospital_info.name}
                                 description={`Phone: ${hospital.hospital_info.phone_number}`}
                             />
-                            {location && (
-                                <MapViewDirections
-                                    origin={{
-                                        latitude: parseFloat(location.lat),
-                                        longitude: parseFloat(location.long),
-                                    }}
-                                    destination={{
-                                        latitude: parseFloat(hospital.hospital_info.latitude),
-                                        longitude: parseFloat(hospital.hospital_info.longitude),
-                                    }}
-                                    apikey={GOOGLE_MAPS_APIKEY}
-                                    strokeColor="hotpink"
-                                    strokeWidth={7}
-                                />)}
                         </React.Fragment>
 
                     ))}
+                    {showStreet && location && (
+                        <MapViewDirections
+                            origin={{
+                                latitude: parseFloat(location.lat),
+                                longitude: parseFloat(location.long),
+                            }}
+                            destination={destination}
+                            apikey={GOOGLE_MAPS_APIKEY}
+                            strokeColor="hotpink"
+                            strokeWidth={7}
+                        />)}
 
                     {location && (
                         <Marker
@@ -179,6 +184,8 @@ const Map = () => {
                                     <TouchableOpacity
                                         style={styles.modalButtonDirections}
                                         onPress={() => {
+                                            setShowStreet(true)
+                                            setIsModalVisible(false)
                                         }}
                                     >
                                         <Text style={styles.modalTextDirections}>Directions</Text>
@@ -186,6 +193,7 @@ const Map = () => {
                                     <TouchableOpacity
                                         style={styles.modalButtonCall}
                                         onPress={() => {
+
                                         }}
                                     >
                                         <Text style={styles.modalTextCall}>Call</Text>
