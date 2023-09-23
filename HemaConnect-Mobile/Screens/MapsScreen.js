@@ -16,6 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from 'expo-location';
 import MapViewDirections from "react-native-maps-directions";
 import Card from "../Components/UI/requestCard";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Map = () => {
     const [hospitals, setHospitals] = useState([]);
@@ -156,8 +157,8 @@ const Map = () => {
                         {selectedHospital && (
                             <View style={styles.modalContentMap}>
                                 <View style={styles.closeWrapper}>
-                                    <TouchableOpacity onPress={closeModal}>
-                                        <Text style={styles.closeButton}>Close</Text>
+                                    <TouchableOpacity onPress={closeModal} style={styles.closeButton}>
+                                        <Icon name="close" size={24} color="#000" />
                                     </TouchableOpacity>
                                 </View>
                                 <View style={styles.modalHeader}>
