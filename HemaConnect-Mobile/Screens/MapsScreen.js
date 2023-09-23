@@ -66,7 +66,9 @@ const Map = () => {
             {
                 latitude: parseFloat(hospital.hospital_info.latitude),
                 longitude: parseFloat(hospital.hospital_info.longitude),
-        })
+        });
+
+        setShowStreet(false);
     };
 
     const closeModal = () => {
@@ -174,7 +176,7 @@ const Map = () => {
                                     </TouchableOpacity>
                                 </View>
                                 <View style={styles.modalHeader}>
-                                    <Text style={styles.modalTitle}>{selectedHospital.hospital_info.name}</Text>
+                                    <Text style={styles.modalTitle}>{selectedHospital.hospital_info.name} Hospital</Text>
 
                                 </View>
                                 <View style={styles.modalBody}>
