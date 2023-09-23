@@ -93,7 +93,7 @@ const Map = () => {
                     }}
                 >
                     {hospitals.map((hospital, index) => (
-                        <>
+                        <React.Fragment key={index}>
                             <Marker
                                 key={index}
                                 coordinate={{
@@ -117,7 +117,7 @@ const Map = () => {
                                     strokeColor="hotpink"
                                     strokeWidth={7}
                                 />)}
-                        </>
+                        </React.Fragment>
 
                     ))}
 
@@ -138,24 +138,7 @@ const Map = () => {
                             >
                                 <Card
                                     width={250}
-                                    imageSource={{ uri: `http://192.168.0.107:8000/storage/${hospital.hospital_info.logo_url}` }}
-                                    hospitalName={hospital.hospital_info.name}
-                                    bloodType={hospital.requests[0].blood_type_name}
-                                />
-                            </TouchableOpacity>
-                        ))}
-                    </View>
-                </ScrollView>
-                <ScrollView horizontal style={styles.horizontalViewStyle}>
-                    <View style={styles.cardsContainerMap}>
-                        {hospitals.map((hospital, index) => (
-                            <TouchableOpacity
-                                key={index}
-                                onPress={() => openModal(hospital)}
-                            >
-                                <Card
-                                    width={250}
-                                    imageSource={{ uri: `http://192.168.0.107:8000/storage/${hospital.hospital_info.logo_url}` }}
+                                    imageSource={{uri: `http://192.168.0.107:8000/storage/${hospital.hospital_info.logo_url}`}}
                                     hospitalName={hospital.hospital_info.name}
                                     bloodType={hospital.requests[0].blood_type_name}
                                 />
@@ -172,29 +155,32 @@ const Map = () => {
                     <View style={styles.modalContainer}>
                         {selectedHospital && (
                             <View style={styles.modalContentMap}>
-                                <View style={styles.modalHeader}>
-                                    <Text style={styles.modalTitle}>{selectedHospital.hospital_info.name}</Text>
+                                <View style={styles.closeWrapper}>
                                     <TouchableOpacity onPress={closeModal}>
                                         <Text style={styles.closeButton}>Close</Text>
                                     </TouchableOpacity>
+                                </View>
+                                <View style={styles.modalHeader}>
+                                    <Text style={styles.modalTitle}>{selectedHospital.hospital_info.name}</Text>
+
                                 </View>
                                 <View style={styles.modalBody}>
                                     <Text>Phone: {selectedHospital.hospital_info.phone_number}</Text>
                                 </View>
                                 <View style={styles.modalButtonsContainer}>
                                     <TouchableOpacity
-                                        style={styles.modalButton}
+                                        style={styles.modalButtonDirections}
                                         onPress={() => {
                                         }}
                                     >
-                                        <Text>Button 1</Text>
+                                        <Text style={styles.modalTextDirections}>Directions</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
-                                        style={styles.modalButton}
+                                        style={styles.modalButtonCall}
                                         onPress={() => {
                                         }}
                                     >
-                                        <Text>Button 2</Text>
+                                        <Text style={styles.modalTextCall}>Call</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -249,7 +235,7 @@ const styles = StyleSheet.create({
     },
     modalContentMap: {
         width: '80%',
-        backgroundColor: 'white', // White background
+        backgroundColor: '#FFF',
         borderRadius: 10,
         padding: 20,
         elevation: 5,
@@ -262,10 +248,7 @@ const styles = StyleSheet.create({
     },
     modalTitle: {
         fontSize: 18,
-        fontWeight: 'bold',
-    },
-    closeButton: {
-        color: 'blue',
+        fontWeight: '700',
     },
     modalBody: {
         marginBottom: 20,
@@ -274,12 +257,37 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
     },
-    modalButton: {
-        backgroundColor: 'lightblue',
+    modalButtonDirections: {
+        backgroundColor: '#000',
         paddingHorizontal: 20,
         paddingVertical: 10,
         marginHorizontal: 10,
         borderRadius: 5,
+        width: '50%'
+    },
+    modalButtonCall: {
+        backgroundColor: '#ff6767',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        marginHorizontal: 10,
+        borderRadius: 5,
+    },
+    modalTextDirections: {
+        color: '#fff',
+        textAlign: "center",
+        fontWeight: '500'
+    },
+    modalTextCall: {
+        color: '#fff',
+        textAlign: "center",
+        fontWeight: '500'
+    },
+    closeWrapper:{
+        width:'100%',
+        alignItems:"flex-end",
+    },
+    closeButton: {
+        color: '#000',
     },
 });
 export default Map;
