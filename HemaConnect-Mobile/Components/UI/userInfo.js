@@ -29,7 +29,7 @@ const userInfo = () => {
         } else {
             return (
                 <Image
-                    source={require('../../assets/default.jpg')}
+                    source={require('../../assets/Pictures/default.jpg')}
                     style={styles.defaultImage}
                 />
             );

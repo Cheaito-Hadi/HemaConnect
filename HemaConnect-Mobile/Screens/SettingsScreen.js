@@ -86,7 +86,7 @@ const Settings = () => {
             return (
                 <TouchableOpacity onPress={pickImage}>
                     <Image
-                        source={require('../assets/default.jpg')}
+                        source={require('../assets/Pictures/default.jpg')}
                         style={styles.defaultProfileImage}
                     />
                 </TouchableOpacity>

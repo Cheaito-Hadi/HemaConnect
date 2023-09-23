@@ -1,6 +1,6 @@
 import {StyleSheet, View, Text, TextInput} from "react-native";
-import Hema from '../../assets/Hema.svg';
-import Connect from '../../assets/Connect.svg';
+import Hema from '../../assets/SVGs/Hema.svg';
+import Connect from '../../assets/SVGs/Connect.svg';
 import Button from "../Base/customedButton";
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';

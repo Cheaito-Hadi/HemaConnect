@@ -17,7 +17,7 @@ import * as Location from 'expo-location';
 import MapViewDirections from "react-native-maps-directions";
 import Card from "../Components/UI/requestCard";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import BlueMarker from '../assets/MyMarker.png'
+import BlueMarker from '../assets/Pictures/MyMarker.png'
 
 const Map = () => {
     const [hospitals, setHospitals] = useState([]);
