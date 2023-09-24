@@ -8,7 +8,6 @@ import {
     CardFooter,
     Typography,
     Input,
-    Checkbox,
 } from "@material-tailwind/react";
 import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
@@ -16,18 +15,22 @@ import { Marker, Popup } from 'react-leaflet'
 import {Icon} from 'leaflet'
 import "leaflet/dist/leaflet.css";
 
-const HospitalModal = ()=>{
+const HospitalModal = ({handleLatLng})=>{
     const [open, setOpen] = React.useState(false);
 
     const LeafletMarker = new Icon({
         iconSize:     [25, 25],
         iconUrl: 'https://img.icons8.com/?size=512&id=PZTTDl8ML4vy&format=png'
     });
+
+    const handleMarkerEvent = (e) => {
+        handleLatLng(e.target._latlng.lat, e.target._latlng.lng)
+    }
     const handleOpen = () => setOpen((cur) => !cur);
 
     return(
         <>
-            <Button onClick={handleOpen}>Sign In</Button>
+            <Button onClick={handleOpen}>Add Hospital</Button>
             <Dialog
                 size="md"
                 open={open}
@@ -54,7 +57,7 @@ const HospitalModal = ()=>{
                                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
-                            <Marker position={[33.8938, 35.5018]} draggable={true} icon={LeafletMarker}>
+                            <Marker position={[33.8938, 35.5018]} draggable={true} icon={LeafletMarker} eventHandlers={{dragend: handleMarkerEvent}}>
                                 <Popup>
                                     A pretty CSS3 popup. <br /> Easily customizable.
                                 </Popup>
@@ -64,7 +67,7 @@ const HospitalModal = ()=>{
                     </CardBody>
                     <CardFooter className="pt-0">
                         <Button variant="gradient" color="red" onClick={handleOpen} fullWidth>
-                            Sign In
+                            Create
                         </Button>
                     </CardFooter>
                 </Card>

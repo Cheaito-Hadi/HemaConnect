@@ -10,11 +10,14 @@ import {
     Avatar,
 } from "@material-tailwind/react";
 import axios from "axios";
+import HospitalModal from "../hospitalModal";
 
 const TABLE_HEAD = ["Hospital", "Phone Number", "Address", "Add Employee"];
 
 const AdminTable = ()=>{
     const [hospitalData, setHospitalData] = useState([]);
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen((cur) => !cur);
 
     async function fetchHospitalData () {
         try {
@@ -37,6 +40,7 @@ const AdminTable = ()=>{
         <Card className="h-full w-[95%] mt-5 overflow-auto">
             <CardHeader floated={false} shadow={false} className="rounded-none">
                 <div className="mb-8 flex items-center justify-between gap-8">
+
                     <div>
                         <Typography variant="h5" color="blue-gray">
                             Hospital List
@@ -47,7 +51,7 @@ const AdminTable = ()=>{
                     </div>
                     <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
                         <Button className="flex items-center gap-3" size="sm">
-                            <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add Hospital
+                            <HospitalModal />
                         </Button>
                     </div>
                 </div>
