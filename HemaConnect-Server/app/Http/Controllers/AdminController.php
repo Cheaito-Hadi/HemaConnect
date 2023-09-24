@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\BankStock;
 use App\Models\BloodType;
 use App\Models\Bank;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -38,5 +39,9 @@ class AdminController extends Controller
             "status" => "success",
             "new_hospital" => $new_hospital
         ]);
+    }
+
+    public function getAllHospitals(){
+
     }
 }

@@ -50,6 +50,7 @@ Route::get('/get_userbookings', [BookingController::class, 'getUserBooking']);
 Route::get('/get_lastdonation', [DonationController::class, "getLastDonation"]);
 
 Route::post('/create_hospital', [AdminController::class, "createHospital"]);
+Route::get('/getAllhospitals', [AdminController::class, "getAllHospitals"]);
 
 Route::post('/uploadprofile', [UserController::class, "uploadImage"]);
 
