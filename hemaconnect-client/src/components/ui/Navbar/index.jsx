@@ -7,6 +7,7 @@ import ConnectWhite from '../../../assets/SVGs/ConnectWhite.svg'
 const Navbar = () => {
     const location = useLocation();
     const [url, setUrl] = useState(null);
+    const userType = localStorage.getItem('usertype');
     useEffect(() => {
         setUrl(location.pathname);
     }, [location]);
@@ -20,12 +21,17 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="hemaconnect-logo">
-                <img src={HemaWhite} alt="Hema Logo"/>
-                <img src={ConnectWhite} alt="Connect Logo"/>
+                <img src={HemaWhite} alt="Hema Logo" />
+                <img src={ConnectWhite} alt="Connect Logo" />
             </div>
             <ul>
-                <a href="/bank" className={(url === "/bank" ? " active" : "")}>Bank</a>
-                <a href="/bookings" className={(url === "/bookings" ? " active" : "")}>Bookings</a>
+                {userType === '1' && (
+                    <div>
+                        <a href="/bank" className={(url === "/bank" ? " active" : "")}>Bank</a>
+                        <a href="/bookings" className={(url === "/bookings" ? " active" : "")}>Bookings</a>
+                    </div>
+                )}
+                {userType === '3' }
                 <a href="/" onClick={handleLogout}>Logout</a>
             </ul>
         </nav>
