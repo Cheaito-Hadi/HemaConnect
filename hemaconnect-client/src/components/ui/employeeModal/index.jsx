@@ -11,6 +11,7 @@ import {
     Select,
     Option
 } from "@material-tailwind/react";
+import axios from "axios";
 
 const bloodTypeOptions = [
     { id: 1, label: 'A+' },
@@ -32,6 +33,25 @@ const EmployeeModal = ()=>{
         email:"",
         bloodtype_id:""
     });
+
+    const createEmployee = async () => {
+
+        const formData = new FormData()
+        formData.append('first_name', newEmployee.first_name)
+        formData.append('last_name', newEmployee.last_name)
+        formData.append('email', newEmployee.email)
+        formData.append('password', newEmployee.password)
+        formData.append('bloodtype_id', newEmployee.bloodtype_id )
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/create_employee', formData, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                },
+            });
+        } catch (error) {
+            console.error('Error creating blood request:', error);
+        }
+    };
 
     const handleBloodTypeChange = (event) => {
         setSelectedBloodType(event.target.value);
@@ -83,7 +103,7 @@ const EmployeeModal = ()=>{
                         </div>
                     </CardBody>
                     <CardFooter className="pt-0">
-                        <Button variant="gradient" color="red" fullWidth>
+                        <Button variant="gradient" color="red" onClick={createEmployee} fullWidth>
                             Create
                         </Button>
                     </CardFooter>
