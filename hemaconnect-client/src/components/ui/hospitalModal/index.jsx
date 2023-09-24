@@ -13,11 +13,16 @@ import {
 import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
 import { Marker, Popup } from 'react-leaflet'
+import {Icon} from 'leaflet'
 import "leaflet/dist/leaflet.css";
-import { useState } from 'react';
 
 const HospitalModal = ()=>{
     const [open, setOpen] = React.useState(false);
+
+    const LeafletMarker = new Icon({
+        iconSize:     [25, 25],
+        iconUrl: 'https://img.icons8.com/?size=512&id=PZTTDl8ML4vy&format=png'
+    });
     const handleOpen = () => setOpen((cur) => !cur);
 
     return(
@@ -44,12 +49,12 @@ const HospitalModal = ()=>{
                         <Input label="Phone Number" size="lg" />
                         <Input label="Logo" size="lg" type="file"/>
                     <div className="w-[100%] h-60">
-                        <MapContainer center={[34, 36]} zoom={10} scrollWheelZoom={true} className="w-full h-full">
+                        <MapContainer center={[33.8938, 35.5018]} zoom={10} scrollWheelZoom={true} className="w-full h-full">
                             <TileLayer
                                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
-                            <Marker position={[34, 36]} draggable={true}>
+                            <Marker position={[33.8938, 35.5018]} draggable={true} icon={LeafletMarker}>
                                 <Popup>
                                     A pretty CSS3 popup. <br /> Easily customizable.
                                 </Popup>
