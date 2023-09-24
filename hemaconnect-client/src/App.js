@@ -4,6 +4,7 @@ import React, {useState, useEffect} from "react";
 import Login from "./pages/Login";
 import Bank from "./pages/Bank";
 import Bookings from "./pages/Bookings";
+import AdminControl from "./pages/adminControl";
 import {Routes, Route} from "react-router-dom";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Routes>
                 <Route path="/bank" element={<Bank/>}/>
                 <Route path="/bookings" element={<Bookings/>}/>
+                <Route path="/adminControl" element={<AdminControl/>}/>
             </Routes>
         </div>
     );
