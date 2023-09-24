@@ -10,6 +10,7 @@ import {
 } from "@material-tailwind/react";
 import axios from "axios";
 import HospitalModal from "../hospitalModal";
+import EmployeeModal from "../employeeModal";
 
 const TABLE_HEAD = ["Hospital", "Phone Number", "Address", "Add Employee"];
 
@@ -77,7 +78,7 @@ return (
                 </thead>
                 <tbody>
                 {hospitalData.map(
-                    ({name, logo_url, phone_number, latitude, longitude}, index) => {
+                    ({name, logo_url, phone_number, latitude, longitude, id}, index) => {
                         const isLast = index === hospitalData.length - 1;
                         const classes = isLast
                             ? "p-4"
@@ -121,9 +122,7 @@ return (
                                     </Typography>
                                 </td>
                                 <td className={classes}>
-                                    <Button>
-                                        Add Employee
-                                    </Button>
+                                   <EmployeeModal hospital_id={id}/>
                                 </td>
                             </tr>
                         );

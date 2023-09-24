@@ -7,7 +7,6 @@ const AdminControl = ()=>{
     return(
         <div className="admin-page">
             <AdminTable/>
-            <EmployeeModal/>
         </div>
     );
 }

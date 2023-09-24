@@ -23,15 +23,16 @@ const bloodTypeOptions = [
     { id: 7, label: 'O+' },
     { id: 8, label: 'O-' },
 ];
-const EmployeeModal = ()=>{
-    const [selectedBloodType, setSelectedBloodType] = useState('');
+const EmployeeModal = ({ hospital_id })=>{
+    const [selectedBloodType, setSelectedBloodType] = useState(1);
     const [open, setOpen] = React.useState(false);
     const [newEmployee, setNewEmployee] = useState({
         first_name: "",
         last_name:"",
         password:"",
         email:"",
-        bloodtype_id:""
+        bloodtype_id:selectedBloodType,
+        hospital_id
     });
 
     const createEmployee = async () => {
@@ -42,6 +43,8 @@ const EmployeeModal = ()=>{
         formData.append('email', newEmployee.email)
         formData.append('password', newEmployee.password)
         formData.append('bloodtype_id', newEmployee.bloodtype_id )
+        formData.append('hospital_id', newEmployee.hospital_id )
+
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/create_employee', formData, {
                 headers: {
@@ -49,12 +52,13 @@ const EmployeeModal = ()=>{
                 },
             });
         } catch (error) {
-            console.error('Error creating blood request:', error);
+            console.error('Error creating Employee:', error);
         }
     };
 
-    const handleBloodTypeChange = (event) => {
-        setSelectedBloodType(event.target.value);
+    const handleBloodTypeChange = (selectedValue) => {
+        setSelectedBloodType(selectedValue);
+        console.log(selectedValue)
     };
 
     const handleDataChange = (e) => {
@@ -90,7 +94,7 @@ const EmployeeModal = ()=>{
                         <Input label="Password" size="lg" name={"password"} value={newEmployee.password} onChange={handleDataChange}/>
                         <div className="w-72">
                             <Select
-                                label="Select Version"
+                                label="Blood Type"
                                 value={selectedBloodType}
                                 onChange={(value) => handleBloodTypeChange(value)}
                             >
