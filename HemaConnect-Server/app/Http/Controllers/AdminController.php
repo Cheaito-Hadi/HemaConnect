@@ -42,6 +42,11 @@ class AdminController extends Controller
     }
 
     public function getAllHospitals(){
+        $all_hospitals= Hospital::all();
 
+        return response()->json([
+            "status" => "success",
+            "all_hospitals" => $all_hospitals
+        ]);
     }
 }
