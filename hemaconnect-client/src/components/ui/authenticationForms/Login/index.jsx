@@ -68,6 +68,7 @@ const LoginForm = () => {
                     setauthenticated(true);
                     localStorage.setItem("authenticated", true);
                     localStorage.setItem("token", responseData.authorization.token);
+                    localStorage.setItem("usertype",responseData.user.usertype_id)
                     navigate('/bank');
                     window.location.reload(false);
 
