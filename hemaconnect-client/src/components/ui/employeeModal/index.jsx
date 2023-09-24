@@ -64,10 +64,10 @@ const EmployeeModal = ()=>{
                         </Typography>
                     </CardHeader>
                     <CardBody className="flex flex-col gap-4">
-                        <Input label="Name" size="lg" name={"first_name"} value={newEmployee.first_name} onChange={handleDataChange}/>
-                        <Input label="Name" size="lg" name={"last_name"} value={newEmployee.last_name} onChange={handleDataChange}/>
-                        <Input label="Name" size="lg" name={"email"} value={newEmployee.email} onChange={handleDataChange}/>
-                        <Input label="Name" size="lg" name={"password"} value={newEmployee.password} onChange={handleDataChange}/>
+                        <Input label="First Name" size="lg" name={"first_name"} value={newEmployee.first_name} onChange={handleDataChange}/>
+                        <Input label="Last Name" size="lg" name={"last_name"} value={newEmployee.last_name} onChange={handleDataChange}/>
+                        <Input label="Email" size="lg" name={"email"} value={newEmployee.email} onChange={handleDataChange}/>
+                        <Input label="Password" size="lg" name={"password"} value={newEmployee.password} onChange={handleDataChange}/>
                         <div className="w-72">
                             <Select
                                 label="Select Version"
