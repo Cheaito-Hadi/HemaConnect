@@ -11,7 +11,7 @@ import {
 } from "@material-tailwind/react";
 import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
-import { Marker, Popup } from 'react-leaflet'
+import { Marker } from 'react-leaflet'
 import {Icon} from 'leaflet'
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
