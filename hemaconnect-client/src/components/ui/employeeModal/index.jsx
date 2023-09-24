@@ -51,6 +51,10 @@ const EmployeeModal = ({ hospital_id })=>{
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 },
             });
+            if (response.status === 200 ) {
+                setOpen((cur) => !cur)
+            }
+
         } catch (error) {
             console.error('Error creating Employee:', error);
         }
