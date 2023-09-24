@@ -49,4 +49,8 @@ class AdminController extends Controller
             "all_hospitals" => $all_hospitals
         ]);
     }
+
+    public function createEmployee(){
+
+    }
 }

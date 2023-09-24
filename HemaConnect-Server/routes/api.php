@@ -51,6 +51,7 @@ Route::get('/get_lastdonation', [DonationController::class, "getLastDonation"]);
 
 Route::post('/create_hospital', [AdminController::class, "createHospital"]);
 Route::get('/getAllhospitals', [AdminController::class, "getAllHospitals"]);
+Route::post('/create_employee', [AdminController::class, "createEmployee"]);
 
 Route::post('/uploadprofile', [UserController::class, "uploadImage"]);
 
