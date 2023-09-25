@@ -25,14 +25,24 @@ const Navbar = () => {
                 <img src={ConnectWhite} alt="Connect Logo" />
             </div>
             <ul>
-                {userType === '1' && (
-                    <div>
-                        <a href="/bank" className={(url === "/bank" ? " active" : "")}>Bank</a>
-                        <a href="/bookings" className={(url === "/bookings" ? " active" : "")}>Bookings</a>
-                    </div>
+                {userType === '2' && (
+                    <>
+                        <a href="/bank" className={url === '/bank' ? ' active' : ''}>
+                            Bank
+                        </a>
+                        <a href="/bookings" className={url === '/bookings' ? ' active' : ''}>
+                            Bookings
+                        </a>
+                        <a href="/" onClick={handleLogout}>
+                            Logout
+                        </a>
+                    </>
                 )}
-                {userType === '3' }
-                <a href="/" onClick={handleLogout}>Logout</a>
+                {userType === '3' && (
+                    <a href="/" onClick={handleLogout}>
+                        Logout
+                    </a>
+                )}
             </ul>
         </nav>
     );
