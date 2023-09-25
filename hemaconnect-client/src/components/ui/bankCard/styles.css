@@ -1,4 +1,4 @@
-.bank-card-container{
+.bank-card-container {
     display: flex;
     height: 90px;
     background-color: #ff6767;
@@ -6,6 +6,7 @@
     justify-content: space-around;
     align-items: center;
     width: 20%;
+    min-width: 300px;
     border-radius: 15px;
     font-size: 32px;
     font-style: normal;

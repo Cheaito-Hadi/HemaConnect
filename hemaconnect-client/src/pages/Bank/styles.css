@@ -1,10 +1,10 @@
-.bank-page{
+.bank-page {
     margin-top: 100px;
 }
 
-.bank-cards-container{
+.bank-cards-container {
     display: flex;
-    background-color: #F0F3F8;
+    background-color: #f0f3f8;
     padding: 30px 50px;
     flex-direction: column;
     margin: 120px 40px;
@@ -12,20 +12,29 @@
     flex-wrap: wrap;
     border-radius: 10px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    flex-grow: 1;
+    max-width: 100%;
 }
 
-.bank-text{
+.bank-text {
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
 
-.bank-cards{
+.bank-cards {
     display: flex;
-    gap: 52px;
-    justify-content:start;
+    gap: 20px;
+    justify-content: start;
     flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .bank-cards {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .blood-requests-container{
