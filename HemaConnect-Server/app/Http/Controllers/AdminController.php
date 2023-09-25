@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use App\Models\BankStock;
 use App\Models\BloodType;
 use App\Models\Bank;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -20,6 +19,7 @@ class AdminController extends Controller
         $new_hospital->latitude = $request->latitude;
         $new_hospital->longitude = $request->longitude;
         $new_hospital->phone_number = $request->phone_number;
+        $new_hospital->address = $request->address;
         $file_name = time() . "_" . uniqid() . "_hospital_logo." . $request->logo_url->getClientOriginalExtension();
         $request->logo_url->storeAs('public/hospitalLogos', $file_name);
         $new_hospital->logo_url ="hospitalLogos/". $file_name;
