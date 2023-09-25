@@ -5,12 +5,14 @@ import AnimatedIntro from "../../components/base/animated";
 
 const Login = () => {
     return (
-        <div className="left-right-container">
-            <div className="left-container">
-                <AnimatedIntro/>
-            </div>
-            <div className="right-container">
-                <LoginForm/>
+        <div className="full-login">
+            <div className="left-right-container">
+                <div className="left-container">
+                    <AnimatedIntro/>
+                </div>
+                <div className="right-container">
+                    <LoginForm/>
+                </div>
             </div>
         </div>
     );
