@@ -78,7 +78,7 @@ return (
                 </thead>
                 <tbody>
                 {hospitalData.map(
-                    ({name, logo_url, phone_number, latitude, longitude, id}, index) => {
+                    ({name, logo_url, phone_number, latitude, longitude, id, address}, index) => {
                         const isLast = index === hospitalData.length - 1;
                         const classes = isLast
                             ? "p-4"
@@ -118,7 +118,8 @@ return (
                                         color="blue-gray"
                                         className="font-normal"
                                     >
-                                        {latitude}-{longitude}
+                                        {/*{latitude}-{longitude}*/}
+                                        {address ? address : "Unknown Address"}
                                     </Typography>
                                 </td>
                                 <td className={classes}>

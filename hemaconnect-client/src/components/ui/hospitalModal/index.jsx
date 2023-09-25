@@ -40,13 +40,17 @@ const HospitalModal = ()=>{
     };
 
     const createHospital = async () => {
-        // console.log(newHospital)
+
+        const addressData = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${newHospital.latitude},${newHospital.longitude}&key=AIzaSyDHUtORXXAhUn_c-UbE_6pWSPXzeKwrZpc`)
+
         const formData = new FormData()
         formData.append('name', newHospital.name)
         formData.append('longitude', newHospital.longitude)
         formData.append('latitude', newHospital.latitude)
         formData.append('phone_number', newHospital.phone_number)
         formData.append('logo_url', logo)
+        formData.append('address', addressData.data.results[0].formatted_address)
+
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/create_hospital', formData, {
                 headers: {
