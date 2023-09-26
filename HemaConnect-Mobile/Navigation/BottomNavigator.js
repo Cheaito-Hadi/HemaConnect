@@ -42,9 +42,6 @@ const BottomNavigator = () => {
     return (
         <Tab.Navigator
             tabBar={(props) => <CustomTabBar {...props} />}
-            tabBarOptions={{
-                tabBarShowLabel: false,
-            }}
         >
             <Tab.Screen
                 name="Feed"

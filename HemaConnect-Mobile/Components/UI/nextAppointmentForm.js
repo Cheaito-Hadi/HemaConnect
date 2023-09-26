@@ -44,7 +44,7 @@ const nextAppointment = () => {
                     </View>
                 </View>
             ) : (
-                <Text>Getting your Appointment</Text>
+                <Text style={styles.noAppointment}>You Do not have an upcoming Appointment, book an Appointment!</Text>
             )}
         </View>
     );
@@ -94,6 +94,14 @@ const styles = StyleSheet.create({
         fontSize:18,
         fontWeight:'700',
         marginBottom:'5%',
+    },
+    noAppointment:{
+        fontWeight: "500",
+        padding: 10,
+        backgroundColor:'#FFF',
+        borderRadius:10,
+        shadowColor: 'rgba(246, 213, 213, 0.50)',
+        elevation: 5,
     }
 
 })
