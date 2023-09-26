@@ -28,15 +28,21 @@ const EmployeeModal = ({hospital_id}) => {
     const [selectedBloodType, setSelectedBloodType] = useState(1);
     const [errors, setErrors] = useState({});
     const [open, setOpen] = React.useState(false);
-    const [newEmployee, setNewEmployee] = useState({
+    const initialEmployeeState = {
         first_name: "",
         last_name: "",
         password: "",
         email: "",
         bloodtype_id: selectedBloodType,
-        hospital_id
-    });
+        hospital_id,
+    };
+    const [newEmployee, setNewEmployee] = useState(initialEmployeeState);
 
+    const resetForm = () => {
+        setSelectedBloodType(1);
+        setErrors({});
+        setNewEmployee(initialEmployeeState);
+    };
     const createEmployee = async () => {
 
         const validationErrors = {};
@@ -94,7 +100,10 @@ const EmployeeModal = ({hospital_id}) => {
     };
 
 
-    const handleOpen = () => setOpen((cur) => !cur);
+    const handleOpen = () => {
+        setOpen((cur) => !cur);
+        resetForm();
+    };
 
     return (
         <>
@@ -129,7 +138,7 @@ const EmployeeModal = ({hospital_id}) => {
                 <Card className="mx-auto w-full max-w-full">
                     <CardHeader
                         variant="gradient"
-                        color="red"
+                        style={{ backgroundColor: 'rgb(255,103,103)' }}
                         className="mb-3 grid h-20 place-items-center"
                     >
                         <Typography variant="h5" color="white">
@@ -196,7 +205,7 @@ const EmployeeModal = ({hospital_id}) => {
                         </div>
                     </CardBody>
                     <CardFooter className="pt-0">
-                        <Button variant="gradient" color="red" onClick={createEmployee} fullWidth>
+                        <Button className="bg-transparent shadow-none" style={{ backgroundColor: 'rgb(255,103,103)' }} onClick={createEmployee} fullWidth>
                             Create
                         </Button>
                     </CardFooter>
