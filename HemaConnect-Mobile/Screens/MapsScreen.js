@@ -144,6 +144,7 @@ const Map = () => {
                         </Marker>
                     )}
                 </MapView>
+                <Text style={styles.bloodRequestsMap}>Blood Requests</Text>
                 <ScrollView horizontal style={styles.horizontalViewStyle}>
                     <View style={styles.cardsContainerMap}>
                         {hospitals.map((hospital, index) => (
@@ -237,11 +238,12 @@ const styles = StyleSheet.create({
     },
     horizontalViewStyle: {
         position: "absolute",
-        bottom: 0
+        bottom: 0,
     },
     cardsContainerMap: {
         flexDirection: "row",
         width: '70%',
+        marginHorizontal:10
     },
     modalContainer: {
         flex: 1,
@@ -279,7 +281,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         marginHorizontal: 10,
         borderRadius: 5,
-        width: '50%'
+        width: '45%'
     },
     modalButtonCall: {
         backgroundColor: '#ff6767',
@@ -287,11 +289,12 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         marginHorizontal: 10,
         borderRadius: 5,
+        width:'45%'
     },
     modalTextDirections: {
         color: '#fff',
         textAlign: "center",
-        fontWeight: '500'
+        fontWeight: '500',
     },
     modalTextCall: {
         color: '#fff',
@@ -305,5 +308,19 @@ const styles = StyleSheet.create({
     closeButton: {
         color: '#000',
     },
+    bloodRequestsMap:{
+        position:"absolute",
+        bottom:90,
+        left:10,
+        padding:10,
+        backgroundColor:'#fff',
+        borderRadius:10,
+        fontSize:14,
+        fontWeight:'500',
+        borderWidth: 1,
+        borderColor: '#F6D5D5',
+        shadowColor: 'rgba(246, 213, 213, 0.50)',
+        elevation: 5,
+    }
 });
 export default Map;
