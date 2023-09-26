@@ -4,7 +4,6 @@ import {
     Card,
     CardHeader,
     Typography,
-    Button,
     CardBody,
     Avatar,
 } from "@material-tailwind/react";
@@ -48,7 +47,9 @@ const AdminTable = () => {
                             See information about all hospitals
                         </Typography>
                     </div>
-                    <HospitalModal/>
+                    <HospitalModal
+                        refreshHospitalData={fetchHospitalData}
+                    />
                 </div>
             </CardHeader>
             <CardBody className="px-0">

@@ -16,7 +16,7 @@ import {Icon} from 'leaflet'
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
 
-const HospitalModal = ()=>{
+const HospitalModal = ({refreshHospitalData})=>{
     const [open, setOpen] = React.useState(false);
     const [newHospital, setNewHospital] = useState({
         name: "",
@@ -75,6 +75,7 @@ const HospitalModal = ()=>{
             });
             if (response.status === 200) {
                 setOpen((cur) => !cur)
+                refreshHospitalData();
             }
         } catch (error) {
             console.error('Error creating blood request:', error);
@@ -92,7 +93,7 @@ const HospitalModal = ()=>{
 
     return(
         <>
-            <Button onClick={handleOpen} className="hover:shadow-none shadow-none py-4" color="red"  style={{ backgroundColor: 'rgb(255,103,103)' }}>Add Hospital</Button>
+            <Button onClick={handleOpen} className="hover:shadow-none shadow-none py-4"  style={{ backgroundColor: 'rgb(255,103,103)' }}>Add Hospital</Button>
             <Dialog
                 size="md"
                 open={open}
@@ -102,7 +103,7 @@ const HospitalModal = ()=>{
                 <Card className="mx-auto w-full max-w-full mb-0.5">
                     <CardHeader
                         variant="gradient"
-                        color="red"
+                        style={{ backgroundColor: 'rgb(255,103,103)' }}
                         className="mb-0.5 mt-0.3 grid h-20 place-items-center"
                     >
                         <Typography variant="h5" color="white">
@@ -127,8 +128,8 @@ const HospitalModal = ()=>{
                             </MapContainer>
                         </div>
                     </CardBody>
-                    <CardFooter className="pt-0">
-                        <Button variant="gradient" color="red" onClick={createHospital} fullWidth>
+                    <CardFooter className="pt-0" >
+                        <Button className="bg-transparent shadow-none" style={{ backgroundColor: 'rgb(255,103,103)' }} onClick={createHospital} fullWidth>
                             Create
                         </Button>
                     </CardFooter>
