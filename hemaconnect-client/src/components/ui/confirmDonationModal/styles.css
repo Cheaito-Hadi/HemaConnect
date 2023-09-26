@@ -76,3 +76,10 @@
     line-height: normal;
     width: 47%;
 }
+
+.error-message-request{
+    text-align: end;
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}

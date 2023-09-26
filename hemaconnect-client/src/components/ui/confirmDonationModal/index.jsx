@@ -4,9 +4,22 @@ import XMark from '../../../assets/SVGs/XMark.svg'
 
 const DonationModal = ({onClose, onSubmit, selectedBooking}) => {
     const [donatedAmount, setDonatedAmount] = useState('');
+    const [amountError, setAmountError] = useState('');
+
+    const validateDonatedAmount = (amount) => {
+        if (amount === '') {
+            return 'Donated amount is required.';
+        } else if (parseFloat(amount) <= 0) {
+            return 'Donated amount must be greater than zero.';
+        }
+        return '';
+    };
 
     const handleDonatedAmountChange = (e) => {
-        setDonatedAmount(e.target.value);
+        const amount = e.target.value;
+        setDonatedAmount(amount);
+        const error = validateDonatedAmount(amount);
+        setAmountError(error);
     };
 
     const handleSubmit = () => {
@@ -42,6 +55,7 @@ const DonationModal = ({onClose, onSubmit, selectedBooking}) => {
                         required
                     />
                 </div>
+                {amountError && <div className="error-message-request">{amountError}</div>}
             </div>
             <div className="modal-button">
                 <button className="confirm-button" onClick={handleSubmit}>Confirm</button>
