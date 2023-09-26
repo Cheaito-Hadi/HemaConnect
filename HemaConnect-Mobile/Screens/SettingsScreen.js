@@ -45,7 +45,8 @@ const Settings = () => {
         if (permissionResult.granted === false) {
             Alert.alert("Permission to access camera roll is required!");
             return;
-        };
+        }
+        ;
 
         const result = await ImagePicker.launchImageLibraryAsync();
 
@@ -85,7 +86,7 @@ const Settings = () => {
         }
     };
 
-    const setNewImage=()=>{
+    const setNewImage = () => {
         setProfileImage({
             uri: `http://192.168.0.110:8000/storage/${userData.image_url}`,
         })
@@ -139,6 +140,7 @@ const Settings = () => {
                     <View style={styles.line}/>
                     <View style={styles.labelContainer}>
                         <Text style={styles.label}>Blood Type:</Text>
+                        <Text style={styles.infoText}>{userData?.bloodtype?.name}</Text>
                     </View>
                     <View style={styles.line}/>
                 </View>
@@ -209,8 +211,18 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     infoWrapper: {
-        marginTop: "30%",
+        marginTop: "20%",
         width: "80%",
+        paddingHorizontal: 10,
+        paddingTop: 30,
+        paddingBottom: 40,
+        backgroundColor: '#FFF',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#F6D5D5',
+        shadowColor: 'rgba(246, 213, 213, 0.50)',
+        elevation: 5,
+
     },
     labelContainer: {
         marginTop: 10,
@@ -235,7 +247,7 @@ const styles = StyleSheet.create({
         borderBottomColor: "#FF6767",
         width: "100%",
     },
-    defaultProfileImage:{
+    defaultProfileImage: {
         width: 200,
         height: 200,
         borderRadius: 100,
