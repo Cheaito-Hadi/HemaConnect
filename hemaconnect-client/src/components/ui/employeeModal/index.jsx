@@ -26,6 +26,7 @@ const bloodTypeOptions = [
 ];
 const EmployeeModal = ({hospital_id}) => {
     const [selectedBloodType, setSelectedBloodType] = useState(1);
+    const [errors, setErrors] = useState({});
     const [open, setOpen] = React.useState(false);
     const [newEmployee, setNewEmployee] = useState({
         first_name: "",
@@ -37,6 +38,28 @@ const EmployeeModal = ({hospital_id}) => {
     });
 
     const createEmployee = async () => {
+
+        const validationErrors = {};
+        if (!newEmployee.first_name.trim()) {
+            validationErrors.first_name = "First name is required";
+        }
+        if (!newEmployee.last_name.trim()) {
+            validationErrors.last_name = "Last name is required";
+        }
+        if (!newEmployee.email.trim()) {
+            validationErrors.email = "Email is required";
+        } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(newEmployee.email)
+        ) {
+            validationErrors.email = "Invalid email address";
+        }
+        if (!newEmployee.password.trim()) {
+            validationErrors.password = "Password is required";
+        }
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
 
         const formData = new FormData()
         formData.append('first_name', newEmployee.first_name)
@@ -114,14 +137,47 @@ const EmployeeModal = ({hospital_id}) => {
                         </Typography>
                     </CardHeader>
                     <CardBody className="flex flex-col gap-4">
-                        <Input label="First Name" size="lg" name={"first_name"} value={newEmployee.first_name}
-                               onChange={handleDataChange}/>
-                        <Input label="Last Name" size="lg" name={"last_name"} value={newEmployee.last_name}
-                               onChange={handleDataChange}/>
-                        <Input label="Email" size="lg" name={"email"} value={newEmployee.email}
-                               onChange={handleDataChange}/>
-                        <Input label="Password" size="lg" name={"password"} value={newEmployee.password}
-                               onChange={handleDataChange}/>
+                        <Input
+                            label="First Name"
+                            size="lg"
+                            name={"first_name"}
+                            value={newEmployee.first_name}
+                            onChange={handleDataChange}
+                        />
+                        {errors.first_name && (
+                            <span className="text-red-500">{errors.first_name}</span>
+                        )}
+                        <Input
+                            label="Last Name"
+                            size="lg"
+                            name={"last_name"}
+                            value={newEmployee.last_name}
+                            onChange={handleDataChange}
+                        />
+                        {errors.last_name && (
+                            <span className="text-red-500">{errors.last_name}</span>
+                        )}
+                        <Input
+                            label="Email"
+                            size="lg"
+                            name={"email"}
+                            value={newEmployee.email}
+                            onChange={handleDataChange}
+                        />
+                        {errors.email && (
+                            <span className="text-red-500">{errors.email}</span>
+                        )}
+                        <Input
+                            label="Password"
+                            size="lg"
+                            name={"password"}
+                            type="password"
+                            value={newEmployee.password}
+                            onChange={handleDataChange}
+                        />
+                        {errors.password && (
+                            <span className="text-red-500">{errors.password}</span>
+                        )}
                         <div className="w-72">
                             <Select
                                 label="Blood Type"
@@ -134,6 +190,9 @@ const EmployeeModal = ({hospital_id}) => {
                                     </Option>
                                 ))}
                             </Select>
+                            {errors.bloodtype_id && (
+                                <span className="text-red-500">{errors.bloodtype_id}</span>
+                            )}
                         </div>
                     </CardBody>
                     <CardFooter className="pt-0">
