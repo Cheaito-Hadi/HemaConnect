@@ -9,29 +9,30 @@ import {
     Typography,
     Input,
     Select,
-    Option
+    Option,
 } from "@material-tailwind/react";
 import axios from "axios";
+import AddIcon from "@mui/icons-material/Add"
 
 const bloodTypeOptions = [
-    { id: 1, label: 'A+' },
-    { id: 2, label: 'A-' },
-    { id: 3, label: 'B+' },
-    { id: 4, label: 'B-' },
-    { id: 5, label: 'AB+' },
-    { id: 6, label: 'AB-' },
-    { id: 7, label: 'O+' },
-    { id: 8, label: 'O-' },
+    {id: 1, label: 'A+'},
+    {id: 2, label: 'A-'},
+    {id: 3, label: 'B+'},
+    {id: 4, label: 'B-'},
+    {id: 5, label: 'AB+'},
+    {id: 6, label: 'AB-'},
+    {id: 7, label: 'O+'},
+    {id: 8, label: 'O-'},
 ];
-const EmployeeModal = ({ hospital_id })=>{
+const EmployeeModal = ({hospital_id}) => {
     const [selectedBloodType, setSelectedBloodType] = useState(1);
     const [open, setOpen] = React.useState(false);
     const [newEmployee, setNewEmployee] = useState({
         first_name: "",
-        last_name:"",
-        password:"",
-        email:"",
-        bloodtype_id:selectedBloodType,
+        last_name: "",
+        password: "",
+        email: "",
+        bloodtype_id: selectedBloodType,
         hospital_id
     });
 
@@ -42,8 +43,8 @@ const EmployeeModal = ({ hospital_id })=>{
         formData.append('last_name', newEmployee.last_name)
         formData.append('email', newEmployee.email)
         formData.append('password', newEmployee.password)
-        formData.append('bloodtype_id', newEmployee.bloodtype_id )
-        formData.append('hospital_id', newEmployee.hospital_id )
+        formData.append('bloodtype_id', newEmployee.bloodtype_id)
+        formData.append('hospital_id', newEmployee.hospital_id)
 
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/create_employee', formData, {
@@ -51,7 +52,7 @@ const EmployeeModal = ({ hospital_id })=>{
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 },
             });
-            if (response.status === 200 ) {
+            if (response.status === 200) {
                 setOpen((cur) => !cur)
             }
 
@@ -66,15 +67,36 @@ const EmployeeModal = ({ hospital_id })=>{
     };
 
     const handleDataChange = (e) => {
-        setNewEmployee({ ...newEmployee, [e.target.name]: e.target.value });
+        setNewEmployee({...newEmployee, [e.target.name]: e.target.value});
     };
 
 
     const handleOpen = () => setOpen((cur) => !cur);
 
-    return(
+    return (
         <>
-            <Button onClick={handleOpen} color="red">Add Employee</Button>
+            <Typography
+                variant="large"
+                color="red"
+                className="font-normal"
+                onClick={() => handleOpen()}
+            >
+  <span
+      style={{
+          width: '24px',
+          height: '24px',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: '2px solid red',
+          borderRadius: '50%',
+          cursor: 'pointer',
+      }}
+  >
+    <AddIcon style={{fontSize: '20px'}}/>
+  </span>
+            </Typography>
+
             <Dialog
                 size="md"
                 open={open}
@@ -92,10 +114,14 @@ const EmployeeModal = ({ hospital_id })=>{
                         </Typography>
                     </CardHeader>
                     <CardBody className="flex flex-col gap-4">
-                        <Input label="First Name" size="lg" name={"first_name"} value={newEmployee.first_name} onChange={handleDataChange}/>
-                        <Input label="Last Name" size="lg" name={"last_name"} value={newEmployee.last_name} onChange={handleDataChange}/>
-                        <Input label="Email" size="lg" name={"email"} value={newEmployee.email} onChange={handleDataChange}/>
-                        <Input label="Password" size="lg" name={"password"} value={newEmployee.password} onChange={handleDataChange}/>
+                        <Input label="First Name" size="lg" name={"first_name"} value={newEmployee.first_name}
+                               onChange={handleDataChange}/>
+                        <Input label="Last Name" size="lg" name={"last_name"} value={newEmployee.last_name}
+                               onChange={handleDataChange}/>
+                        <Input label="Email" size="lg" name={"email"} value={newEmployee.email}
+                               onChange={handleDataChange}/>
+                        <Input label="Password" size="lg" name={"password"} value={newEmployee.password}
+                               onChange={handleDataChange}/>
                         <div className="w-72">
                             <Select
                                 label="Blood Type"
