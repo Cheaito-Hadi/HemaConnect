@@ -92,3 +92,12 @@
     font-weight: 700;
     line-height: normal;
 }
+
+.add-request-btn{
+    padding: 7px 15px 7px 15px;
+    background-color: #ff6767;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}

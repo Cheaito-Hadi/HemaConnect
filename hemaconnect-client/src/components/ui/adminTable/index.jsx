@@ -89,9 +89,10 @@ const AdminTable = () => {
                                                         size="sm"/>
                                                 <div className="flex flex-col">
                                                     <Typography
-                                                        variant="small"
+                                                        variant="md"
                                                         color="blue-gray"
                                                         className="font-normal"
+                                                        style={{ fontWeight: 600 }}
                                                     >
                                                         {name}
                                                     </Typography>

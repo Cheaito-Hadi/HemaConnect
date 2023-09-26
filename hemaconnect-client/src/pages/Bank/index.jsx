@@ -3,7 +3,6 @@ import './styles.css';
 import BankCard from "../../components/ui/bankCard";
 import BloodRequest from "../../components/ui/bloodRequest";
 import axios from "axios";
-import AddRequest from '../../assets/SVGs/AddRequest.svg';
 import BloodRequestModal from "../../components/ui/createBloodRequestModal";
 
 const Bank = () => {
@@ -93,10 +92,9 @@ const Bank = () => {
                 <span className="bank-text">
                     Blood Requests
                 </span>
-                    <div className="icon-request" onClick={handleAddRequestClick}>
-                        <h2 className="add-request">Add a Request</h2>
-                        <img src={AddRequest} alt="Add Request" />
-                    </div>
+                    <button className="add-request-btn" onClick={handleAddRequestClick}>
+                        Add Request
+                    </button>
                     {isModalOpen && (
                         <div className="modal-overlay">
                             <BloodRequestModal
