@@ -24,7 +24,7 @@ const Settings = () => {
                 const userDataObj = JSON.parse(userDataJson);
                 setUserData(userDataObj);
                 setProfileImage({
-                    uri: `http://192.168.0.107:8000/storage/${userDataObj.image_url}`,
+                    uri: `http://192.168.0.110:8000/storage/${userDataObj.image_url}`,
                 })
             }
 
@@ -64,7 +64,7 @@ const Settings = () => {
         });
         try {
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await axios.post('http://192.168.0.107:8000/api/uploadprofile', formData, {
+            const response = await axios.post('http://192.168.0.110:8000/api/uploadprofile', formData, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'multipart/form-data; ',
@@ -76,7 +76,7 @@ const Settings = () => {
             userData.image_url = response.data.image_url;
             await AsyncStorage.setItem('userData', JSON.stringify(userData));
             setProfileImage({
-                uri: `http://192.168.0.107:8000/storage/${userData.image_url}`,
+                uri: `http://192.168.0.110:8000/storage/${userData.image_url}`,
             })
             console.log('User Data:', userData);
 
@@ -87,7 +87,7 @@ const Settings = () => {
 
     const setNewImage=()=>{
         setProfileImage({
-            uri: `http://192.168.0.107:8000/storage/${userData.image_url}`,
+            uri: `http://192.168.0.110:8000/storage/${userData.image_url}`,
         })
     }
     const renderProfileImage = () => {

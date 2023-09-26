@@ -11,7 +11,7 @@ const TABLE_HEAD = ["Name", "Email", "Booking Time", "Blood Type", "Anemia", "He
 export function BookingTable({ bookingData, onDelete, onConfirmDonation }) {
     return (
         <Card className="h-full w-full">
-            <div className="table-container" style={{ maxHeight: '600px', overflowY: 'auto' }}>
+            <div className="table-container" style={{ maxHeight: '500px', overflowY: 'auto' }}>
                 <table className="w-full min-w-max table-auto text-left">
                     <thead>
                     <tr>

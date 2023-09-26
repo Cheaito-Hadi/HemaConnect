@@ -73,7 +73,7 @@ const HospitalModal = ()=>{
 
     return(
         <>
-            <Button onClick={handleOpen}>Add Hospital</Button>
+            <Button onClick={handleOpen} className="hover:shadow-none shadow-none py-4" color="red"  style={{ backgroundColor: 'rgb(255,103,103)' }}>Add Hospital</Button>
             <Dialog
                 size="md"
                 open={open}

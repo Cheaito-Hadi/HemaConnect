@@ -74,7 +74,7 @@ const EmployeeModal = ({ hospital_id })=>{
 
     return(
         <>
-            <Button onClick={handleOpen}>Add Employee</Button>
+            <Button onClick={handleOpen} color="red">Add Employee</Button>
             <Dialog
                 size="md"
                 open={open}
