@@ -5,6 +5,7 @@ import XMark from '../../../assets/SVGs/XMark.svg'
 const BloodRequestModal = ({onClose, onSubmit}) => {
     const [bloodType, setBloodType] = useState('');
     const [amount, setAmount] = useState('');
+    const [amountError, setAmountError] = useState('');
     const bloodTypeOptions = [
         {id: 1, name: 'A+', label: 'A+'},
         {id: 2, name: 'A-', label: 'A-'},
@@ -22,12 +23,18 @@ const BloodRequestModal = ({onClose, onSubmit}) => {
 
     const handleAmountChange = (e) => {
         setAmount(e.target.value);
+        setAmountError('');
     };
 
     const handleSubmit = () => {
         if (bloodType && amount) {
             const requestData = {bloodtype: bloodType, needed_amount: amount};
             onSubmit(requestData);
+        }
+        else{
+            if (!amount) {
+                setAmountError('Amount is required');
+            }
         }
     };
 
@@ -66,6 +73,7 @@ const BloodRequestModal = ({onClose, onSubmit}) => {
                         required
                     />
                 </div>
+                {amountError && <span className="error-message">{amountError}</span>}
             </div>
             <div className="modal-button">
                 <button className="confirm-button" onClick={handleSubmit}>Confirm</button>
