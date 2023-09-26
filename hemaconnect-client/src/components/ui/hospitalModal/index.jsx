@@ -18,12 +18,13 @@ import axios from "axios";
 
 const HospitalModal = ({refreshHospitalData})=>{
     const [open, setOpen] = React.useState(false);
-    const [newHospital, setNewHospital] = useState({
+    const initialHospitalState = {
         name: "",
-        phone_number:"",
-        longitude:33.8938,
-        latitude:35.5018,
-    });
+        phone_number: "",
+        longitude: 35.5018,
+        latitude: 33.8938,
+    };
+    const [newHospital, setNewHospital] = useState(initialHospitalState);
     const [logo, setLogo] = useState(null)
     const [errors, setErrors] = useState({});
     const handleFileChange = (e) => {
@@ -35,6 +36,11 @@ const HospitalModal = ({refreshHospitalData})=>{
         iconSize:     [25, 25],
         iconUrl: 'https://img.icons8.com/?size=512&id=PZTTDl8ML4vy&format=png'
     });
+    const resetHospitalState = () => {
+        setNewHospital(initialHospitalState);
+        setLogo(null);
+        setErrors({});
+    };
 
     const handleDataChange = (e) => {
         setNewHospital({ ...newHospital, [e.target.name]: e.target.value });
@@ -89,7 +95,10 @@ const HospitalModal = ({refreshHospitalData})=>{
             longitude: e.target._latlng.lng
         });
     };
-    const handleOpen = () => setOpen((cur) => !cur);
+    const handleOpen = () => {
+        setOpen((cur) => !cur);
+        resetHospitalState();
+    };
 
     return(
         <>
