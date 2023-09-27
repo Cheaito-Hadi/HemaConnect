@@ -5,7 +5,7 @@ import LoginScreen from "../Screens/LoginScreen";
 import RegisterScreen from "../Screens/RegisterScreen";
 import BottomNavigator from '../Navigation/BottomNavigator'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import OnBoarding from "../onBoarding";
+import OnBoarding from "../OnBoarding/onBoarding";
 
 const Stack = createStackNavigator();
 

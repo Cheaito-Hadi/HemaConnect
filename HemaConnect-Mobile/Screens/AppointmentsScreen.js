@@ -357,7 +357,6 @@ const styles = StyleSheet.create({
     },
     nextAppointmentContainer: {
         width: '80%',
-        marginTop: '5%',
         marginBottom: '8%'
     },
     horizontalLine: {

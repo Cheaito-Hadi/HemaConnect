@@ -2,8 +2,8 @@ import Onboarding from "react-native-onboarding-swiper";
 import {TouchableOpacity, Text, View, StyleSheet} from "react-native";
 import React, {useRef, useEffect, useState} from 'react';
 import Lottie from 'lottie-react-native';
-import Hema from "./assets/SVGs/Hema.svg";
-import Connect from "./assets/SVGs/Connect.svg";
+import Hema from "../assets/SVGs/Hema.svg";
+import Connect from "../assets/SVGs/Connect.svg";
 
 
 const Dots = ({selected}) => {
@@ -86,7 +86,7 @@ const OnBoarding = ({navigation}) => {
                                 <View style={styles.animationContainer}>
                                     <Lottie
                                         autoPlay loop
-                                        source={require('./assets/Animations/bloodBag.json')}
+                                        source={require('../assets/Animations/bloodBag.json')}
                                     />
                                 </View>
                             ),
@@ -106,7 +106,7 @@ const OnBoarding = ({navigation}) => {
                                 <View style={styles.animationContainer}>
                                     <Lottie
                                         autoPlay loop
-                                        source={require('./assets/Animations/heart.json')}
+                                        source={require('../assets/Animations/heart.json')}
                                     />
                                 </View>
                             ),
@@ -124,7 +124,7 @@ const OnBoarding = ({navigation}) => {
                                 <View style={styles.animationContainer}>
                                     <Lottie
                                         autoPlay loop
-                                        source={require('./assets/Animations/bloodSample.json')}
+                                        source={require('../assets/Animations/bloodSample.json')}
                                     />
                                 </View>
                             ),
