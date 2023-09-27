@@ -24,14 +24,14 @@
 ### Mockups
 
 ### LogIn Screen (Web)
-| Login screen  |
-| ---|
-| ![Landing](readme/demo/1440x1024.png) |
+| Login screen                                          |
+|-------------------------------------------------------|
+| ![Login](./readme/screenshotsWebsite/Login/Login.png) |
 
 ### Admin Screens (Web)
-| Login screen  | Register screen |  Landing screen |
-| ---| ---| ---|
-| ![Landing](readme/demo/1440x1024.png) | ![fsdaf](readme/demo/1440x1024.png) | ![fsdaf](readme/demo/1440x1024.png) |
+| Hospital Table                                               | Hospital Modal                                                        | Employee Modal                                                        |
+|--------------------------------------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
+| ![Landing](./readme/screenshotsWebsite/Admin/adminTable.png) | ![hospitalModal](./readme/screenshotsWebsite/Admin/hospitalModal.png) | ![EmployeeModal](./readme/screenshotsWebsite/Admin/employeeModal.png) |
 ### Hospital Employee Screens (Web)
 | Home screen  | Menu Screen |
 | ---| ---|
