@@ -1,11 +1,43 @@
 import Onboarding from "react-native-onboarding-swiper";
-import {Image} from "react-native";
+import {Image, TouchableOpacity, Text} from "react-native";
 import React from 'react';
 
+
+const Skip = ({...props}) => (
+    <TouchableOpacity
+        style={{marginHorizontal:10}}
+        {...props}
+    >
+        <Text style={{fontSize:16}}>Skip</Text>
+    </TouchableOpacity>
+);
+
+const Next = ({...props}) => (
+    <TouchableOpacity
+        style={{marginHorizontal:10}}
+        {...props}
+    >
+        <Text style={{fontSize:16}}>Next</Text>
+    </TouchableOpacity>
+);
+
+const Done = ({...props}) => (
+    <TouchableOpacity
+        style={{marginHorizontal:10}}
+        {...props}
+    >
+        <Text style={{fontSize:16}}>Done</Text>
+    </TouchableOpacity>
+);
 
 const OnBoarding = ({navigation}) => {
     return (
         <Onboarding
+            SkipButtonComponent={Skip}
+            NextButtonComponent={Next}
+            DoneButtonComponent={Done}
+            onSkip={() => navigation.replace("OnBoarding")}
+            onDone={() => navigation.navigate("OnBoarding")}
             pages={[
                 {
                     backgroundColor: '#a6e4d0',
