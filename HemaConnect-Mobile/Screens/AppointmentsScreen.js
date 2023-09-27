@@ -106,10 +106,10 @@ const Appointments = () => {
 
         try {
             const select = selectedDate.getFullYear() +
-                "-" +((selectedDate.getMonth()+1) <10 ? "0" + (selectedDate.getMonth() + 1) : (selectedDate.getMonth()+1)) +
-                "-" + (selectedDate.getDate() <10 ?"0" + selectedDate.getDate() : selectedDate.getDate()) +
-                " " + (selectedDate.getHours() <10 ?"0" + selectedDate.getHours() : selectedDate.getHours()) +
-                ":" + (selectedDate.getMinutes() <10 ?"0" + selectedDate.getMinutes() : selectedDate.getMinutes())+
+                "-" + ((selectedDate.getMonth() + 1) < 10 ? "0" + (selectedDate.getMonth() + 1) : (selectedDate.getMonth() + 1)) +
+                "-" + (selectedDate.getDate() < 10 ? "0" + selectedDate.getDate() : selectedDate.getDate()) +
+                " " + (selectedDate.getHours() < 10 ? "0" + selectedDate.getHours() : selectedDate.getHours()) +
+                ":" + (selectedDate.getMinutes() < 10 ? "0" + selectedDate.getMinutes() : selectedDate.getMinutes()) +
                 ":00"
 
             const requestData = {
@@ -126,20 +126,15 @@ const Appointments = () => {
             });
 
             if (response.data && response.data.message === 'Booking created successfully') {
-                console.log('Booking successful:', response.data);
-                setBookingStatus({ type: 'success', message: 'Booking successful!' });
+                setBookingStatus({type: 'success', message: 'Booking successful!'});
             } else if (response.data && response.data.error === '3 hours in advance') {
-                console.log('Booking error: 3 hours in advance');
-                setBookingStatus({ type: 'error', message: 'You cannot book before 3 hours from now.' });
+                setBookingStatus({type: 'error', message: 'You cannot book before 3 hours from now.'});
             } else if (response.data && response.data.error === 'Past Time') {
-                console.log('Can not book in the past');
-                setBookingStatus({ type: 'error', message: 'Can not book in the past' });
+                setBookingStatus({type: 'error', message: 'Can not book in the past'});
             } else if (response.data && response.data.error === 'Wait 30 days after last donation') {
-                console.log('Wait 30 days after last donation');
-                setBookingStatus({ type: 'error', message: 'Wait 30 days after donation to book' });
+                setBookingStatus({type: 'error', message: 'Wait 30 days after donation to book'});
             } else {
-                console.log('Booking not successful:', response.data);
-                setBookingStatus({ type: 'error', message: 'Booking not successful. Please try again.' });
+                setBookingStatus({type: 'error', message: 'Booking not successful. Please try again.'});
             }
         } catch (error) {
             console.error('Error making booking:', error);

@@ -38,7 +38,6 @@ const Map = () => {
         const userLocation =
             await Location.getCurrentPositionAsync({accuracy: Location.Accuracy.Highest, maximumAge: 10000});
         if (userLocation) {
-            console.log(userLocation)
             setLocation({long: userLocation.coords.longitude, lat: userLocation.coords.latitude})
         }
     }

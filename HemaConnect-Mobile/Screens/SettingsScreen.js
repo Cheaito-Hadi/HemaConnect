@@ -79,7 +79,6 @@ const Settings = () => {
             setProfileImage({
                 uri: `http://192.168.1.4:8000/storage/${userData.image_url}`,
             })
-            console.log('User Data:', userData);
 
         } catch (error) {
             console.error("Image upload error:", error);

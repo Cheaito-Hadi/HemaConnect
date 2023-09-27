@@ -92,7 +92,6 @@ const EmployeeModal = ({hospital_id}) => {
 
     const handleBloodTypeChange = (selectedValue) => {
         setSelectedBloodType(selectedValue);
-        console.log(selectedValue)
     };
 
     const handleDataChange = (e) => {

@@ -31,7 +31,6 @@ const BankCard = ({bloodType, amount, id, onConfirm}) => {
             );
             const updatedBankStock = response.data.bank_stock_data;
             console.log('Bank stock updated successfully:', updatedBankStock);
-
             setIsEditing(false);
             onConfirm();
         } catch (error) {
