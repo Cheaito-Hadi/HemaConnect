@@ -83,11 +83,11 @@
 > Using the above mockups and technologies, HemaConnect introduce the following features:
 
 ### Blood Donor Screens (Mobile)
-| Login screen  | Register screen | Landing screen | Loading screen |
-| ---| ---| ---| ---|
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen  | Menu Screen | Order Screen | Checkout Screen |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| OnBoarding                                       | Login screen                            | Register screen                          | Home screen                             |
+|--------------------------------------------------|-----------------------------------------|------------------------------------------|-----------------------------------------|
+| ![onBoarding](./readme/gifsApp/onBoarding.gif)   | ![Login](./readme/gifsApp/LoginApp.gif) | ![Register](./readme/gifsApp/SignUp.gif) | ![Home](./readme/gifsApp/feed.gif)      |
+| Appointment screen                               | Map Screen                              | Profile Screen                           |
+| ![appointment](./readme/gifsApp/appointment.gif) | ![Map](./readme/gifsApp/map.gif)        | ![profile](./readme/gifsApp/profile.gif) |
 
 ### Login Screens (Web)
 | Login screen                                         |
