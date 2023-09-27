@@ -28,7 +28,7 @@
 <!-- Prototyping -->
 <img src="readme/title3.svg"/>
 
-> We designed HemaConnect using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+> The design was planned from scratch on a paper then enhanced on Figma by adding details.
 
 ### Mockups
 
@@ -49,7 +49,7 @@
 | Request Modal                                                          | Donation Modal                                                          |
 |------------------------------------------------------------------------|-------------------------------------------------------------------------|
 | ![RequestModal](./readme/screenshotsWebsite/Employee/RequestModal.png) | ![DonationModal](./readme/screenshotsWebsite/Employee/BookingModal.png) |
-### User Screens (Mobile)
+### Blood Donor Screens (Mobile)
 | OnBoarding                                                | OnBoarding                                       | OnBoarding                                            |
 |-----------------------------------------------------------| --------------------------------------------------------- |-----------------------------------------------------------|
 | ![onBoarding](./readme/screenshotsMobile/onBoarding1.jpg) | ![onBoarding](./readme/screenshotsMobile/onBoarding2.jpg) | ![onBoarding](./readme/screenshotsMobile/onBoarding3.jpg)      |
@@ -62,15 +62,27 @@
 |--------------------------------------------------------------|--------------------------------------------|----------------------------------------------------|
 | ![Appointments](./readme/screenshotsMobile/Appointments.jpg) | ![Map](./readme/screenshotsMobile/Map.jpg) | ![Profile](./readme/screenshotsMobile/Profile.jpg) |
 
+<br><br>
+
+<!-- Tech stack -->
+<img src="readme/title5.svg"/>
+
+###  HemaConnect is built using the following technologies:
+
+- [React Native Expo](https://expo.dev/):  Expo is a set of tools and services built around React Native, making it easier to develop, test, and deploy mobile apps.
+- [MySQL](https://www.mysql.com/): MySQL is a widely used open-source relational database management system (RDBMS). It is used as the database for storing and managing data.
+- [React](https://react.dev/): React is a popular JavaScript library for building user interfaces. React utilized the development of web-based interfaces for employees and the administrator.
+- [Laravel](https://laravel.com/): Laravel is a PHP web application framework known for its elegant syntax and developer-friendly features. It provides tools for routing, authentication, database interactions, and more.
+- [React Native Maps](https://www.npmjs.com/package/react-native-maps): React Native Maps is a component system for maps that allows the integration with maps and location-based functionality in React Native mobile applications. I've also used [Google Geolocation and Services Integration](https://developers.google.com/maps); Google Geolocation and Services provide powerful geolocation and mapping capabilities.
 
 <br><br>
 
 <!-- Implementation -->
 <img src="readme/title4.svg"/>
 
-> Using the wireframes and mockups as a guide, we implemented the HemaConnect app with the following features:
+> Using the above mockups and technologies, HemaConnect introduce the following features:
 
-### User Screens (Mobile)
+### Blood Donor Screens (Mobile)
 | Login screen  | Register screen | Landing screen | Loading screen |
 | ---| ---| ---| ---|
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
@@ -95,18 +107,6 @@
 | ![BankPage](./readme/gifsWebsite/Employee/BankPage.gif) | ![BookingPage](./readme/gifsWebsite/Employee/BookingPage.gif) |
 
 
-<br><br>
-
-<!-- Tech stack -->
-<img src="readme/title5.svg"/>
-
-###  HemaConnects is built using the following technologies:
-
-- This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
-- To send local push notifications, the app uses the [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) package which supports Android, iOS, and macOS.
-  - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are working to resolve!
-- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
 
 <br><br>
 
