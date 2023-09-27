@@ -33,13 +33,13 @@
 |--------------------------------------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
 | ![Landing](./readme/screenshotsWebsite/Admin/adminTable.png) | ![hospitalModal](./readme/screenshotsWebsite/Admin/hospitalModal.png) | ![EmployeeModal](./readme/screenshotsWebsite/Admin/employeeModal.png) |
 ### Hospital Employee Screens (Web)
-| Home screen  | Menu Screen |
-| ---| ---|
-| ![Landing](readme/demo/1440x1024.png) | ![fsdaf](readme/demo/1440x1024.png) |
+| Blood Bank                                                       | Booking Table                                                     |
+|------------------------------------------------------------------|-------------------------------------------------------------------|
+| ![BloodBank](./readme/screenshotsWebsite/Employee/BloodBank.png) | ![BookingTable](./readme/screenshotsWebsite/Employee/Booking.png) |
 
-| Home screen  | Menu Screen |
-| ---| ---|
-| ![Landing](readme/demo/1440x1024.png) | ![fsdaf](readme/demo/1440x1024.png) |
+| Request Modal                                                          | Donation Modal                                                          |
+|------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| ![RequestModal](./readme/screenshotsWebsite/Employee/RequestModal.png) | ![DonationModal](./readme/screenshotsWebsite/Employee/BookingModal.png) |
 ### User Screens (Mobile)
 | OnBoarding                                                | OnBoarding                                       | OnBoarding                                            |
 |-----------------------------------------------------------| --------------------------------------------------------- |-----------------------------------------------------------|
