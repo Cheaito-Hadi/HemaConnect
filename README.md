@@ -5,13 +5,13 @@
 <!-- project philosophy -->
 <img src="readme/title2.svg"/>
 
-> A mobile app for ordering coffee on-the-go, making it easier for coffee lovers to get their favorite beverages without waiting in line.
+> HemaConnect is a web application which aims to create a platform to facilitate the process of blood donations.
 >
-> HemaConnect aims to streamline the coffee-ordering process by providing a user-friendly platform for customers to place orders and pick up their coffee at their convenience. We believe in enhancing the coffee experience by saving time and ensuring customer satisfaction.
+> HemaConnect serves as the vital link connecting healthcare facilities with compassionate individuals eager to donate blood and make a life-saving difference. With its innovative approach, HemaConnect is poised to transform the blood donation process.
 
 ### Blood Donor Stories
 - As a blood donor, I want to see hospital blood requests, so I can know which hospital needs blood.
-- As a blood donor, I want to book and see upcoming appointments, so I can manage my timings
+- As a blood donor, I want to book and see upcoming appointments, so I can manage my timings.
 - As a blood donor, I want to view hospitals in need of blood on a map, so I can find the best route to reach it.
 
 ### Hospital Employee Stories
