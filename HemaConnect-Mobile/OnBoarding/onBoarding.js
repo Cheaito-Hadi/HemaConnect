@@ -98,7 +98,8 @@ const OnBoarding = ({navigation}) => {
                                         Ensuring a
                                         Healthier, Happier Tomorrow</Text>
                                 </View>
-                            )
+                            ),
+                            subtitle:""
                         },
                         {
                             backgroundColor: '#D7FDFD',
@@ -117,6 +118,7 @@ const OnBoarding = ({navigation}) => {
                                         Donation and Join the Lifesaving Community</Text>
                                 </View>
                             ),
+                            subtitle:""
                         },
                         {
                             backgroundColor: '#fdffe2',
@@ -135,6 +137,7 @@ const OnBoarding = ({navigation}) => {
                                         Difference</Text>
                                 </View>
                             ),
+                            subtitle:""
                         },
                     ]}
                 />}
