@@ -113,32 +113,80 @@
 <!-- How to run -->
 <img src="readme/title6.svg"/>
 
-> To set up HemaConnects locally, follow these steps:
+> To set up HemaConnect locally, follow these steps:
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+This is a list of the dependencies you need to install on your OS to run HemaConnect.
 * npm
   ```sh
-  npm install npm@latest -g
+   npm install npm@latest -g
   ```
 
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
+1. Buy a [Google API Key](https://developers.google.com/maps) to run the map and addresses.
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Cheaito-Hadi/HemaConnect.git
    ```
-3. Install NPM packages
+~~ Frontend:
+1. Navigate to the Frontend folder
+   ```sh
+   cd HemaConnect-client/
+   ```
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Run Client 
+   ```sh
+   npm start
+   ```
+   
+🚨 you might need to run `npm install --force`  if you face any dependency conflicts.
+
+~~ Mobile:
+1. Navigate to the Mobile folder
+   ```sh
+   cd HemaConnect-Mobile/
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```   
+3. Install Expo Go app for Android (Optional)
+   > [Android Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
+
+   > [Apple Store](https://apps.apple.com/us/app/expo-go/id982107779)
+4. Run the Start-Up Command
+   ```sh
+   npx expo start -c
    ```
 
-Now, you should be able to run Coffee Express locally and explore its features.
+~~ Backend:
+1. Navigate to the Backend folder
+   ```sh
+   cd HemaConnect-Server/
+   ```
+2. Rename `.env.example` to `.env` then set your credentials.
+3. Database initialization 
+   ```sh
+   php artisan migrate
+   ``` 
+4. Run Client Server locally
+   ```sh
+   php artisan serve
+   ``` 
+5. In command prompt, run the below command to get the IPv4 Address
+   ```sh
+   ipconfig
+   ```
+6. Run the below command in the HemaConnect-Server
+   ```sh
+   php artisan serve --host "YOUR IPv4 ADDRESS"
+   ```               
+
+Now, you should be able to run HemaConnect locally and explore its features.
