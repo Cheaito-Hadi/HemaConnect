@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { View, Text, StyleSheet, SafeAreaView, Platform, ScrollView,  RefreshControl } from "react-native";
+import {View, Text, StyleSheet, SafeAreaView, Platform, ScrollView, RefreshControl} from "react-native";
 import UserInfo from "../Components/UI/userInfo";
 import Donation from "../Components/UI/dontaionForm";
 import RequestCard from "../Components/UI/requestCard";
@@ -72,8 +72,7 @@ const FeedScreen = () => {
             }
         } catch (error) {
             console.error("Error fetching donation data:", error);
-        }
-        finally {
+        } finally {
             setRefreshing(false);
         }
     };
@@ -94,30 +93,30 @@ const FeedScreen = () => {
     return (
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
             <ScrollView refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
             }>
-            <View style={styles.homeContainer}>
-                <View style={styles.userInfoField}>
-                    <UserInfo/>
+                <View style={styles.homeContainer}>
+                    <View style={styles.userInfoField}>
+                        <UserInfo/>
+                    </View>
+                    <View style={styles.donationContainer}>
+                        <Donation lastDon={lastDonationData} donAfter={donateAfterData}/>
+                    </View>
+                    <View style={styles.requestsContainer}>
+                        <Text style={styles.recentRequestText}>Recent Requests</Text>
+                        <ScrollView
+                        >
+                            {requestsData.map((bloodRequest, index) => (
+                                <RequestCard
+                                    key={index}
+                                    imageSource={{uri: `http://192.168.1.4:8000/storage/${bloodRequest.hospital_info.logo_url}`}}
+                                    hospitalName={bloodRequest.hospital_info.name}
+                                    bloodType={bloodRequest.requests[0].blood_type_name}
+                                />
+                            ))}
+                        </ScrollView>
+                    </View>
                 </View>
-                <View style={styles.donationContainer}>
-                    <Donation lastDon={lastDonationData} donAfter={donateAfterData} />
-                </View>
-                <View style={styles.requestsContainer}>
-                    <Text style={styles.recentRequestText}>Recent Requests</Text>
-                    <ScrollView
-                    >
-                        {requestsData.map((bloodRequest, index) => (
-                            <RequestCard
-                                key={index}
-                                imageSource={{ uri: `http://192.168.1.4:8000/storage/${bloodRequest.hospital_info.logo_url}` }}
-                                hospitalName={bloodRequest.hospital_info.name}
-                                bloodType={bloodRequest.requests[0].blood_type_name}
-                            />
-                        ))}
-                    </ScrollView>
-                </View>
-            </View>
             </ScrollView>
         </SafeAreaView>
     );
@@ -148,7 +147,7 @@ const styles = StyleSheet.create({
     requestsContainer: {
         flex: 1,
         width: '90%',
-        marginTop:20
+        marginTop: 20
     },
     recentRequestText: {
         fontSize: 16,

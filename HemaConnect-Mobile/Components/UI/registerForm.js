@@ -1,8 +1,8 @@
 import {StyleSheet, View, Text, TextInput} from "react-native";
 import {RadioButton} from 'react-native-paper';
 import Button from "../Base/customedButton";
-import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
@@ -98,8 +98,8 @@ const registerForm = () => {
                 password: password,
                 bloodtype_id: selectedBloodType,
                 usertype_id: 1
-            },{
-                    'Content-Type': 'application/json'
+            }, {
+                'Content-Type': 'application/json'
             });
 
             const token = response.data.user.token;
@@ -167,7 +167,7 @@ const registerForm = () => {
                     />
                 </View>
                 <View style={styles.signUp}>
-                    <Text>Already a Donor?<Text style={{ fontWeight: '700' }} onPress={handleNavigateLogin}> Log In</Text></Text>
+                    <Text>Already a Donor?<Text style={{fontWeight: '700'}} onPress={handleNavigateLogin}> Log In</Text></Text>
                 </View>
             </View>
         </View>

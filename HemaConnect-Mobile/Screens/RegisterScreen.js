@@ -10,15 +10,15 @@ const RegisterScreen = () => {
     };
     return (
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
-        <View>
-            <ScreenTitle
-                title="Signup"
-                onBackPress={handleGoBack}
-            />
-            <View style={styles.formContainer}>
-                <RegisterForm/>
+            <View>
+                <ScreenTitle
+                    title="Signup"
+                    onBackPress={handleGoBack}
+                />
+                <View style={styles.formContainer}>
+                    <RegisterForm/>
+                </View>
             </View>
-        </View>
         </SafeAreaView>
     )
         ;
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         width: '100%',
     },
-    safeAndroidView:{
+    safeAndroidView: {
         paddingTop: Platform.OS === 'android' ? 30 : 0,
         flex: 1,
     }

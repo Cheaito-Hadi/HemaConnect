@@ -141,12 +141,12 @@ const styles = StyleSheet.create({
         color: 'red',
         marginTop: 5,
     },
-    logoWrapper:{
-        flexDirection:"row",
-        width:'100%',
-        alignItems:"center",
-        justifyContent:"center",
-        marginBottom:'15%'
+    logoWrapper: {
+        flexDirection: "row",
+        width: '100%',
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: '15%'
     },
 });
 

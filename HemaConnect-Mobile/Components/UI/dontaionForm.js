@@ -1,8 +1,8 @@
-import {Text, View, StyleSheet, SafeAreaView } from "react-native";
+import {Text, View, StyleSheet, SafeAreaView} from "react-native";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import React from "react";
 
-const Donation = ({lastDon,donAfter}) => {
+const Donation = ({lastDon, donAfter}) => {
 
     let renderView;
     if (donAfter.dayNumber === '0') {
@@ -23,23 +23,23 @@ const Donation = ({lastDon,donAfter}) => {
 
     return (
         <SafeAreaView>
-                <View>
-                    <View style={styles.donationWrapper}>
-                        <View style={styles.lastDonation}>
-                            <Text style={styles.lastAfter}>Last Donation</Text>
-                            <Text style={styles.dayNumber}>{lastDon.dayNumber}</Text>
-                            <Text style={styles.daysLeft}>Days ago</Text>
-                            <Text style={styles.dateText}>{lastDon.date}</Text>
-                        </View>
-                        <View style={styles.lastDonation}>
-                            <Text style={styles.lastAfter}>Donate After</Text>
-                            <Text style={styles.dayNumber}>{donAfter.dayNumber}</Text>
-                            <Text style={styles.daysLeft}>Days</Text>
-                            <Text style={styles.dateText}>{donAfter.date}</Text>
-                        </View>
+            <View>
+                <View style={styles.donationWrapper}>
+                    <View style={styles.lastDonation}>
+                        <Text style={styles.lastAfter}>Last Donation</Text>
+                        <Text style={styles.dayNumber}>{lastDon.dayNumber}</Text>
+                        <Text style={styles.daysLeft}>Days ago</Text>
+                        <Text style={styles.dateText}>{lastDon.date}</Text>
                     </View>
-                    {renderView}
+                    <View style={styles.lastDonation}>
+                        <Text style={styles.lastAfter}>Donate After</Text>
+                        <Text style={styles.dayNumber}>{donAfter.dayNumber}</Text>
+                        <Text style={styles.daysLeft}>Days</Text>
+                        <Text style={styles.dateText}>{donAfter.date}</Text>
+                    </View>
                 </View>
+                {renderView}
+            </View>
         </SafeAreaView>
     );
 };

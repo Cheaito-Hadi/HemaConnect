@@ -7,7 +7,8 @@ import {
     ScrollView,
     Text,
     TouchableOpacity,
-    Modal, Image
+    Modal,
+    Image
 } from "react-native";
 import MapView, {Marker} from 'react-native-maps';
 import axios from "axios";
@@ -25,7 +26,7 @@ const Map = () => {
     const [location, setLocation] = useState(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [showStreet, setShowStreet] = useState(false);
-    const [destination, setDestination]= useState(null)
+    const [destination, setDestination] = useState(null)
     const [selectedHospital, setSelectedHospital] = useState(null);
     const GOOGLE_MAPS_APIKEY = 'AIzaSyDHUtORXXAhUn_c-UbE_6pWSPXzeKwrZpc';
 
@@ -65,7 +66,7 @@ const Map = () => {
             {
                 latitude: parseFloat(hospital.hospital_info.latitude),
                 longitude: parseFloat(hospital.hospital_info.longitude),
-        });
+            });
 
         setShowStreet(false);
     };
@@ -176,7 +177,8 @@ const Map = () => {
                                     </TouchableOpacity>
                                 </View>
                                 <View style={styles.modalHeader}>
-                                    <Text style={styles.modalTitle}>{selectedHospital.hospital_info.name} Hospital</Text>
+                                    <Text
+                                        style={styles.modalTitle}>{selectedHospital.hospital_info.name} Hospital</Text>
 
                                 </View>
                                 <View style={styles.modalBody}>
@@ -242,7 +244,7 @@ const styles = StyleSheet.create({
     cardsContainerMap: {
         flexDirection: "row",
         width: '70%',
-        marginHorizontal:10
+        marginHorizontal: 10
     },
     modalContainer: {
         flex: 1,
@@ -288,7 +290,7 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         marginHorizontal: 10,
         borderRadius: 5,
-        width:'45%'
+        width: '45%'
     },
     modalTextDirections: {
         color: '#fff',
@@ -307,15 +309,15 @@ const styles = StyleSheet.create({
     closeButton: {
         color: '#000',
     },
-    bloodRequestsMap:{
-        position:"absolute",
-        bottom:90,
-        left:10,
-        padding:10,
-        backgroundColor:'#fff',
-        borderRadius:10,
-        fontSize:14,
-        fontWeight:'500',
+    bloodRequestsMap: {
+        position: "absolute",
+        bottom: 90,
+        left: 10,
+        padding: 10,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        fontSize: 14,
+        fontWeight: '500',
         borderWidth: 1,
         borderColor: '#F6D5D5',
         shadowColor: 'rgba(246, 213, 213, 0.50)',

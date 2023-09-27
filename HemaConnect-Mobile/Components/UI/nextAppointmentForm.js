@@ -1,5 +1,5 @@
 import {View, Text, Image, StyleSheet} from "react-native";
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -34,7 +34,7 @@ const nextAppointment = () => {
                         <View style={styles.leftInside}>
                             <Image
                                 style={styles.hospitalImage}
-                                source={{ uri: `http://192.168.1.4:8000/storage/${bookingData?.hospital_detailes?.logo_url}` }}
+                                source={{uri: `http://192.168.1.4:8000/storage/${bookingData?.hospital_detailes?.logo_url}`}}
                             />
                         </View>
                         <View style={styles.hospitalDateWrapper}>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     bookingCard: {
         flexDirection: 'row',
-        marginLeft:5
+        marginLeft: 5
     },
     hospitalImage: {
         height: 70,
@@ -78,28 +78,28 @@ const styles = StyleSheet.create({
     hospitalStyle: {
         fontWeight: '700',
         fontSize: 16,
-        marginBottom:10,
+        marginBottom: 10,
     },
-    hospitalDateWrapper:{
-        flexDirection:"column",
-        justifyContent:"center",
-        alignItems:"flex-start",
-        paddingLeft:30,
+    hospitalDateWrapper: {
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        paddingLeft: 30,
     },
-    comingDate:{
-        fontSize:14,
-        fontWeight:'500',
+    comingDate: {
+        fontSize: 14,
+        fontWeight: '500',
     },
-    upComingBooking:{
-        fontSize:18,
-        fontWeight:'700',
-        marginBottom:'5%',
+    upComingBooking: {
+        fontSize: 18,
+        fontWeight: '700',
+        marginBottom: '5%',
     },
-    noAppointment:{
+    noAppointment: {
         fontWeight: "500",
         padding: 10,
-        backgroundColor:'#FFF',
-        borderRadius:10,
+        backgroundColor: '#FFF',
+        borderRadius: 10,
         shadowColor: 'rgba(246, 213, 213, 0.50)',
         elevation: 5,
     }

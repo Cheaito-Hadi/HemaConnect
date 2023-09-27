@@ -1,6 +1,6 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View } from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {View} from 'react-native';
 import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import FeedScreen from '../Screens/FeedScreen';
 import AppointmentsScreen from '../Screens/AppointmentsScreen';
@@ -9,11 +9,11 @@ import SettingsScreen from '../Screens/SettingsScreen';
 
 const Tab = createBottomTabNavigator();
 
-const CustomTabBar = ({ state, descriptors, navigation }) => {
+const CustomTabBar = ({state, descriptors, navigation}) => {
     return (
-        <View style={{ flexDirection: 'row', backgroundColor: 'black', height: 60 }}>
+        <View style={{flexDirection: 'row', backgroundColor: 'black', height: 60}}>
             {state.routes.map((route, index) => {
-                const { options } = descriptors[route.key];
+                const {options} = descriptors[route.key];
 
                 return (
                     <View

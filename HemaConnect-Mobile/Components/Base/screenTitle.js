@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import {View, Text, TouchableOpacity, StyleSheet, SafeAreaView} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 
-const ScreenTitle = ({ title, onBackPress }) => {
+const ScreenTitle = ({title, onBackPress}) => {
     return (
         <SafeAreaView edges={['top']}>
             <View style={styles.titleContainer}>
                 <Text style={styles.textTitle}>{title}</Text>
-                <TouchableOpacity onPress={onBackPress} style={{ position: 'absolute', left: 20 }}>
-                    <Ionicons name="ios-arrow-back" size={24} color="white" />
+                <TouchableOpacity onPress={onBackPress} style={{position: 'absolute', left: 20}}>
+                    <Ionicons name="ios-arrow-back" size={24} color="white"/>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>

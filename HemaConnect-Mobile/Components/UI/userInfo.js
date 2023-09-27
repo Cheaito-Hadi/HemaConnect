@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import {View, Text, StyleSheet, Image} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 const userInfo = () => {
     const [userData, setUserData] = useState(null);
