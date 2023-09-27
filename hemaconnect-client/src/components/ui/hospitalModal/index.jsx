@@ -9,14 +9,14 @@ import {
     Typography,
     Input,
 } from "@material-tailwind/react";
-import { MapContainer } from 'react-leaflet/MapContainer'
-import { TileLayer } from 'react-leaflet/TileLayer'
-import { Marker } from 'react-leaflet'
+import {MapContainer} from 'react-leaflet/MapContainer'
+import {TileLayer} from 'react-leaflet/TileLayer'
+import {Marker} from 'react-leaflet'
 import {Icon} from 'leaflet'
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
 
-const HospitalModal = ({refreshHospitalData})=>{
+const HospitalModal = ({refreshHospitalData}) => {
     const [open, setOpen] = React.useState(false);
     const initialHospitalState = {
         name: "",
@@ -29,11 +29,11 @@ const HospitalModal = ({refreshHospitalData})=>{
     const [errors, setErrors] = useState({});
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        setLogo( file );
+        setLogo(file);
     };
 
     const LeafletMarker = new Icon({
-        iconSize:     [25, 25],
+        iconSize: [25, 25],
         iconUrl: 'https://img.icons8.com/?size=512&id=PZTTDl8ML4vy&format=png'
     });
     const resetHospitalState = () => {
@@ -43,8 +43,8 @@ const HospitalModal = ({refreshHospitalData})=>{
     };
 
     const handleDataChange = (e) => {
-        setNewHospital({ ...newHospital, [e.target.name]: e.target.value });
-        setErrors({ ...errors, [e.target.name]: "" });
+        setNewHospital({...newHospital, [e.target.name]: e.target.value});
+        setErrors({...errors, [e.target.name]: ""});
     };
 
     const createHospital = async () => {
@@ -100,9 +100,10 @@ const HospitalModal = ({refreshHospitalData})=>{
         resetHospitalState();
     };
 
-    return(
+    return (
         <>
-            <Button onClick={handleOpen} className="hover:shadow-none shadow-none py-4"  style={{ backgroundColor: 'rgb(255,103,103)' }}>Add Hospital</Button>
+            <Button onClick={handleOpen} className="hover:shadow-none shadow-none py-4"
+                    style={{backgroundColor: 'rgb(255,103,103)'}}>Add Hospital</Button>
             <Dialog
                 size="md"
                 open={open}
@@ -112,7 +113,7 @@ const HospitalModal = ({refreshHospitalData})=>{
                 <Card className="mx-auto w-full max-w-full mb-0.5">
                     <CardHeader
                         variant="gradient"
-                        style={{ backgroundColor: 'rgb(255,103,103)' }}
+                        style={{backgroundColor: 'rgb(255,103,103)'}}
                         className="mb-0.5 mt-0.3 grid h-20 place-items-center"
                     >
                         <Typography variant="h5" color="white">
@@ -120,25 +121,30 @@ const HospitalModal = ({refreshHospitalData})=>{
                         </Typography>
                     </CardHeader>
                     <CardBody className="flex flex-col gap-4">
-                        <Input label="Name" size="lg" name={"name"} value={newHospital.name} onChange={handleDataChange} />
+                        <Input label="Name" size="lg" name={"name"} value={newHospital.name}
+                               onChange={handleDataChange}/>
                         {errors.name && <span className="text-red-500">{errors.name}</span>}
-                        <Input label="Phone Number" size="lg" name={"phone_number"} value={newHospital.phone_number} onChange={handleDataChange} />
+                        <Input label="Phone Number" size="lg" name={"phone_number"} value={newHospital.phone_number}
+                               onChange={handleDataChange}/>
                         {errors.phone_number && <span className="text-red-500">{errors.phone_number}</span>}
-                        <Input label="Logo" size="lg" type="file" name={"logo_url"} onChange={handleFileChange} />
+                        <Input label="Logo" size="lg" type="file" name={"logo_url"} onChange={handleFileChange}/>
                         {errors.logo_url && <span className="text-red-500">{errors.logo_url}</span>}
                         <div className="w-[100%] h-60">
-                            <MapContainer center={[newHospital.latitude, newHospital.longitude]} zoom={10} scrollWheelZoom={true} className="w-full h-full">
+                            <MapContainer center={[newHospital.latitude, newHospital.longitude]} zoom={10}
+                                          scrollWheelZoom={true} className="w-full h-full">
                                 <TileLayer
                                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                 />
-                                <Marker position={[newHospital.latitude, newHospital.longitude]} draggable={true} icon={LeafletMarker} eventHandlers={{ dragend: handleMarkerEvent }}>
+                                <Marker position={[newHospital.latitude, newHospital.longitude]} draggable={true}
+                                        icon={LeafletMarker} eventHandlers={{dragend: handleMarkerEvent}}>
                                 </Marker>
                             </MapContainer>
                         </div>
                     </CardBody>
-                    <CardFooter className="pt-0" >
-                        <Button className="bg-transparent shadow-none" style={{ backgroundColor: 'rgb(255,103,103)' }} onClick={createHospital} fullWidth>
+                    <CardFooter className="pt-0">
+                        <Button className="bg-transparent shadow-none" style={{backgroundColor: 'rgb(255,103,103)'}}
+                                onClick={createHospital} fullWidth>
                             Create
                         </Button>
                     </CardFooter>

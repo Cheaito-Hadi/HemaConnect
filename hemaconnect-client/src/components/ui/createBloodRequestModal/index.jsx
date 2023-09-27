@@ -30,8 +30,7 @@ const BloodRequestModal = ({onClose, onSubmit}) => {
         if (bloodType && amount) {
             const requestData = {bloodtype: bloodType, needed_amount: amount};
             onSubmit(requestData);
-        }
-        else{
+        } else {
             if (!amount) {
                 setAmountError('Amount is required');
             }

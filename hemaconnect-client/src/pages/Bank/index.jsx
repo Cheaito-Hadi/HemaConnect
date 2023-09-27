@@ -10,11 +10,12 @@ const Bank = () => {
     const [bloodRequests, setBloodRequests] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const confirmEdit = ()=> {
+    const confirmEdit = () => {
         fetchBankData();
         fetchBloodRequests();
     }
-    function fetchBankData (){
+
+    function fetchBankData() {
         axios.get('http://127.0.0.1:8000/api/get_bankstocks', {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -29,7 +30,7 @@ const Bank = () => {
             });
     }
 
-    function fetchBloodRequests(){
+    function fetchBloodRequests() {
         axios.get('http://127.0.0.1:8000/api/get_bloodrequests', {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -44,6 +45,7 @@ const Bank = () => {
                 console.error("Error fetching blood request data:", error);
             });
     }
+
     useEffect(() => {
 
         fetchBankData();

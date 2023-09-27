@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import "./styles.css";
 import Input from "../../../base/Input";
 import Button from "../../../base/Button";
 import Hema from '../../../../assets/SVGs/Hema.svg';
 import Connect from '../../../../assets/SVGs/Connect.svg';
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -23,18 +23,18 @@ const LoginForm = () => {
     });
 
     const handleDataChange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
-        setErrors({ ...errors, [e.target.name]: "" });
+        setCredentials({...credentials, [e.target.name]: e.target.value});
+        setErrors({...errors, [e.target.name]: ""});
         setErrors({
             email: "",
             password: "",
             invalidCredentials: "",
         });
         if (e.target.name === "email") {
-            setErrors({ ...errors, email: "" });
+            setErrors({...errors, email: ""});
         }
         if (e.target.name === "password") {
-            setErrors({ ...errors, password: "" });
+            setErrors({...errors, password: ""});
         }
     };
 
@@ -68,7 +68,7 @@ const LoginForm = () => {
                     setauthenticated(true);
                     localStorage.setItem("authenticated", true);
                     localStorage.setItem("token", responseData.authorization.token);
-                    localStorage.setItem("usertype",responseData.user.usertype_id)
+                    localStorage.setItem("usertype", responseData.user.usertype_id)
                     if (responseData.user.usertype_id === 3) {
                         navigate('/adminControl');
                     } else {
@@ -80,7 +80,7 @@ const LoginForm = () => {
             }
         } catch (error) {
             console.error("Login error:", error);
-            setErrors({ ...errors, invalidCredentials: "Invalid credentials" });
+            setErrors({...errors, invalidCredentials: "Invalid credentials"});
         }
     };
 
@@ -88,8 +88,8 @@ const LoginForm = () => {
         <div className="login-form">
             <div className="login-container">
                 <div className="logo-wrapper">
-                    <img src={Hema} alt="Hema Logo" />
-                    <img src={Connect} alt="Connect Logo" />
+                    <img src={Hema} alt="Hema Logo"/>
+                    <img src={Connect} alt="Connect Logo"/>
                 </div>
                 <div className="cred-btn-wrapper">
                     <div>

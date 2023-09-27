@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import './styles.css';
 import SearchBar from "../../components/ui/searchBar";
 import BookingTable from "../../components/ui/BookingTable";
@@ -11,11 +11,11 @@ const Booking = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     async function fetchBookingData(search_value) {
-        if (!search_value){
-            search_value=""
+        if (!search_value) {
+            search_value = ""
         }
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/get_bookings?search_value=`+encodeURIComponent(search_value), {
+            const response = await axios.get(`http://127.0.0.1:8000/api/get_bookings?search_value=` + encodeURIComponent(search_value), {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -66,7 +66,7 @@ const Booking = () => {
             setBookingData((prevBookingData) =>
                 prevBookingData.map((booking) =>
                     booking.id === selectedBooking.id
-                        ? { ...booking, donated: true }
+                        ? {...booking, donated: true}
                         : booking
                 )
             );
@@ -75,14 +75,16 @@ const Booking = () => {
             console.error(`Error creating donation:`, error);
         }
     }
-    function handleSearch (search_value) {
+
+    function handleSearch(search_value) {
         fetchBookingData(search_value);
     }
+
     return (
         <div className="booking-page">
             <div>
                 <SearchBar
-                onSearch={handleSearch}
+                    onSearch={handleSearch}
                 />
             </div>
             <div>

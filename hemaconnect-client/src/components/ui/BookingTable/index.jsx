@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import { Card, Typography } from "@material-tailwind/react";
+import {Card, Typography} from "@material-tailwind/react";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -8,10 +8,10 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 
 const TABLE_HEAD = ["Name", "Email", "Booking Time", "Blood Type", "Anemia", "Hepatitis", "Confirm Donation", "Delete"];
 
-export function BookingTable({ bookingData, onDelete, onConfirmDonation }) {
+export function BookingTable({bookingData, onDelete, onConfirmDonation}) {
     return (
         <Card className="h-full w-full">
-            <div className="table-container" style={{ maxHeight: '500px', overflowY: 'auto' }}>
+            <div className="table-container" style={{maxHeight: '500px', overflowY: 'auto'}}>
                 <table className="w-full min-w-max table-auto text-left">
                     <thead>
                     <tr>
@@ -36,44 +36,47 @@ export function BookingTable({ bookingData, onDelete, onConfirmDonation }) {
                                 index % 2 === 0 ? "bg-white" : "bg-gray-100"
                             } ${booking.donated ? "confirmed-donation" : ""}`}
                         >
-                            <td className="p-4 align-middle" style={{ height: '50px' }}>
+                            <td className="p-4 align-middle" style={{height: '50px'}}>
                                 <Typography variant="small" color="blue-gray" className="font-normal">
                                     {booking.user_name}
                                 </Typography>
                             </td>
-                            <td className="p-4 align-middle" style={{ height: '50px' }}>
+                            <td className="p-4 align-middle" style={{height: '50px'}}>
                                 <Typography variant="small" color="blue-gray" className="font-normal">
                                     {booking.user_email}
                                 </Typography>
                             </td>
-                            <td className="p-4 align-middle" style={{ height: '50px' }}>
+                            <td className="p-4 align-middle" style={{height: '50px'}}>
                                 <Typography variant="small" color="blue-gray" className="font-normal">
                                     {new Date(booking.time).toLocaleString()}
                                 </Typography>
                             </td>
-                            <td className="p-4 align-middle" style={{ height: '50px' }}>
+                            <td className="p-4 align-middle" style={{height: '50px'}}>
                                 <Typography variant="small" color="blue-gray" className="font-normal">
                                     {booking.user_blood_type}
                                 </Typography>
                             </td>
-                            <td className="p-4 align-middle" style={{ height: '50px' }}>
+                            <td className="p-4 align-middle" style={{height: '50px'}}>
                                 <Typography variant="small" color="blue-gray" className="font-normal">
-                                    {booking.anemia === 1 ? <CheckIcon color="primary" /> : <CloseIcon color="error" />}
+                                    {booking.anemia === 1 ? <CheckIcon color="primary"/> : <CloseIcon color="error"/>}
                                 </Typography>
                             </td>
-                            <td className="p-4 align-middle" style={{ height: '50px' }}>
+                            <td className="p-4 align-middle" style={{height: '50px'}}>
                                 <Typography variant="small" color="blue-gray" className="font-normal">
-                                    {booking.hepatitis === 1 ? <CheckIcon color="primary" /> : <CloseIcon color="error" />}
+                                    {booking.hepatitis === 1 ? <CheckIcon color="primary"/> :
+                                        <CloseIcon color="error"/>}
                                 </Typography>
                             </td>
-                            <td className="p-4 align-middle" style={{ height: '50px', cursor: 'pointer' }}>
-                                <Typography variant="small" color="blue" className="font-normal" onClick={() => onConfirmDonation(booking)}>
-                                    <ThumbUpIcon />
+                            <td className="p-4 align-middle" style={{height: '50px', cursor: 'pointer'}}>
+                                <Typography variant="small" color="blue" className="font-normal"
+                                            onClick={() => onConfirmDonation(booking)}>
+                                    <ThumbUpIcon/>
                                 </Typography>
                             </td>
-                            <td className="p-4 align-middle" style={{ height: '50px', cursor: 'pointer' }}>
-                                <Typography variant="small" className="font-normal" onClick={() => onDelete(booking.id)}>
-                                    <DeleteIcon color="error" />
+                            <td className="p-4 align-middle" style={{height: '50px', cursor: 'pointer'}}>
+                                <Typography variant="small" className="font-normal"
+                                            onClick={() => onDelete(booking.id)}>
+                                    <DeleteIcon color="error"/>
                                 </Typography>
                             </td>
                         </tr>

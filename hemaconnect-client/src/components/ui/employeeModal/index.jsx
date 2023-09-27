@@ -138,7 +138,7 @@ const EmployeeModal = ({hospital_id}) => {
                 <Card className="mx-auto w-full max-w-full">
                     <CardHeader
                         variant="gradient"
-                        style={{ backgroundColor: 'rgb(255,103,103)' }}
+                        style={{backgroundColor: 'rgb(255,103,103)'}}
                         className="mb-3 grid h-20 place-items-center"
                     >
                         <Typography variant="h5" color="white">
@@ -205,7 +205,8 @@ const EmployeeModal = ({hospital_id}) => {
                         </div>
                     </CardBody>
                     <CardFooter className="pt-0">
-                        <Button className="bg-transparent shadow-none" style={{ backgroundColor: 'rgb(255,103,103)' }} onClick={createEmployee} fullWidth>
+                        <Button className="bg-transparent shadow-none" style={{backgroundColor: 'rgb(255,103,103)'}}
+                                onClick={createEmployee} fullWidth>
                             Create
                         </Button>
                     </CardFooter>

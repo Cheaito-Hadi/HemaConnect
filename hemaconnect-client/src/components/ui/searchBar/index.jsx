@@ -3,7 +3,7 @@ import './styles.css';
 import SearchIcon from '../../../assets/SVGs/Search.svg'
 
 const SearchBar = ({onSearch}) => {
-    const onDefoucs = (changeInput)=>{
+    const onDefoucs = (changeInput) => {
         onSearch(changeInput.target.value);
     }
     return (

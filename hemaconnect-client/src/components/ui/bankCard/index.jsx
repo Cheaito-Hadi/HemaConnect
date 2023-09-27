@@ -59,7 +59,8 @@ const BankCard = ({bloodType, amount, id, onConfirm}) => {
                         />
                         <div className="save-cancel">
                             <button type="submit" className="edit-save-btn">Save</button>
-                            <button type="button" className="edit-cancel-btn" onClick={handleCancelClick}>Cancel</button>
+                            <button type="button" className="edit-cancel-btn" onClick={handleCancelClick}>Cancel
+                            </button>
                         </div>
                     </div>
                 </form>

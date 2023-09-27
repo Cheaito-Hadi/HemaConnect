@@ -21,8 +21,8 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="hemaconnect-logo">
-                <img src={HemaWhite} alt="Hema Logo" />
-                <img src={ConnectWhite} alt="Connect Logo" />
+                <img src={HemaWhite} alt="Hema Logo"/>
+                <img src={ConnectWhite} alt="Connect Logo"/>
             </div>
             <ul>
                 {userType === '2' && (

@@ -3,7 +3,7 @@ import './styles.css';
 import {CircularProgressbar, buildStyles} from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
 
-const BloodRequest = ({ bloodType, neededAmount, donatedAmount }) => {
+const BloodRequest = ({bloodType, neededAmount, donatedAmount}) => {
     const remaining = neededAmount - donatedAmount;
     const overallRatio = (donatedAmount / neededAmount) * 100;
     return (

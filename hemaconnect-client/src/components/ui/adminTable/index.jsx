@@ -92,7 +92,7 @@ const AdminTable = () => {
                                                         variant="md"
                                                         color="blue-gray"
                                                         className="font-normal"
-                                                        style={{ fontWeight: 600 }}
+                                                        style={{fontWeight: 600}}
                                                     >
                                                         {name}
                                                     </Typography>
