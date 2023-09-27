@@ -21,15 +21,38 @@
 
 > We designed HemaConnects using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
-### Wireframes
+### Mockups
+
+### LogIn Screen (Web)
+| Login screen  |
+| ---|
+| ![Landing](readme/demo/1440x1024.png) |
+
+### Admin Screens (Web)
 | Login screen  | Register screen |  Landing screen |
 | ---| ---| ---|
 | ![Landing](readme/demo/1440x1024.png) | ![fsdaf](readme/demo/1440x1024.png) | ![fsdaf](readme/demo/1440x1024.png) |
+### Hospital Employee Screens (Web)
+| Home screen  | Menu Screen |
+| ---| ---|
+| ![Landing](readme/demo/1440x1024.png) | ![fsdaf](readme/demo/1440x1024.png) |
 
-### Mockups
-| Home screen  | Menu Screen | Order Screen |
-| ---| ---| ---|
-| ![Landing](readme/demo/1440x1024.png) | ![fsdaf](readme/demo/1440x1024.png) | ![fsdaf](readme/demo/1440x1024.png) |
+| Home screen  | Menu Screen |
+| ---| ---|
+| ![Landing](readme/demo/1440x1024.png) | ![fsdaf](readme/demo/1440x1024.png) |
+### User Screens (Mobile)
+| OnBoarding                                                | OnBoarding                                       | OnBoarding                                            |
+|-----------------------------------------------------------| --------------------------------------------------------- |-----------------------------------------------------------|
+| ![onBoarding](./readme/screenshotsMobile/onBoarding1.jpg) | ![onBoarding](./readme/screenshotsMobile/onBoarding2.jpg) | ![onBoarding](./readme/screenshotsMobile/onBoarding3.jpg)      |
+
+| Login screen                                   | Register screen                                      | Home screen                                  | 
+|------------------------------------------------|------------------------------------------------------|----------------------------------------------|
+| ![Login](./readme/screenshotsMobile/LogIn.jpg) | ![Register](./readme/screenshotsMobile/Register.jpg) | ![Home](./readme/screenshotsMobile/Feed.jpg) | 
+
+| Appointments                                                 | Map                                        | Profile                                            |
+|--------------------------------------------------------------|--------------------------------------------|----------------------------------------------------|
+| ![Appointments](./readme/screenshotsMobile/Appointments.jpg) | ![Map](./readme/screenshotsMobile/Map.jpg) | ![Profile](./readme/screenshotsMobile/Profile.jpg) |
+
 
 <br><br>
 
