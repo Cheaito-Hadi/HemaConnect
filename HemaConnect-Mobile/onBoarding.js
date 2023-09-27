@@ -8,7 +8,7 @@ const Dots = ({selected}) => {
     const animation = useRef(null);
     let backgroundColor;
 
-    backgroundColor = selected ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.3)';
+    backgroundColor = selected ? 'rgb(255,103,103)' : 'rgb(253,215,215)';
 
     return (
         <View
@@ -61,7 +61,7 @@ const OnBoarding = ({navigation}) => {
                 containerStyles={{paddingHorizontal: 15}}
                 pages={[
                     {
-                        backgroundColor: '#a6e4d0',
+                        backgroundColor: '#FDD7D7FF',
                         image: (
                             <View style={styles.animationContainer}>
                                 <Lottie
@@ -70,11 +70,16 @@ const OnBoarding = ({navigation}) => {
                                 />
                             </View>
                         ),
-                        title: 'Connect to the World',
-                        subtitle: 'A New Way To Connect With The World',
+                        title: (
+                            <View>
+                                <Text style={styles.onBoardingTitleText}>The Power of Giving: Donate Blood, Save Lives</Text>
+                                <Text style={styles.OnBoardingSubtitleText}>Uncover the Vital Role You Play in Ensuring a
+                                    Healthier, Happier Tomorrow</Text>
+                            </View>
+                        )
                     },
                     {
-                        backgroundColor: '#a6e4d0',
+                        backgroundColor: '#D7FDFD',
                         image: (
                             <View style={styles.animationContainer}>
                                 <Lottie
@@ -83,11 +88,15 @@ const OnBoarding = ({navigation}) => {
                                 />
                             </View>
                         ),
-                        title: 'Connect to the World',
-                        subtitle: 'A New Way To Connect With The World',
+                        title: (
+                            <View>
+                                <Text style={styles.onBoardingTitleText}>Saving Lives, One Drop at a Time</Text>
+                                <Text style={styles.OnBoardingSubtitleText}>Discover the Importance of Blood Donation and Join the Lifesaving Community</Text>
+                            </View>
+                        ),
                     },
                     {
-                        backgroundColor: '#a6e4d0',
+                        backgroundColor: '#fdffe2',
                         image: (
                             <View style={styles.animationContainer}>
                                 <Lottie
@@ -96,8 +105,12 @@ const OnBoarding = ({navigation}) => {
                                 />
                             </View>
                         ),
-                        title: 'Connect to the World',
-                        subtitle: 'A New Way To Connect With The World',
+                        title: (
+                            <View>
+                                <Text style={styles.onBoardingTitleText}>Be a Hero Today: Donate Blood</Text>
+                                <Text style={styles.OnBoardingSubtitleText}>Your Gift of Blood Can Make a World of Difference</Text>
+                            </View>
+                        ),
                     },
                 ]}
             />
@@ -113,7 +126,17 @@ const styles = StyleSheet.create({
     animationContainer:{
         width:300,
         height:300,
-        backgroundColor:'white',
+    },
+    onBoardingTitleText:{
+        fontSize:20,
+        fontWeight:"600",
+        textAlign:"center"
+    },
+    OnBoardingSubtitleText:{
+        fontSize:16,
+        fontWeight:"400",
+        textAlign:"center",
+        marginTop:10
     }
 })
 
