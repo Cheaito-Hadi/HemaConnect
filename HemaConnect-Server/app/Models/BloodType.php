@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class BloodType extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
     protected $table = 'bloodtypes';
+
     public function users()
     {
         return $this->hasMany(User::class, 'bloodtype_id');

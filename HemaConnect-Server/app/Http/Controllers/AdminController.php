@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function createHospital(Request $request){
+    public function createHospital(Request $request)
+    {
         $new_hospital = new Hospital;
         $new_hospital->name = $request->name;
         $new_hospital->latitude = $request->latitude;
@@ -22,7 +23,7 @@ class AdminController extends Controller
         $new_hospital->address = $request->address;
         $file_name = time() . "_" . uniqid() . "_hospital_logo." . $request->logo_url->getClientOriginalExtension();
         $request->logo_url->storeAs('public/hospitalLogos', $file_name);
-        $new_hospital->logo_url ="hospitalLogos/". $file_name;
+        $new_hospital->logo_url = "hospitalLogos/" . $file_name;
         $new_hospital->save();
 
         $bloodTypes = BloodType::all();
@@ -44,8 +45,9 @@ class AdminController extends Controller
         ]);
     }
 
-    public function getAllHospitals(){
-        $all_hospitals= Hospital::all();
+    public function getAllHospitals()
+    {
+        $all_hospitals = Hospital::all();
 
         return response()->json([
             "status" => "success",
@@ -53,7 +55,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function createEmployee(Request $request){
+    public function createEmployee(Request $request)
+    {
 
         $user = new User;
         $user->first_name = $request->first_name;
@@ -64,7 +67,7 @@ class AdminController extends Controller
         $user->usertype_id = 2;
         $user->save();
 
-        $new_employee= new Employee;
+        $new_employee = new Employee;
         $new_employee->hospital_id = intval($request->hospital_id);
         $new_employee->user_id = $user->id;
         $new_employee->save();
@@ -72,7 +75,7 @@ class AdminController extends Controller
         return response()->json([
             "status" => "success",
             "employee" => $user,
-            "employee_hospital"=> $new_employee
+            "employee_hospital" => $new_employee
         ]);
     }
 }

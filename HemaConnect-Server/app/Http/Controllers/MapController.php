@@ -33,9 +33,9 @@ class MapController extends Controller
                 "hospital_info" => [
                     "name" => $hospital->name,
                     "logo_url" => $hospital->logo_url,
-                    "longitude"=> $hospital->longitude,
-                    "latitude"=> $hospital->latitude,
-                    "phone_number"=>$hospital->phone_number
+                    "longitude" => $hospital->longitude,
+                    "latitude" => $hospital->latitude,
+                    "phone_number" => $hospital->phone_number
                 ],
                 "requests" => $filteredRequests->values(),
             ];

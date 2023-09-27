@@ -8,8 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class BloodRequest extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
     protected $table = "blood_requests";
+
     public function bloodtype()
     {
         return $this->belongsTo(BloodType::class, 'bloodtype_id');
@@ -27,6 +29,6 @@ class BloodRequest extends Model
 
     public function bookings()
     {
-        return $this->hasMany(Booking::class,'request_id');
+        return $this->hasMany(Booking::class, 'request_id');
     }
 }
