@@ -1,9 +1,13 @@
 <img src="readme/title1.svg"/>
 
+
+> Hello world! Welcome to my project, where I've transformed lines of code into a web application.
+> 
+**[PROJECT PHILOSOPHY](https://github.com/Cheaito-Hadi/HemaConnect#project-philosophy) • [MOCKUPS](https://github.com/Cheaito-Hadi/HemaConnect#mockups) • [TECH STACK](https://github.com/Cheaito-Hadi/HemaConnect#stacks) • [IMPLEMENTATION](https://github.com/Cheaito-Hadi/HemaConnect#implementation) • [HOW TO RUN?](https://github.com/Cheaito-Hadi/HemaConnect#installation)**
 <br><br>
 
 <!-- project philosophy -->
-<img src="readme/title2.svg"/>
+<img src="readme/title2.svg" id="project-philosophy"/>
 
 > HemaConnect is a web application which aims to create a platform to facilitate the process of blood donations.
 >
@@ -26,7 +30,7 @@
 <br><br>
 
 <!-- Prototyping -->
-<img src="readme/title3.svg"/>
+<img src="readme/title3.svg" id="mockups"/>
 
 > The design was planned from scratch on a paper then enhanced on Figma by adding details.
 
@@ -65,7 +69,7 @@
 <br><br>
 
 <!-- Tech stack -->
-<img src="readme/title5.svg"/>
+<img src="readme/title5.svg" id="stacks"/>
 
 ###  HemaConnect is built using the following technologies:
 
@@ -78,7 +82,7 @@
 <br><br>
 
 <!-- Implementation -->
-<img src="readme/title4.svg"/>
+<img src="readme/title4.svg" id="implementation"/>
 
 > Using the above mockups and technologies, HemaConnect introduce the following features:
 
@@ -111,7 +115,7 @@
 <br><br>
 
 <!-- How to run -->
-<img src="readme/title6.svg"/>
+<img src="readme/title6.svg" id="installation"/>
 
 > To set up HemaConnect locally, follow these steps:
 
