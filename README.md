@@ -7,19 +7,28 @@
 
 > A mobile app for ordering coffee on-the-go, making it easier for coffee lovers to get their favorite beverages without waiting in line.
 >
-> HemaConnects aims to streamline the coffee-ordering process by providing a user-friendly platform for customers to place orders and pick up their coffee at their convenience. We believe in enhancing the coffee experience by saving time and ensuring customer satisfaction.
+> HemaConnect aims to streamline the coffee-ordering process by providing a user-friendly platform for customers to place orders and pick up their coffee at their convenience. We believe in enhancing the coffee experience by saving time and ensuring customer satisfaction.
 
-### User Stories
-- As a user, I want to browse the menu, so I can find my favorite coffee drinks.
-- As a user, I want to customize my order, so I can add or remove ingredients according to my preferences.
-- As a user, I want to pay for my order through the app, so I can avoid waiting in line at the store.
+### Blood Donor Stories
+- As a blood donor, I want to see hospital blood requests, so I can know which hospital needs blood.
+- As a blood donor, I want to book and see upcoming appointments, so I can manage my timings
+- As a blood donor, I want to view hospitals in need of blood on a map, so I can find the best route to reach it.
+
+### Hospital Employee Stories
+- As an employee, I want to view and edit my blood banks, so I can be able to track my needs.
+- As an employee, I want to create a request for blood, so I can show donors that we are in need of blood.
+- As an employee, I want to view the donors' bookings, so I can keep track of the schedules.
+
+### Admin Stories
+- As an admin, I want to view the hospitals, so I can add hospitals and employees.
+
 
 <br><br>
 
 <!-- Prototyping -->
 <img src="readme/title3.svg"/>
 
-> We designed HemaConnects using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+> We designed HemaConnect using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Mockups
 
@@ -59,7 +68,7 @@
 <!-- Implementation -->
 <img src="readme/title4.svg"/>
 
-> Using the wireframes and mockups as a guide, we implemented the HemaConnects app with the following features:
+> Using the wireframes and mockups as a guide, we implemented the HemaConnect app with the following features:
 
 ### User Screens (Mobile)
 | Login screen  | Register screen | Landing screen | Loading screen |
