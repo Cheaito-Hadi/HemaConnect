@@ -5,6 +5,7 @@ import LoginScreen from "../Screens/LoginScreen";
 import RegisterScreen from "../Screens/RegisterScreen";
 import BottomNavigator from '../Navigation/BottomNavigator'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import OnBoarding from "../onBoarding";
 
 const Stack = createStackNavigator();
 const getIsSignedIn = async () => {
@@ -34,7 +35,7 @@ function AppNavigator() {
                 if (userToken) {
                     navigationRef.current?.navigate('BottomNavigator');
                 } else {
-                    navigationRef.current?.navigate('LoginScreen');
+                    navigationRef.current?.navigate('OnBoarding');
                 }
             } catch (error) {
             }
@@ -45,9 +46,10 @@ function AppNavigator() {
         <NavigationContainer ref={navigationRef}>
             <Stack.Navigator
                 screenOptions={{headerShown: false}}>
-                <Stack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown: false}}/>
-                <Stack.Screen name="RegisterScreen" component={RegisterScreen} options={{headerShown: false}}/>
-                <Stack.Screen name="BottomNavigator" component={BottomNavigator} options={{headerShown: false}}/>
+                <Stack.Screen name="OnBoarding" component={OnBoarding}/>
+                <Stack.Screen name="LoginScreen" component={LoginScreen}/>
+                <Stack.Screen name="RegisterScreen" component={RegisterScreen}/>
+                <Stack.Screen name="BottomNavigator" component={BottomNavigator}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
