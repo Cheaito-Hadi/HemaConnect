@@ -24,7 +24,7 @@ const Settings = () => {
                 const userDataObj = JSON.parse(userDataJson);
                 setUserData(userDataObj);
                 setProfileImage({
-                    uri: `http://192.168.1.4:8000/storage/${userDataObj.image_url}`,
+                    uri: `http://192.168.44.192:8000/storage/${userDataObj.image_url}`,
                 })
             }
 
@@ -65,7 +65,7 @@ const Settings = () => {
         });
         try {
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await axios.post('http://192.168.1.4:8000/api/uploadprofile', formData, {
+            const response = await axios.post('http://192.168.44.192:8000/api/uploadprofile', formData, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'multipart/form-data; ',
@@ -77,7 +77,7 @@ const Settings = () => {
             userData.image_url = response.data.image_url;
             await AsyncStorage.setItem('userData', JSON.stringify(userData));
             setProfileImage({
-                uri: `http://192.168.1.4:8000/storage/${userData.image_url}`,
+                uri: `http://192.168.44.192:8000/storage/${userData.image_url}`,
             })
 
         } catch (error) {
@@ -87,7 +87,7 @@ const Settings = () => {
 
     const setNewImage = () => {
         setProfileImage({
-            uri: `http://192.168.1.4:8000/storage/${userData.image_url}`,
+            uri: `http://192.168.44.192:8000/storage/${userData.image_url}`,
         })
     }
     const renderProfileImage = () => {
@@ -155,7 +155,6 @@ const styles = StyleSheet.create({
     homeContainer: {
         alignItems: "center",
         justifyContent: "flex-start",
-        marginTop: "10%",
         width: "100%",
         flex: 1,
     },
@@ -190,7 +189,6 @@ const styles = StyleSheet.create({
         right: 20,
     },
     safeAndroidView: {
-        paddingTop: Platform.OS === "android" ? 30 : 0,
         flex: 1,
     },
     titleContainer: {
@@ -199,8 +197,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "#FF6767",
         height: 80,
-        borderBottomRightRadius: 15,
-        borderBottomLeftRadius: 15,
     },
     textTitle: {
         alignItems: "center",
