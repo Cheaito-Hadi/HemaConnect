@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {View, Text, StyleSheet, SafeAreaView, ScrollView, RefreshControl, Platform} from "react-native";
+import {Platform, RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import UserInfo from "../Components/UI/userInfo";
 import Donation from "../Components/UI/dontaionForm";
 import RequestCard from "../Components/UI/requestCard";
@@ -31,6 +31,21 @@ const FeedScreen = () => {
         dayNumber: "",
         date: "",
     });
+
+    const registerToken = async () => {
+        try {
+            const authToken = await AsyncStorage.getItem("authToken");
+            await axios.post("http://192.168.1.3:8000/api/notificationToken", {
+                token: expoPushToken
+            },{
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            });
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
 
     const fetchData = async () => {
         try {
@@ -99,7 +114,13 @@ const FeedScreen = () => {
         }
     };
     useEffect(() => {
-        registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+        fetchDonation();
+        fetchData();
+        registerForPushNotificationsAsync().then((token)=> {
+                setExpoPushToken(token);
+                registerToken();
+            }
+        );
         responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
             console.log(response);
         });
@@ -108,8 +129,7 @@ const FeedScreen = () => {
             Notifications.removeNotificationSubscription(notificationListener.current);
             Notifications.removeNotificationSubscription(responseListener.current);
         };
-        fetchDonation();
-        fetchData();
+
     }, []);
 
     async function registerForPushNotificationsAsync() {
@@ -125,10 +145,10 @@ const FeedScreen = () => {
         }
 
         if (Device.isDevice) {
-            const { status: existingStatus } = await Notifications.getPermissionsAsync();
+            const {status: existingStatus} = await Notifications.getPermissionsAsync();
             let finalStatus = existingStatus;
             if (existingStatus !== 'granted') {
-                const { status } = await Notifications.requestPermissionsAsync();
+                const {status} = await Notifications.requestPermissionsAsync();
                 finalStatus = status;
             }
             if (finalStatus !== 'granted') {
@@ -150,7 +170,6 @@ const FeedScreen = () => {
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
             }>
                 <View style={styles.homeContainer}>
-                    <Text>The Token {expoPushToken}</Text>
                     <View style={styles.userInfoField}>
                         <UserInfo/>
                     </View>
