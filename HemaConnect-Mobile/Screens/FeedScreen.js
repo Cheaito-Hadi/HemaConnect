@@ -1,12 +1,25 @@
-import React, {useEffect, useState} from "react";
-import {View, Text, StyleSheet, SafeAreaView, ScrollView, RefreshControl} from "react-native";
+import React, {useEffect, useRef, useState} from "react";
+import {View, Text, StyleSheet, SafeAreaView, ScrollView, RefreshControl, Platform} from "react-native";
 import UserInfo from "../Components/UI/userInfo";
 import Donation from "../Components/UI/dontaionForm";
 import RequestCard from "../Components/UI/requestCard";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false,
+    }),
+});
 
 const FeedScreen = () => {
+    const notificationListener = useRef();
+    const responseListener = useRef();
+    const [expoPushToken, setExpoPushToken] = useState('');
     const [requestsData, setRequestsData] = useState([]);
     const [refreshing, setRefreshing] = useState(false);
     const [lastDonationData, setLastDonationData] = useState({
@@ -86,9 +99,50 @@ const FeedScreen = () => {
         }
     };
     useEffect(() => {
+        registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+        responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+            console.log(response);
+        });
+
+        return () => {
+            Notifications.removeNotificationSubscription(notificationListener.current);
+            Notifications.removeNotificationSubscription(responseListener.current);
+        };
         fetchDonation();
         fetchData();
     }, []);
+
+    async function registerForPushNotificationsAsync() {
+        let token;
+
+        if (Platform.OS === 'android') {
+            await Notifications.setNotificationChannelAsync('default', {
+                name: 'default',
+                importance: Notifications.AndroidImportance.MAX,
+                vibrationPattern: [0, 250, 250, 250],
+                lightColor: '#FF231F7C',
+            });
+        }
+
+        if (Device.isDevice) {
+            const { status: existingStatus } = await Notifications.getPermissionsAsync();
+            let finalStatus = existingStatus;
+            if (existingStatus !== 'granted') {
+                const { status } = await Notifications.requestPermissionsAsync();
+                finalStatus = status;
+            }
+            if (finalStatus !== 'granted') {
+                alert('Failed to get push token for push notification!');
+                return;
+            }
+            token = (await Notifications.getExpoPushTokenAsync()).data;
+            console.log(token);
+        } else {
+            alert('Must use physical device for Push Notifications');
+        }
+
+        return token;
+    }
 
     return (
         <SafeAreaView edges={['top']} style={styles.safeAndroidView}>
@@ -96,6 +150,7 @@ const FeedScreen = () => {
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
             }>
                 <View style={styles.homeContainer}>
+                    <Text>The Token {expoPushToken}</Text>
                     <View style={styles.userInfoField}>
                         <UserInfo/>
                     </View>
