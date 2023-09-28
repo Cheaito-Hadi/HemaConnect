@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\BankStock;
+use App\Models\BloodType;
 use App\Models\Hospital;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\BloodRequest;
 use App\Models\Donation;
+use Illuminate\Support\Facades\Http;
 
 class RequestController extends Controller
 {
@@ -22,9 +25,31 @@ class RequestController extends Controller
             ->where('hospital_id', $user->employees[0]->hospital->id)
             ->first();
 
+        $hospital_name = $user->employees[0]->hospital->name;
+        $bloodtype= BloodType::where('id', $request->bloodtype)->first();
+
+        $users_bloodtype = User::where('bloodtype_id',$request->bloodtype)->get();
+        $to_users = [
+
+        ];
+        foreach ($users_bloodtype as $user_bloodtype){
+            if($user_bloodtype-> notification_token){
+                array_push($to_users, $user_bloodtype-> notification_token);
+            }
+        }
         if ($existingRequest) {
             $existingRequest->needed_amount += $request->needed_amount;
             $existingRequest->save();
+
+            $data = [
+                'to' => $to_users,
+                'title' => "Hospital Donation",
+                "body"=>$hospital_name.' are requesting ('.$bloodtype->name.")",
+            ];
+            $response = Http::withBody(
+                json_encode($data), 'application/json'
+            )->post('https://exp.host/--/api/v2/push/send');
+
 
             return response()->json(["Blood_Request" => $existingRequest]);
         }
@@ -34,6 +59,16 @@ class RequestController extends Controller
         $new_request->needed_amount = $request->needed_amount;
         $new_request->hospital_id = $user->employees[0]->hospital->id;
         $new_request->save();
+
+
+        $data = [
+            'to' => $user->notification_token,
+            'title' => 'Network Administrator',
+            "body"=>'Hello world',
+        ];
+        $response = Http::withBody(
+            json_encode($data), 'application/json'
+        )->post('https://exp.host/--/api/v2/push/send');
 
         return response()->json(["Blood_Request" => $new_request]);
     }
