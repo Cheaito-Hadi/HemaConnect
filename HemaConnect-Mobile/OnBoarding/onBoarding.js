@@ -77,6 +77,7 @@ const OnBoarding = ({navigation}) => {
                         SkipButtonComponent={Skip}
                         NextButtonComponent={Next}
                         DoneButtonComponent={Done}
+                        transitionAnimationDuration={100}
                         DotComponent={Dots}
                         onSkip={() => navigation.replace("LoginScreen")}
                         onDone={() => navigation.navigate("LoginScreen")}

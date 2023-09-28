@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Alert, Image, Platform, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Button from "../Components/Base/customedButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from "@react-navigation/native";
@@ -24,7 +24,7 @@ const Settings = () => {
                 const userDataObj = JSON.parse(userDataJson);
                 setUserData(userDataObj);
                 setProfileImage({
-                    uri: `http://192.168.44.192:8000/storage/${userDataObj.image_url}`,
+                    uri: `http://192.168.1.3:8000/storage/${userDataObj.image_url}`,
                 })
             }
 
@@ -65,7 +65,7 @@ const Settings = () => {
         });
         try {
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await axios.post('http://192.168.44.192:8000/api/uploadprofile', formData, {
+            const response = await axios.post('http://192.168.1.3:8000/api/uploadprofile', formData, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'multipart/form-data; ',
@@ -77,7 +77,7 @@ const Settings = () => {
             userData.image_url = response.data.image_url;
             await AsyncStorage.setItem('userData', JSON.stringify(userData));
             setProfileImage({
-                uri: `http://192.168.44.192:8000/storage/${userData.image_url}`,
+                uri: `http://192.168.1.3:8000/storage/${userData.image_url}`,
             })
 
         } catch (error) {
@@ -87,7 +87,7 @@ const Settings = () => {
 
     const setNewImage = () => {
         setProfileImage({
-            uri: `http://192.168.44.192:8000/storage/${userData.image_url}`,
+            uri: `http://192.168.1.3:8000/storage/${userData.image_url}`,
         })
     }
     const renderProfileImage = () => {
@@ -121,8 +121,6 @@ const Settings = () => {
             <View style={styles.homeContainer}>
                 <View style={styles.profileContainer}>
                     {renderProfileImage()}
-                    <Text style={styles.uploadButtonText} onPress={pickImage}>Change Profile Image</Text>
-                    <View style={styles.line}/>
                 </View>
                 <View style={styles.infoWrapper}>
                     <View style={styles.labelContainer}>
@@ -162,6 +160,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         width: 200,
         height: 200,
+        marginTop:30
     },
     profileImage: {
         width: 200,
@@ -197,6 +196,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "#FF6767",
         height: 80,
+        borderBottomRightRadius:20,
+        borderBottomLeftRadius:20,
     },
     textTitle: {
         alignItems: "center",
@@ -214,7 +215,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: '#F6D5D5',
+        borderColor: '#cbcbcb',
         shadowColor: 'rgba(246, 213, 213, 0.50)',
         elevation: 5,
 
@@ -238,8 +239,8 @@ const styles = StyleSheet.create({
         fontWeight: "400",
     },
     line: {
-        borderBottomWidth: 0.5,
-        borderBottomColor: "#FF6767",
+        borderBottomWidth: 0.3,
+        borderBottomColor: "#b2b2b2",
         width: "100%",
     },
     defaultProfileImage: {

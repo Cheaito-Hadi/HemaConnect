@@ -21,7 +21,7 @@ const userInfo = () => {
             return (
                 <Image
                     source={{
-                        uri: `http://192.168.44.192:8000/storage/${userData.image_url}`,
+                        uri: `http://192.168.1.3:8000/storage/${userData.image_url}`,
                     }}
                     style={styles.profileImage}
                 />
