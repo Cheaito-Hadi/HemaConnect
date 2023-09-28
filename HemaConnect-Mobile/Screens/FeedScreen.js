@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {View, Text, StyleSheet, SafeAreaView, Platform, ScrollView, RefreshControl} from "react-native";
+import {View, Text, StyleSheet, SafeAreaView, ScrollView, RefreshControl} from "react-native";
 import UserInfo from "../Components/UI/userInfo";
 import Donation from "../Components/UI/dontaionForm";
 import RequestCard from "../Components/UI/requestCard";

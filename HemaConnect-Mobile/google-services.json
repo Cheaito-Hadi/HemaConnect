@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "308038871576",
+    "project_id": "hemaconnect-4560e",
+    "storage_bucket": "hemaconnect-4560e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308038871576:android:c62268c6641c5b1401716d",
+        "android_client_info": {
+          "package_name": "com.HemaConnect.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH6koJRY7BsrjaDMAE5xTXgMUptimIEco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
