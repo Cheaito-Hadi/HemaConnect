@@ -28,4 +28,24 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function registerNotificationToken(Request $request)
+    {
+        $user = Auth::user();
+        if ($request->token) {
+            $user->notification_token = $request->token;
+            $user->save();
+
+            return response()->json([
+                "status" => "success",
+                "message" => "token notification registered",
+            ]);
+        } else {
+            return response()->json([
+                    "status" => "error",
+                    "message" => "token notification failed",
+                ]);
+        }
+    }
+
 }

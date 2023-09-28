@@ -54,6 +54,7 @@ Route::get('/getAllhospitals', [AdminController::class, "getAllHospitals"]);
 Route::post('/create_employee', [AdminController::class, "createEmployee"]);
 
 Route::post('/uploadprofile', [UserController::class, "uploadImage"]);
+Route::post('/notificationToken', [UserController::class, "registerNotificationToken"]);
 
 Route::get('/gethospitals', [MapController::class, "getHospitals"]);
 
