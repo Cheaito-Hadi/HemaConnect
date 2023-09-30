@@ -3,6 +3,7 @@ import {Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} fr
 import Button from "../Components/Base/customedButton";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from "@react-navigation/native";
+import {StackActions} from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
 
@@ -24,7 +25,7 @@ const Settings = () => {
                 const userDataObj = JSON.parse(userDataJson);
                 setUserData(userDataObj);
                 setProfileImage({
-                    uri: `http://192.168.1.3:8000/storage/${userDataObj.image_url}`,
+                    uri: `http://192.168.0.106:8000/storage/${userDataObj.image_url}`,
                 })
             }
 
@@ -36,6 +37,8 @@ const Settings = () => {
     const handleLogout = async () => {
         await AsyncStorage.removeItem("User Data");
         await AsyncStorage.removeItem("authToken");
+
+        navigation.dispatch(StackActions.popToTop());
         navigation.navigate('LoginScreen');
     };
 
@@ -65,7 +68,7 @@ const Settings = () => {
         });
         try {
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await axios.post('http://192.168.1.3:8000/api/uploadprofile', formData, {
+            const response = await axios.post('http://192.168.0.106:8000/api/uploadprofile', formData, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                     'Content-Type': 'multipart/form-data; ',
@@ -77,7 +80,7 @@ const Settings = () => {
             userData.image_url = response.data.image_url;
             await AsyncStorage.setItem('userData', JSON.stringify(userData));
             setProfileImage({
-                uri: `http://192.168.1.3:8000/storage/${userData.image_url}`,
+                uri: `http://192.168.0.106:8000/storage/${userData.image_url}`,
             })
 
         } catch (error) {
@@ -87,7 +90,7 @@ const Settings = () => {
 
     const setNewImage = () => {
         setProfileImage({
-            uri: `http://192.168.1.3:8000/storage/${userData.image_url}`,
+            uri: `http://192.168.0.106:8000/storage/${userData.image_url}`,
         })
     }
     const renderProfileImage = () => {
@@ -124,9 +127,9 @@ const Settings = () => {
                 </View>
                 <View style={styles.infoWrapper}>
                     <View style={styles.labelContainer}>
-                        <Text style={styles.label}>Full Name:</Text>
+                        <Text style={styles.label}>Full Name: </Text>
                         <Text style={styles.infoText}>
-                            {userData.first_name} {userData.last_name}
+                            {userData.first_name} {userData.last_name} s
                         </Text>
                     </View>
                     <View style={styles.line}/>

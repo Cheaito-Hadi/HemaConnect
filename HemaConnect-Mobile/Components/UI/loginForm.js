@@ -35,10 +35,11 @@ const loginForm = () => {
             return;
         }
         try {
-            const response = await axios.post('http://192.168.1.3:8000/api/login', {
+            const response = await axios.post('http://192.168.0.106:8000/api/login', {
                 email: email,
                 password: password,
             });
+
             const {token} = response.data.authorization;
             await AsyncStorage.setItem('authToken', token);
             const userData = response.data.user;

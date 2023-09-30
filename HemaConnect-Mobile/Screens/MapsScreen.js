@@ -45,7 +45,7 @@ const Map = () => {
 
     const fetchHospitals = async () => {
         const authToken = await AsyncStorage.getItem("authToken");
-        axios.get('http://192.168.1.3:8000/api/gethospitals', {
+        axios.get('http://192.168.0.106:8000/api/gethospitals', {
             headers: {
                 Authorization: `Bearer ${authToken}`,
             },
@@ -154,7 +154,7 @@ const Map = () => {
                             >
                                 <Card
                                     width={250}
-                                    imageSource={{uri: `http://192.168.1.3:8000/storage/${hospital.hospital_info.logo_url}`}}
+                                    imageSource={{uri: `http://192.168.0.106:8000/storage/${hospital.hospital_info.logo_url}`}}
                                     hospitalName={hospital.hospital_info.name}
                                     bloodType={hospital.requests[0].blood_type_name}
                                 />

@@ -30,7 +30,7 @@ const Appointments = () => {
     const fetchHospitals = async () => {
         try {
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await Axios.get('http://192.168.1.3:8000/api/get_userrequests', {
+            const response = await Axios.get('http://192.168.0.106:8000/api/get_userrequests', {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
@@ -119,7 +119,7 @@ const Appointments = () => {
                 time: select,
             };
             const authToken = await AsyncStorage.getItem("authToken");
-            const response = await Axios.post('http://192.168.1.3:8000/api/create_booking', requestData, {
+            const response = await Axios.post('http://192.168.0.106:8000/api/create_booking', requestData, {
                 headers: {
                     Authorization: `Bearer ${authToken}`,
                 },
