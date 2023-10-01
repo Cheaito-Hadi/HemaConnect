@@ -122,6 +122,10 @@
 
 > To set up HemaConnect locally, follow these steps:
 
+### Postman
+
+This is a JSON file for the postman APIs collection for this project [HemaConnect.postman_collection.json](readme%2FHemaConnect.postman_collection.json) and it is hosted on the IP Address "52.210.183.13". You can change the address of the APIs to test them online with postman. 
+
 ### Prerequisites
 
 This is a list of the dependencies you need to install on your OS to run HemaConnect.

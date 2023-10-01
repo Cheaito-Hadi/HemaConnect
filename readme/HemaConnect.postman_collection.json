@@ -1,0 +1,753 @@
+{
+	"info": {
+		"_postman_id": "adb1e8e5-c053-4e7e-ad09-b9c06bf8e6f5",
+		"name": "HemaConnect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22614734",
+		"_collection_link": "https://gold-space-334973.postman.co/workspace/Team-Workspace~d7f995d2-549e-4eaf-8d2e-57ae8425b4fe/collection/22614734-adb1e8e5-c053-4e7e-ad09-b9c06bf8e6f5?action=share&source=collection_link&creator=22614734"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Create Hospital",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Saint George",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "35.5237° E",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "33.8938° N",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "3213123",
+									"type": "text"
+								},
+								{
+									"key": "logo_url",
+									"type": "file",
+									"src": "/C:/Users/Hadi Cheaito/OneDrive/Desktop/Sahel.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://192.168.0.113:8000/api/create_hospital",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"113"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"create_hospital"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Address",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Create Employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "jaafar",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "mortada",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "jm@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "text"
+								},
+								{
+									"key": "bloodtype_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "hospital_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/create_employee",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"create_employee"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Employee",
+			"item": [
+				{
+					"name": "Get Bank Stocks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/get_bankstocks",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"get_bankstocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Bank Stocks",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount",
+									"value": "15",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/bankstocks/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"bankstocks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Blood Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "bloodtype",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "needed_amount",
+									"value": "43",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/create_bloodrequest",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"create_bloodrequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Blood Requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/get_bloodrequests",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"get_bloodrequests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Donation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "request_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "donated_amount",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/create_donation",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"create_donation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Bookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/get_bookings",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"get_bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Booking",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/delete_booking/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"delete_booking",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Bookings",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "blood_type",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api//bookings/search",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"",
+								"bookings",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Donor",
+			"item": [
+				{
+					"name": "Create Booking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "request_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "hepatitis",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "anemia",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "2023-09-12 14:30:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/create_booking",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"create_booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Donation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.113:8000/api/get_lastdonation",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"113"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"get_lastdonation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.113:8000/api/get_userrequests",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"113"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"get_userrequests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get User Booking",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.113:8000/api/get_userbookings",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"113"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"get_userbookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Map Hospitals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.0.113:8000/api/gethospitals",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"0",
+								"113"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"gethospitals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Hospitals",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Notification Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/notificationToken",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"notificationToken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "first_name",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "admin@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pass",
+							"type": "text"
+						},
+						{
+							"key": "bloodtype_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "usertype_id",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "hadi@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pass",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1:8000"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "profile_image",
+							"type": "file",
+							"src": "/C:/Users/Hadi Cheaito/OneDrive/Pictures/Saved Pictures/WhatsApp Image 2022-03-05 at 11.04.10 PM - Copy.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.0.113:8000/api/uploadprofile",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"0",
+						"113"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"uploadprofile"
+					],
+					"query": [
+						{
+							"key": "image_url",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjk2MTA0NDk0LCJleHAiOjE2OTYxMDgwOTQsIm5iZiI6MTY5NjEwNDQ5NCwianRpIjoiUTNZMGQzR214OTRPbGtnVCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.WnMT_zuIXwuq83YAyX6E7FAFnCvO9KVMYVmQmpnuCm8",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
