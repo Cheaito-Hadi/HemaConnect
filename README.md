@@ -77,7 +77,8 @@
 - [MySQL](https://www.mysql.com/): MySQL is a widely used open-source relational database management system (RDBMS). It is used as the database for storing and managing data.
 - [React](https://react.dev/): React is a popular JavaScript library for building user interfaces. React utilized the development of web-based interfaces for employees and the administrator.
 - [Laravel](https://laravel.com/): Laravel is a PHP web application framework known for its elegant syntax and developer-friendly features. It provides tools for routing, authentication, database interactions, and more.
-- [React Native Maps](https://www.npmjs.com/package/react-native-maps): React Native Maps is a component system for maps that allows the integration with maps and location-based functionality in React Native mobile applications. I've also used [Google Geolocation and Services Integration](https://developers.google.com/maps); Google Geolocation and Services provide powerful geolocation and mapping capabilities.
+- [React Native Maps](https://www.npmjs.com/package/react-native-maps): React Native Maps is a component system for maps that allows the integration with maps and location-based functionality in React Native mobile applications. I've also used [Google Geolocation and Services Integration](https://developers.google.com/maps); Google Geolocation and Services provide powerful geolocation and mapping capabilities. I've also used [Leaflet](https://leafletjs.com/) which is an open-source JavaScript library
+  for mobile-friendly interactive maps.
 
 <br><br>
 
