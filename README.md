@@ -13,17 +13,17 @@
 >
 > HemaConnect serves as the vital link connecting healthcare facilities with compassionate individuals eager to donate blood and make a life-saving difference. With its innovative approach, HemaConnect is poised to transform the blood donation process.
 
-### Blood Donor Stories
+<span style="font-size: 20px;">Blood Donor Stories</span>
 - As a blood donor, I want to see hospital blood requests, so I can know which hospital needs blood.
 - As a blood donor, I want to book and see upcoming appointments, so I can manage my timings.
 - As a blood donor, I want to view hospitals in need of blood on a map, so I can find the best route to reach it.
 
-### Hospital Employee Stories
+<span style="font-size: 20px;">Hospital Employee Stories</span>
 - As an employee, I want to view and edit my blood banks, so I can be able to track my needs.
 - As an employee, I want to create a request for blood, so I can show donors that we are in need of blood.
 - As an employee, I want to view the donors' bookings, so I can keep track of the schedules.
 
-### Admin Stories
+<span style="font-size: 20px;">Admin Stories</span>
 - As an admin, I want to view the hospitals, so I can add hospitals and employees.
 
 
@@ -34,9 +34,10 @@
 
 > The design was planned from scratch on a paper then enhanced on Figma by adding details.
 
-### Mockups
+<span style="font-size: 22px;">Mockups</span>
 
-### LogIn Screen (Web)
+<span style="font-size: 20px;">Log In</span>
+
 | Login screen                                          |
 |-------------------------------------------------------|
 | ![Login](./readme/screenshotsWebsite/Login/Login.png) |
