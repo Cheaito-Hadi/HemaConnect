@@ -42,11 +42,14 @@
 |-------------------------------------------------------|
 | ![Login](./readme/screenshotsWebsite/Login/Login.png) |
 
-### Admin Screens (Web)
+<span style="font-size: 20px;">Admin Screens (Web)</span>
+
 | Hospital Table                                               | Hospital Modal                                                        | Employee Modal                                                        |
 |--------------------------------------------------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------|
 | ![Landing](./readme/screenshotsWebsite/Admin/adminTable.png) | ![hospitalModal](./readme/screenshotsWebsite/Admin/hospitalModal.png) | ![EmployeeModal](./readme/screenshotsWebsite/Admin/employeeModal.png) |
-### Hospital Employee Screens (Web)
+
+<span style="font-size: 20px;">Hospital Employee Screens (Web)</span>
+
 | Blood Bank                                                       | Booking Table                                                     |
 |------------------------------------------------------------------|-------------------------------------------------------------------|
 | ![BloodBank](./readme/screenshotsWebsite/Employee/BloodBank.png) | ![BookingTable](./readme/screenshotsWebsite/Employee/Booking.png) |
@@ -54,7 +57,9 @@
 | Request Modal                                                          | Donation Modal                                                          |
 |------------------------------------------------------------------------|-------------------------------------------------------------------------|
 | ![RequestModal](./readme/screenshotsWebsite/Employee/RequestModal.png) | ![DonationModal](./readme/screenshotsWebsite/Employee/BookingModal.png) |
-### Blood Donor Screens (Mobile)
+
+<span style="font-size: 20px;">Blood Donor Screens (Mobile)</span>
+
 | OnBoarding                                                | OnBoarding                                       | OnBoarding                                            |
 |-----------------------------------------------------------| --------------------------------------------------------- |-----------------------------------------------------------|
 | ![onBoarding](./readme/screenshotsMobile/onBoarding1.jpg) | ![onBoarding](./readme/screenshotsMobile/onBoarding2.jpg) | ![onBoarding](./readme/screenshotsMobile/onBoarding3.jpg)      |
@@ -72,7 +77,8 @@
 <!-- Tech stack -->
 <img src="readme/title5.svg" id="stacks"/>
 
-###  HemaConnect is built using the following technologies:
+<span style="font-size: 22px;">HemaConnect is built using the following technologies:</span>
+
 
 - [React Native Expo](https://expo.dev/):  Expo is a set of tools and services built around React Native, making it easier to develop, test, and deploy mobile apps.
 - [MySQL](https://www.mysql.com/): MySQL is a widely used open-source relational database management system (RDBMS). It is used as the database for storing and managing data.
@@ -90,26 +96,28 @@
 
 > Using the above mockups and technologies, HemaConnect introduce the following features:
 
-### Blood Donor Screens (Mobile)
+<span style="font-size: 20px;">Blood Donor Screens (Mobile)</span>
+
 | OnBoarding                                       | Login screen                            | Register screen                          | Home screen                                        |
 |--------------------------------------------------|-----------------------------------------|------------------------------------------|----------------------------------------------------|
 | ![onBoarding](./readme/gifsApp/onBoarding.gif)   | ![Login](./readme/gifsApp/LoginApp.gif) | ![Register](./readme/gifsApp/SignUp.gif) | ![Home](./readme/gifsApp/feed.gif)                 |
 | Appointment screen                               | Map Screen                              | Profile Screen                           | Notification                                       |
 | ![appointment](./readme/gifsApp/appointment.gif) | ![Map](./readme/gifsApp/map.gif)        | ![profile](./readme/gifsApp/profile.gif) | ![notification](./readme/gifsApp/Notification.gif) |
 
-### Login Screens (Web)
+<span style="font-size: 20px;">Login Screens (Web)</span>
+
 | Login screen                                         |
 |------------------------------------------------------|
 | ![LoginGif](./readme/gifsWebsite/Login/WebLogin.gif) |
 
+<span style="font-size: 20px;">Admin Screens (Web)</span>
 
-### Admin Screens (Web)
 | Adding Employee                                           | Adding Hospital                                           |
 |-----------------------------------------------------------|-----------------------------------------------------------|
 | ![Employee](./readme/gifsWebsite/Admin/employeeModal.gif) | ![Hospital](./readme/gifsWebsite/Admin/hospitalModal.gif) |
 
+<span style="font-size: 20px;">Hospital Employee Screens (Web)</span>
 
-### Hospital Employee Screens (Web)
 | Blood Bank Page                                         | Booking Page                                                  |
 |---------------------------------------------------------|---------------------------------------------------------------|
 | ![BankPage](./readme/gifsWebsite/Employee/BankPage.gif) | ![BookingPage](./readme/gifsWebsite/Employee/BookingPage.gif) |
@@ -123,11 +131,11 @@
 
 > To set up HemaConnect locally, follow these steps:
 
-### Postman
+<span style="font-size: 22px;">Postman</span>
 
 This is a JSON file for the postman APIs collection for this project [HemaConnect.postman_collection.json](readme%2FHemaConnect.postman_collection.json) and it is hosted on the IP Address "52.210.183.13". You can change the address of the APIs to test them online with postman. 
 
-### Prerequisites
+<span style="font-size: 20px;">Prerequisites</span>
 
 This is a list of the dependencies you need to install on your OS to run HemaConnect.
 * npm
@@ -135,7 +143,8 @@ This is a list of the dependencies you need to install on your OS to run HemaCon
    npm install npm@latest -g
   ```
 
-### Installation
+<span style="font-size: 20px;">Installation</span>
+
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
