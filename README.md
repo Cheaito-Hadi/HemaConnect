@@ -139,7 +139,41 @@
 
 <span style="font-size: 20px;">Postman</span>
 
-This is a JSON file for the postman APIs collection for this project [HemaConnect.postman_collection.json](readme%2FHemaConnect.postman_collection.json) and it is hosted on the IP Address "52.210.183.13". You can change the address of the APIs to test them online with postman.
+This is a JSON file for the postman APIs collection for this project [HemaConnect.postman_collection.json](readme%2FHemaConnect.postman_collection.json), and it is hosted on the IP Address "52.210.183.13". You can change the address of the APIs to test them online with postman.
+
+<br>
+
+> The following tests were conducted in Postman to assess the functionality of my application's primary APIs:
+
+URL: http://52.210.183.13/api/get_userrequests
+
+```sh 
+PASS: Response time is within acceptable range //199 ms
+PASS: Response content type is JSON
+PASS: Response schema is valid
+PASS: Response has the required field - message
+```
+
+URL: http://52.210.183.13/api/get_userbookings
+
+```sh 
+
+PASS: Response time is within acceptable range //253 ms
+PASS Response status code is 200
+PASS Response has the required fields
+PASS the format of the 'message' field
+```
+
+URL: http://52.210.183.13/api/create_bloodrequest
+
+```sh 
+PASS: Response time is within acceptable range //310 ms
+PASS: Response content type is JSON
+PASS: Response schema is valid
+PASS: Validate that the 'id' is a non-negative integer
+```
+
+<br><br>
 
 <!-- How to run -->
 <img src="readme/title6.svg" id="installation"/>
