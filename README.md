@@ -143,7 +143,7 @@ This is a JSON file for the postman APIs collection for this project [HemaConnec
 
 <br>
 
-> The following tests were conducted in Postman to assess the functionality of my application's primary APIs:
+> The following tests were conducted in Postman to assess the functionality of HemaConnects primary APIs:
 
 URL: http://52.210.183.13/api/get_userrequests
 
