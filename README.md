@@ -10,7 +10,7 @@
 - [Prototyping](https://github.com/Cheaito-Hadi/HemaConnect#mockups)  
 - [Tech Stack](https://github.com/Cheaito-Hadi/HemaConnect#stacks) 
 - [Demo](https://github.com/Cheaito-Hadi/HemaConnect#implementation)
-- [Performance](https://github.com/Cheaito-Hadi/HemaConnect#permormance) 
+- [Performance](https://github.com/Cheaito-Hadi/HemaConnect#performance) 
 - [How to Run?](https://github.com/Cheaito-Hadi/HemaConnect#installation)
 <br><br>
 
