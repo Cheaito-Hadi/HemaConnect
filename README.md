@@ -4,7 +4,7 @@
 > Hello world! Welcome to my project, where I've transformed lines of code into a web application.
 > 
 <!-- project philosophy -->
-<img src="readme/title8.svg" id="table"/>
+<img src="readme/title2-1.svg" id="table"/>
 
 - [Project Philosophy](https://github.com/Cheaito-Hadi/HemaConnect#project-philosophy) 
 - [Prototyping](https://github.com/Cheaito-Hadi/HemaConnect#mockups)  
@@ -137,7 +137,7 @@
 <br><br>
 
 <!-- Performance -->
-<img src="readme/title7.svg" id="performance"/>
+<img src="readme/title6-1.svg" id="performance"/>
 
 <span style="font-size: 20px;">Postman</span>
 
