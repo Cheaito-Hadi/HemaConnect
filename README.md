@@ -6,7 +6,12 @@
 <!-- project philosophy -->
 <img src="readme/title8.svg" id="table"/>
 
-**[PROJECT PHILOSOPHY](https://github.com/Cheaito-Hadi/HemaConnect#project-philosophy) • [MOCKUPS](https://github.com/Cheaito-Hadi/HemaConnect#mockups) • [TECH STACK](https://github.com/Cheaito-Hadi/HemaConnect#stacks) • [IMPLEMENTATION](https://github.com/Cheaito-Hadi/HemaConnect#implementation) • [HOW TO RUN?](https://github.com/Cheaito-Hadi/HemaConnect#installation)**
+- [Project Philosophy](https://github.com/Cheaito-Hadi/HemaConnect#project-philosophy) 
+- [Prototyping](https://github.com/Cheaito-Hadi/HemaConnect#mockups)  
+- [Tech Stack](https://github.com/Cheaito-Hadi/HemaConnect#stacks) 
+- [Demo](https://github.com/Cheaito-Hadi/HemaConnect#implementation)
+- [Performance](https://github.com/Cheaito-Hadi/HemaConnect#permormance) 
+- [How to Run?](https://github.com/Cheaito-Hadi/HemaConnect#installation)
 <br><br>
 
 <!-- project philosophy -->
@@ -132,14 +137,14 @@
 <!-- Performance -->
 <img src="readme/title7.svg" id="performance"/>
 
+<span style="font-size: 20px;">Postman</span>
+
+This is a JSON file for the postman APIs collection for this project [HemaConnect.postman_collection.json](readme%2FHemaConnect.postman_collection.json) and it is hosted on the IP Address "52.210.183.13". You can change the address of the APIs to test them online with postman.
+
 <!-- How to run -->
 <img src="readme/title6.svg" id="installation"/>
 
 > To set up HemaConnect locally, follow these steps:
-
-<span style="font-size: 22px;">Postman</span>
-
-This is a JSON file for the postman APIs collection for this project [HemaConnect.postman_collection.json](readme%2FHemaConnect.postman_collection.json) and it is hosted on the IP Address "52.210.183.13". You can change the address of the APIs to test them online with postman. 
 
 <span style="font-size: 20px;">Prerequisites</span>
 
