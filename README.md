@@ -21,6 +21,8 @@
 >
 > HemaConnect serves as the vital link connecting healthcare facilities with compassionate individuals eager to donate blood and make a life-saving difference. With its innovative approach, HemaConnect is poised to transform the blood donation process.
 
+<span style="font-size: 22px;">User Stories</span>
+
 <span style="font-size: 20px;">Blood Donor Stories</span>
 - As a blood donor, I want to see hospital blood requests, so I can know which hospital needs blood.
 - As a blood donor, I want to book and see upcoming appointments, so I can manage my timings.
