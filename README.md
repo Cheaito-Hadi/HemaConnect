@@ -3,6 +3,9 @@
 
 > Hello world! Welcome to my project, where I've transformed lines of code into a web application.
 > 
+<!-- project philosophy -->
+<img src="readme/title8.svg" id="table"/>
+
 **[PROJECT PHILOSOPHY](https://github.com/Cheaito-Hadi/HemaConnect#project-philosophy) • [MOCKUPS](https://github.com/Cheaito-Hadi/HemaConnect#mockups) • [TECH STACK](https://github.com/Cheaito-Hadi/HemaConnect#stacks) • [IMPLEMENTATION](https://github.com/Cheaito-Hadi/HemaConnect#implementation) • [HOW TO RUN?](https://github.com/Cheaito-Hadi/HemaConnect#installation)**
 <br><br>
 
@@ -125,6 +128,9 @@
 
 
 <br><br>
+
+<!-- Performance -->
+<img src="readme/title7.svg" id="performance"/>
 
 <!-- How to run -->
 <img src="readme/title6.svg" id="installation"/>
